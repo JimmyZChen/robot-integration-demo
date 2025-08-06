@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.robot.mapper.RobotMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.ruoyi.robot.domain.Robot">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="last_active_time" property="lastActiveTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 列表查询 -->
+    <sql id="Base_Column_List">
+        id, name, type, status, last_active_time,
+    create_by, create_time, update_by, update_time, remark
+    </sql>
+    <select id="selectRobotList"
+            parameterType="com.ruoyi.robot.domain.Robot"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM robot_device
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据 ID 查询 -->
+    <select id="selectRobotById"
+            parameterType="long"
+            resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM robot_device
+        WHERE id = #{id}
+    </select>
+
+    <!-- 新增（使用自动主键回填） -->
+    <insert id="insertRobot"
+            parameterType="com.ruoyi.robot.domain.Robot"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO robot_device
+        (name, type, status, last_active_time, create_by, create_time, update_by, update_time, remark)
+        VALUES
+            (#{name}, #{type}, #{status}, #{lastActiveTime}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+    </insert>
+
+    <!-- 修改 -->
+    <update id="updateRobot"
+            parameterType="com.ruoyi.robot.domain.Robot">
+        UPDATE robot_device
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="lastActiveTime != null">last_active_time = #{lastActiveTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 单条删除 -->
+    <delete id="deleteRobotById" parameterType="long">
+        DELETE FROM robot_device WHERE id = #{id}
+    </delete>
+
+    <!-- 批量删除 -->
+    <delete id="deleteRobotByIds" parameterType="long[]">
+        DELETE FROM robot_device WHERE id IN
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
