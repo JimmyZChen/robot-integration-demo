@@ -153,7 +153,6 @@
       </template>
       <el-row :gutter="20" style="margin-top: 16px;">
         <el-col :span="4">
-          <!-- 任务状态显示处 -->
           <div class="robot-status-line">
             <strong>任务状态：</strong>
             <el-tag
@@ -165,30 +164,32 @@
               {{ selectedRobot ? taskStateText(statusSummary.taskState) : '-' }}
             </el-tag>
           </div>
-
-
         </el-col>
-
         <el-col :span="4">
-          <div>
+          <div class="robot-status-line">
             <strong>电量：</strong>
-            {{ selectedRobot ? (statusSummary.powerPercentage !== null && statusSummary.powerPercentage !== undefined ? statusSummary.powerPercentage : '-') : '-' }}%
+            <span>
+        {{ selectedRobot ? (statusSummary.powerPercentage !== null && statusSummary.powerPercentage !== undefined ? statusSummary.powerPercentage : '-') : '-' }}%
+      </span>
           </div>
         </el-col>
         <el-col :span="6">
-          <div>
+          <div class="robot-status-line">
             <strong>地图：</strong>
-            {{ selectedRobot ? (statusSummary.mapName || '-') : '-' }}
+            <span>{{ selectedRobot ? (statusSummary.mapName || '-') : '-' }}</span>
           </div>
         </el-col>
         <el-col :span="6">
-          <div>
+          <div class="robot-status-line">
             <strong>位置：</strong>
-            x={{ selectedRobot ? (statusSummary.x !== null && statusSummary.x !== undefined ? statusSummary.x : '-') : '-' }},
-            y={{ selectedRobot ? (statusSummary.y !== null && statusSummary.y !== undefined ? statusSummary.y : '-') : '-' }}
+            <span>
+        x={{ selectedRobot ? (statusSummary.x !== null && statusSummary.x !== undefined ? statusSummary.x : '-') : '-' }},
+        y={{ selectedRobot ? (statusSummary.y !== null && statusSummary.y !== undefined ? statusSummary.y : '-') : '-' }}
+      </span>
           </div>
         </el-col>
       </el-row>
+
     </el-card>
 
     <!-- 创建无站点临时清扫任务 -->
@@ -677,6 +678,12 @@ export default {
   min-height: 24px;
   font-size: 15px;
 }
+.robot-status-line .el-tag {
+  height: 24px;
+  line-height: 24px;
+  font-size: 15px;
+}
+
 .status-tag {
   font-size: 16px !important;
   font-weight: bold;
