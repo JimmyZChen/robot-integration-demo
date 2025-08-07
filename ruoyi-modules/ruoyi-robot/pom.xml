@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 	
-    <artifactId>ruoyi-robot</artifactId>
+    <artifactId>ruoyi-modules-robot-gs</artifactId>
 
     <description>
         ruoyi-robot 智慧园区机器人微服务模块
