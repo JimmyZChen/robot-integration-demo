@@ -1,9 +1,11 @@
 package com.ruoyi.robot.openapi;
 
 
-import com.ruoyi.framework.config.GsOpenApiProperties;
-import com.ruoyi.framework.dto.external.*;
-import com.ruoyi.web.service.robot.GsOpenApiService;
+import com.ruoyi.robot.config.GsOpenApiProperties;
+import com.ruoyi.robot.api.dto.*;
+import com.ruoyi.robot.openapi.GsOpenApiService;
+import com.ruoyi.robot.api.dto.GsTempTaskDto;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.ruoyi.framework.dto.external.GsTempTaskDto;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

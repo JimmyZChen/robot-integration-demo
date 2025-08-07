@@ -91,6 +91,14 @@
             <artifactId>ruoyi-common-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-api-robot</artifactId>
+            <version>3.6.6</version>
+        </dependency>
+
+
+
 
     </dependencies>
 

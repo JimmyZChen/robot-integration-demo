@@ -1,9 +1,9 @@
 package com.ruoyi.robot.openapi;
 
+import com.ruoyi.robot.api.dto.GsRobotListResp;
+import com.ruoyi.robot.api.dto.GxSubAreaDto;
+import com.ruoyi.robot.api.dto.GsTempTaskDto;
 
-import com.ruoyi.framework.dto.external.GsRobotListResp;
-import com.ruoyi.framework.dto.external.GxSubAreaDto;
-import com.ruoyi.framework.dto.external.GsTempTaskDto;
 import java.util.List;
 import java.util.Map;
 
