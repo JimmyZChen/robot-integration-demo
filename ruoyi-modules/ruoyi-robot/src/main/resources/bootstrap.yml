@@ -1,3 +1,7 @@
+server:
+  port: 9300
+
+
 spring:
   application:
     name: ruoyi-robot
