@@ -1,6 +1,8 @@
 package com.ruoyi.robot.openapi;
 
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.ruoyi.robot.config.GsOpenApiProperties;
 import com.ruoyi.robot.api.dto.*;
 import com.ruoyi.robot.openapi.GsOpenApiService;
@@ -96,6 +98,8 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
                 ? body.getRobots()
                 : Collections.emptyList();
     }
+
+
 
 
     // 查询地图列表接口

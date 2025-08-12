@@ -1,5 +1,7 @@
 package com.ruoyi.robot.controller.external;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.robot.api.dto.GsRobotListResp;
@@ -28,6 +30,7 @@ public class GsRobotController extends BaseController {
     /**
      * 获取高仙平台机器人列表（支持 robotSn 过滤）
      */
+    @SentinelResource(value = "listRobots", blockHandler = "listRobotsBlockHandler", fallback = "listRobotsFallback")
     @ApiOperation("获取高仙平台机器人列表")
     @GetMapping("/robots")
     public AjaxResult listRobots(
@@ -41,6 +44,12 @@ public class GsRobotController extends BaseController {
                         .filter(r -> robotSn.equals(r.getRobotId()))
                         .collect(Collectors.toList());
         return AjaxResult.success(filtered);
+    }
+
+    public AjaxResult listRobotsBlockHandler(String username, BlockException ex)
+    {
+        System.out.println("listRobotsBlockHandler异常信息：" + ex.getMessage());
+        return AjaxResult.error("限流");
     }
 
 
