@@ -76,6 +76,20 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
         return (cached != null) ? cached : Collections.emptyList();
     }
 
+    // ====== 统一的缓存 key ======
+    private static String kRobotMapList(String sn) { return "robot:map:list:" + sn; }
+    private static String kSubareas(String mapId, String sn) { return "robot:map:subareas:" + mapId + ":" + sn; }
+    private static String kRobotCmds(String sn, int page, int pageSize) { return "robot:cmds:" + sn + ":" + page + ":" + pageSize; }
+
+    // ====== 从 JSON 读出 Map / List<Map> 的小工具 ======
+    private Map<String, Object> fromJsonToMap(String json) {
+        try { return OM.readValue(json, new TypeReference<Map<String, Object>>(){}); } catch (Exception e) { return null; }
+    }
+    private List<Map<String, Object>> fromJsonToListOfMap(String json) {
+        try { return OM.readValue(json, new TypeReference<List<Map<String,Object>>>(){}); } catch (Exception e) { return null; }
+    }
+
+
 
 
 
@@ -210,6 +224,11 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
 
     // 查询地图列表接口
     @Override
+    @SentinelResource(
+            value = "gs.postListRobotMap",
+            blockHandler = "postListRobotMapBlock",
+            fallback = "postListRobotMapFallback"
+    )
     public Map<String, Object> postListRobotMap(String robotSn) {
         String url = props.getBaseUrl() + "/openapi/v1/map/robotMap/list";
         log.debug("[postListRobotMap] URL: {}, robotSn: {}", url, robotSn);
@@ -227,11 +246,39 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
         ResponseEntity<Map> resp = restTemplate.exchange(url, HttpMethod.POST, req, Map.class);
 
         log.debug("[postListRobotMap] 新接口返回: {}", resp.getBody());
-        return resp.getBody() != null ? resp.getBody() : Collections.emptyMap();
+
+        Map<String, Object> result = (resp.getBody() != null) ? resp.getBody() : Collections.emptyMap();
+
+        // 缓存 3 分钟
+        try { redis.opsForValue().set(kRobotMapList(robotSn), toJson(result), 3, TimeUnit.MINUTES); } catch (Exception ignore) {}
+        return result;
+
     }
+
+    // 被限流/熔断
+    public Map<String, Object> postListRobotMapBlock(String robotSn, BlockException ex) {
+        log.warn("[postListRobotMap] blocked: {}, sn={}", ex.getClass().getSimpleName(), robotSn);
+        String json = redis.opsForValue().get(kRobotMapList(robotSn));
+        Map<String, Object> cached = (json != null) ? fromJsonToMap(json) : null;
+        return (cached != null) ? cached : Collections.emptyMap();
+    }
+
+    // 方法异常
+    public Map<String, Object> postListRobotMapFallback(String robotSn, Throwable ex) {
+        log.warn("[postListRobotMap] fallback: {}, sn={}", ex.toString(), robotSn);
+        String json = redis.opsForValue().get(kRobotMapList(robotSn));
+        Map<String, Object> cached = (json != null) ? fromJsonToMap(json) : null;
+        return (cached != null) ? cached : Collections.emptyMap();
+    }
+
 
     //获取地图分区接口
     @Override
+    @SentinelResource(
+            value = "gs.listSubareas",
+            blockHandler = "listSubareasBlock",
+            fallback = "listSubareasFallback"
+    )
     public List<GxSubAreaDto> listSubareas(String mapId, String robotSn) {
         //1. 构造请求地址与参数
         String url = "https://openapi.gs-robot.com/openapi/v1/map/subareas/get";
@@ -268,12 +315,33 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
             }
         }
 
-        //6. 返回结果
+        // 缓存 10 分钟
+        try { redis.opsForValue().set(kSubareas(mapId, robotSn), toJson(result), 10, TimeUnit.MINUTES); } catch (Exception ignore) {}
         return result;
     }
 
+    public List<GxSubAreaDto> listSubareasBlock(String mapId, String robotSn, BlockException ex) {
+        log.warn("[listSubareas] blocked: {}, mapId={}, sn={}", ex.getClass().getSimpleName(), mapId, robotSn);
+        String json = redis.opsForValue().get(kSubareas(mapId, robotSn));
+        List<GxSubAreaDto> cached = (json != null) ? fromJson(json, new TypeReference<List<GxSubAreaDto>>() {}) : null;
+        return (cached != null) ? cached : Collections.emptyList();
+    }
+
+    public List<GxSubAreaDto> listSubareasFallback(String mapId, String robotSn, Throwable ex) {
+        log.warn("[listSubareas] fallback: {}, mapId={}, sn={}", ex.toString(), mapId, robotSn);
+        String json = redis.opsForValue().get(kSubareas(mapId, robotSn));
+        List<GxSubAreaDto> cached = (json != null) ? fromJson(json, new TypeReference<List<GxSubAreaDto>>() {}) : null;
+        return (cached != null) ? cached : Collections.emptyList();
+    }
+
+
     //创建机器人无站点临时任务
     @Override
+    @SentinelResource(
+            value = "gs.sendTempTask",
+            blockHandler = "sendTempTaskBlock",
+            fallback = "sendTempTaskFallback"
+    )
     public String sendTempTask(GsTempTaskDto dto) {
         // 基础 URL 来自配置：openapi.gs.base-url=https://openapi.gs-robot.com
         String apiUrl = props.getBaseUrl() + "/openapi/v2alpha1/robotCommand/tempTask:send";
@@ -290,12 +358,26 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
         return resp.getBody();
     }
 
+    public String sendTempTaskBlock(GsTempTaskDto dto, BlockException ex) {
+        log.warn("[sendTempTask] blocked: {}", ex.getClass().getSimpleName());
+        return "{\"code\":429,\"msg\":\"限流/熔断，任务未下发\"}";
+    }
+
+    public String sendTempTaskFallback(GsTempTaskDto dto, Throwable ex) {
+        log.warn("[sendTempTask] fallback: {}", ex.toString());
+        return "{\"code\":503,\"msg\":\"服务异常，任务未下发\"}";
+    }
 
 
 
 
     //机器人指令列表
     @Override
+    @SentinelResource(
+            value = "gs.listRobotCommands",
+            blockHandler = "listRobotCommandsBlock",
+            fallback = "listRobotCommandsFallback"
+    )
     public List<Map<String, Object>> listRobotCommands(String robotSn, int page, int pageSize) {
         String url = props.getBaseUrl()
                 + "/v1alpha1/robots/" + robotSn
@@ -327,9 +409,23 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
             // fallback
             list.add(obj);
         }
+        // 缓存 2 分钟
+        try { redis.opsForValue().set(kRobotCmds(robotSn, page, pageSize), toJson(list), 2, TimeUnit.MINUTES); } catch (Exception ignore) {}
         return list;
     }
+    public List<Map<String, Object>> listRobotCommandsBlock(String robotSn, int page, int pageSize, BlockException ex) {
+        log.warn("[listRobotCommands] blocked: {}, sn={}, page={}, size={}", ex.getClass().getSimpleName(), robotSn, page, pageSize);
+        String json = redis.opsForValue().get(kRobotCmds(robotSn, page, pageSize));
+        List<Map<String, Object>> cached = (json != null) ? fromJsonToListOfMap(json) : null;
+        return (cached != null) ? cached : Collections.emptyList();
+    }
 
+    public List<Map<String, Object>> listRobotCommandsFallback(String robotSn, int page, int pageSize, Throwable ex) {
+        log.warn("[listRobotCommands] fallback: {}, sn={}, page={}, size={}", ex.toString(), robotSn, page, pageSize);
+        String json = redis.opsForValue().get(kRobotCmds(robotSn, page, pageSize));
+        List<Map<String, Object>> cached = (json != null) ? fromJsonToListOfMap(json) : null;
+        return (cached != null) ? cached : Collections.emptyList();
+    }
 
 
 
