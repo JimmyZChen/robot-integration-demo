@@ -1,11 +1,9 @@
 package com.ruoyi.robot.openapi;
 
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.ruoyi.robot.openapi.GsOpenApiService;
 import com.ruoyi.robot.config.GsOpenApiProperties;
 import com.ruoyi.robot.api.dto.*;
-import com.ruoyi.robot.openapi.GsOpenApiService;
 import com.ruoyi.robot.api.dto.GsTempTaskDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +20,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.util.concurrent.TimeUnit;
+
+
 
 @Slf4j
 @Service
@@ -30,13 +36,48 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     private final RestTemplate restTemplate;
     private final GsOpenApiProperties props;
 
+    private final StringRedisTemplate redis;          // <--- 新增
+    private static final ObjectMapper OM = new ObjectMapper();
+
     private String cachedToken;
     private long expiresAtMillis = 0L;
 
-    public GsOpenApiServiceImpl(RestTemplate restTemplate, GsOpenApiProperties props) {
+
+    // 构造器：新增 redis 参数
+    public GsOpenApiServiceImpl(RestTemplate restTemplate, GsOpenApiProperties props,
+                                StringRedisTemplate redis) {
         this.restTemplate = restTemplate;
         this.props = props;
+        this.redis = redis;
     }
+
+    // 统一的缓存 key
+    private static String kRobotStatus(String sn) { return "robot:status:" + sn; }
+    private static String kRobotList() { return "robot:list"; }
+
+    // JSON 序列化/反序列化
+    private String toJson(Object o) {
+        try { return OM.writeValueAsString(o); } catch (Exception e) { return "{}"; }
+    }
+    private <T> T fromJson(String s, Class<T> t) {
+        try { return OM.readValue(s, t); } catch (Exception e) { return null; }
+    }
+    // JSON 反序列化（对泛型友好，如 List<RobotInfo>）
+    private <T> T fromJson(String s, TypeReference<T> typeRef) {
+        try { return OM.readValue(s, typeRef); } catch (Exception e) { return null; }
+    }
+
+    // 统一从缓存读机器人列表
+    private List<GsRobotListResp.RobotInfo> readRobotsCacheOrEmpty() {
+        String json = redis.opsForValue().get(kRobotList());
+        if (json == null) return Collections.emptyList();
+        List<GsRobotListResp.RobotInfo> cached =
+                fromJson(json, new TypeReference<List<GsRobotListResp.RobotInfo>>() {});
+        return (cached != null) ? cached : Collections.emptyList();
+    }
+
+
+
 
     //获取OAuth令牌Token
     //1. 方法声明和线程安全
@@ -72,34 +113,99 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     /** 获取机器人列表 */
     //1. 方法签名
     @Override
+    @SentinelResource(
+            value = "gs.listRobots",
+            blockHandler = "listRobotsBlockHandler",
+            fallback = "listRobotsFallback"
+    )
     public List<GsRobotListResp.RobotInfo> listRobots() {
 
-        //2. 拼接请求 URL
+        //1. 拼接请求 URL
         String url = props.getBaseUrl() + "/v1alpha1/robots?page=1&pageSize=10";
         log.debug("[listRobots] URL: {}", url);
 
-        //3. 构造 HTTP 请求头
+        //2. 构造 HTTP 请求头
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "Bearer " + getToken());
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        //4. 构造请求实体对象
+        //3. 构造请求实体对象
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        //5. 发起 HTTP 请求
+        //4. 发起 HTTP 请求
         ResponseEntity<GsRobotListResp> resp =
                 restTemplate.exchange(url, HttpMethod.GET, entity, GsRobotListResp.class);
-        //6. 处理响应体
+
+        //5. 处理响应体
         GsRobotListResp body = resp.getBody();
         log.debug("[listRobots] 高仙返回: {}", body);
 
         //7. 结果判空和返回
-        return (body != null && body.getRobots() != null)
+        List<GsRobotListResp.RobotInfo> list = (body != null && body.getRobots() != null)
                 ? body.getRobots()
                 : Collections.emptyList();
+
+
+// 5) 成功写缓存（建议短 TTL，避免陈旧）
+        try {
+            redis.opsForValue().set(kRobotList(), toJson(list), 5, TimeUnit.MINUTES);
+        } catch (Exception ignore) {}
+
+        return list;
+
+    }
+
+    // Sentinel 命中（限流/熔断）
+    public List<GsRobotListResp.RobotInfo> listRobotsBlockHandler(BlockException ex) {
+        log.warn("[listRobots] blocked by sentinel: {}", ex.getClass().getSimpleName());
+        return readRobotsCacheOrEmpty();
+    }
+
+    // 方法抛异常
+    public List<GsRobotListResp.RobotInfo> listRobotsFallback(Throwable ex) {
+        log.warn("[listRobots] fallback by throwable: {}", ex.toString());
+        return readRobotsCacheOrEmpty();
     }
 
 
+    //获取机器人状态
+    @Override
+    @SentinelResource(
+            value = "gs.getRobotStatus",
+            blockHandler = "getRobotStatusBlockHandler",
+            fallback = "getRobotStatusFallback"
+    )
+    public String getRobotStatus(String robotSn) {
+        // 注意：此处使用 “/s/robots/…/status” 路径，与 tempTask 不同
+        String apiUrl = props.getBaseUrl() + "/openapi/v2alpha1/s/robots/" + robotSn + "/status";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(getToken());
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> resp = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+        String body = resp.getBody();                  // 先存到变量，后续要用
+
+        // 成功写缓存（短 TTL，比如 3 分钟）
+        if (body != null) {
+            try { redis.opsForValue().set(kRobotStatus(robotSn), body, 3, TimeUnit.MINUTES); } catch (Exception ignore) {}
+        }
+        return body;
+    }
+
+    // Sentinel 命中（限流/熔断）
+    public String getRobotStatusBlockHandler(String robotSn, BlockException ex) {
+        log.warn("[getRobotStatus] blocked by sentinel: {}, sn={}", ex.getClass().getSimpleName(), robotSn);
+        String cached = redis.opsForValue().get(kRobotStatus(robotSn));
+        return (cached != null) ? cached : "{\"code\":429,\"msg\":\"限流/熔断，且无缓存\"}";
+    }
+
+    // 方法抛异常
+    public String getRobotStatusFallback(String robotSn, Throwable ex) {
+        log.warn("[getRobotStatus] fallback by throwable: {}, sn={}", ex.toString(), robotSn);
+        String cached = redis.opsForValue().get(kRobotStatus(robotSn));
+        return (cached != null) ? cached : "{\"code\":503,\"msg\":\"服务异常，且无缓存\"}";
+    }
 
 
     // 查询地图列表接口
@@ -184,19 +290,8 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
         return resp.getBody();
     }
 
-    //获取机器人状态
-    @Override
-    public String getRobotStatus(String robotSn) {
-        // 注意：此处使用 “/s/robots/…/status” 路径，与 tempTask 不同
-        String apiUrl = props.getBaseUrl() + "/openapi/v2alpha1/s/robots/" + robotSn + "/status";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(getToken());
-        HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<String> resp = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
-        return resp.getBody();
-    }
 
 
     //机器人指令列表
