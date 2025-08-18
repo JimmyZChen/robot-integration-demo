@@ -11,7 +11,7 @@
  Target Server Version : 80042 (8.0.42)
  File Encoding         : 65001
 
- Date: 15/08/2025 10:47:09
+ Date: 18/08/2025 14:52:12
 */
 
 SET NAMES utf8mb4;
@@ -830,7 +830,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status` ASC) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -838,6 +838,12 @@ CREATE TABLE `sys_oper_log`  (
 INSERT INTO `sys_oper_log` VALUES (100, '菜单管理', 1, 'com.ruoyi.web.controller.system.SysMenuController.add()', 'POST', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"gsrobot/index\",\"createBy\":\"admin\",\"icon\":\"component\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"机器人管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":0,\"path\":\"/gsrobot\",\"perms\":\"gs:robot:list\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-07-02 16:47:22', 25);
 INSERT INTO `sys_oper_log` VALUES (101, '角色管理', 1, 'com.ruoyi.web.controller.system.SysRoleController.add()', 'POST', 1, 'admin', '研发部门', '/system/role', '127.0.0.1', '内网IP', '{\"admin\":false,\"createBy\":\"admin\",\"deptCheckStrictly\":true,\"deptIds\":[],\"flag\":false,\"menuCheckStrictly\":true,\"menuIds\":[2000],\"params\":{},\"roleId\":100,\"roleKey\":\"RobotCustomer\",\"roleName\":\"机器人客户\",\"roleSort\":3,\"status\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-07-14 16:05:44', 652);
 INSERT INTO `sys_oper_log` VALUES (102, '用户管理', 1, 'com.ruoyi.web.controller.system.SysUserController.add()', 'POST', 1, 'admin', '研发部门', '/system/user', '127.0.0.1', '内网IP', '{\"admin\":false,\"createBy\":\"admin\",\"nickName\":\"小陈\",\"params\":{},\"postIds\":[],\"roleIds\":[100],\"status\":\"0\",\"userId\":100,\"userName\":\"xiaochen\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-07-14 16:06:41', 114);
+INSERT INTO `sys_oper_log` VALUES (103, '个人信息', 2, 'com.ruoyi.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/user/profile', '127.0.0.1', '', '{\"admin\":false,\"email\":\"ry@163.com\",\"nickName\":\"超级管理员\",\"params\":{},\"phonenumber\":\"15888888888\",\"sex\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-08-18 11:37:44', 70);
+INSERT INTO `sys_oper_log` VALUES (104, '个人信息', 2, 'com.ruoyi.system.controller.SysProfileController.updateProfile()', 'PUT', 1, 'admin', NULL, '/user/profile', '127.0.0.1', '', '{\"admin\":false,\"email\":\"ry@163.com\",\"nickName\":\"超级管理员\",\"params\":{},\"phonenumber\":\"15888888888\",\"sex\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-08-18 11:37:55', 8);
+INSERT INTO `sys_oper_log` VALUES (105, '用户头像', 2, 'com.ruoyi.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/user/profile/avatar', '127.0.0.1', '', '', '{\"msg\":\"文件格式不正确，请上传[bmp, gif, jpg, jpeg, png]格式\",\"code\":500}', 0, NULL, '2025-08-18 11:51:39', 18);
+INSERT INTO `sys_oper_log` VALUES (106, '用户头像', 2, 'com.ruoyi.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/user/profile/avatar', '127.0.0.1', '', '', '{\"msg\":\"文件服务异常，请联系管理员\",\"code\":500}', 0, NULL, '2025-08-18 11:52:00', 50);
+INSERT INTO `sys_oper_log` VALUES (107, '用户头像', 2, 'com.ruoyi.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/user/profile/avatar', '127.0.0.1', '', '', '{\"msg\":\"文件服务异常，请联系管理员\",\"code\":500}', 0, NULL, '2025-08-18 11:52:02', 1);
+INSERT INTO `sys_oper_log` VALUES (108, '用户头像', 2, 'com.ruoyi.system.controller.SysProfileController.avatar()', 'POST', 1, 'admin', NULL, '/user/profile/avatar', '127.0.0.1', '', '', '{\"msg\":\"文件服务异常，请联系管理员\",\"code\":500}', 0, NULL, '2025-08-18 14:20:27', 193);
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -1042,7 +1048,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '$2a$12$W8C3qWNmNc45MeCtX0/.ou2wzImbcu.7sMLcrpQwW3ITKHwLpxThO', '0', '0', '127.0.0.1', '2025-08-15 10:38:29', '2025-06-20 16:07:25', 'admin', '2025-06-20 16:07:25', '', '2025-08-15 10:38:28', '管理员');
+INSERT INTO `sys_user` VALUES (1, 103, 'admin', '超级管理员', '00', 'ry@163.com', '15888888888', '0', '', '$2a$12$W8C3qWNmNc45MeCtX0/.ou2wzImbcu.7sMLcrpQwW3ITKHwLpxThO', '0', '0', '127.0.0.1', '2025-08-18 14:46:57', '2025-06-20 16:07:25', 'admin', '2025-06-20 16:07:25', '', '2025-08-18 14:46:57', '管理员');
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2025-06-20 16:07:25', '2025-06-20 16:07:25', 'admin', '2025-06-20 16:07:25', '', NULL, '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'xiaochen', '小陈', '00', '', '', '0', '', '$2a$10$h0lvZqr/AT/rpjDQGIxbFeVsVh1NNhhU3Ijak4TYQiia1K9mHR10m', '0', '0', '127.0.0.1', '2025-07-15 03:20:38', NULL, 'admin', '2025-07-14 16:06:41', '', '2025-07-15 11:20:37', NULL);
 
