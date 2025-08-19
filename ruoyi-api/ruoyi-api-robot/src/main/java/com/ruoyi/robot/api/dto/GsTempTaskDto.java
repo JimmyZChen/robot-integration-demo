@@ -20,7 +20,6 @@ public class GsTempTaskDto {
         private boolean loop;
         private Integer loopCount;
         private String mapName;
-        /** 注意名字要和官方接口一一对应：startParam 数组 */
         private List<StartParam> startParam;
     }
 

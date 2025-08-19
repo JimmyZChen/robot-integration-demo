@@ -2,7 +2,6 @@ package com.ruoyi.robot.controller.external;
 
 import com.ruoyi.robot.openapi.GsOpenApiService;
 import com.ruoyi.robot.api.dto.GxSubAreaDto;
-
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +17,7 @@ import java.util.List;
 @Api(tags = "地图相关接口")
 @Slf4j // 新增
 @RestController
-@RequestMapping("/external/gs/map")
+@RequestMapping("/external/xxxx/xxxx")
 public class GsMapController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class GsMapController {
 
     // 地图列表
     @ApiOperation("查询地图列表")
-    @PostMapping("/robotMap/list")
+    @PostMapping("/xxxxx/list")
     public AjaxResult postRobotMapList(@RequestBody Map<String, String> param) {
         String robotSn = param.get("robotSn");
         // 调用新 service 方法（需要你在 service 里补充实现）

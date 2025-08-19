@@ -1,11 +1,8 @@
 package com.ruoyi.robot.openapi;
 
-
-import com.ruoyi.robot.openapi.GsOpenApiService;
 import com.ruoyi.robot.config.GsOpenApiProperties;
 import com.ruoyi.robot.api.dto.*;
 import com.ruoyi.robot.api.dto.GsTempTaskDto;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -14,12 +11,10 @@ import java.util.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -91,8 +86,6 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
 
 
 
-
-
     //获取OAuth令牌Token
     //1. 方法声明和线程安全
     private synchronized String getToken() {
@@ -135,7 +128,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     public List<GsRobotListResp.RobotInfo> listRobots() {
 
         //1. 拼接请求 URL
-        String url = props.getBaseUrl() + "/v1alpha1/robots?page=1&pageSize=10";
+        String url = props.getBaseUrl() + "/xxxxx/xxxxx?page=1&pageSize=10";
         log.debug("[listRobots] URL: {}", url);
 
         //2. 构造 HTTP 请求头
@@ -190,8 +183,8 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
             fallback = "getRobotStatusFallback"
     )
     public String getRobotStatus(String robotSn) {
-        // 注意：此处使用 “/s/robots/…/status” 路径，与 tempTask 不同
-        String apiUrl = props.getBaseUrl() + "/openapi/v2alpha1/s/robots/" + robotSn + "/status";
+        // 注意：此处使用 “/xx/robots/…/status” 路径，与 tempTask 不同
+        String apiUrl = props.getBaseUrl() + "/xxxxx/xxxxxx/xx/xxxx/" + robotSn + "/status";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(getToken());
@@ -230,7 +223,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
             fallback = "postListRobotMapFallback"
     )
     public Map<String, Object> postListRobotMap(String robotSn) {
-        String url = props.getBaseUrl() + "/openapi/v1/map/robotMap/list";
+        String url = props.getBaseUrl() + "/xxxxx/xx/xxxx/robotMap/list";
         log.debug("[postListRobotMap] URL: {}, robotSn: {}", url, robotSn);
 
         HttpHeaders headers = new HttpHeaders();
@@ -281,7 +274,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     )
     public List<GxSubAreaDto> listSubareas(String mapId, String robotSn) {
         //1. 构造请求地址与参数
-        String url = "https://openapi.gs-robot.com/openapi/v1/map/subareas/get";
+        String url = props.getBaseUrl() + "/xxxx/xx/xxxx/subareas/get";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + getToken());
@@ -296,7 +289,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
 
         //3. 获取 JSON 字符串响应体
         String respJson = resp.getBody();
-        System.out.println("高仙返回原始json：" + respJson);
+        log.debug("subareas resp: {}", respJson == null ? "null" : respJson.substring(0, Math.min(512, respJson.length())));
 
         //4. JSON 反序列化为 Java Bean
         GxSubAreaResp gxResp = JSON.parseObject(respJson, GxSubAreaResp.class);
@@ -343,8 +336,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
             fallback = "sendTempTaskFallback"
     )
     public String sendTempTask(GsTempTaskDto dto) {
-        // 基础 URL 来自配置：openapi.gs.base-url=https://openapi.gs-robot.com
-        String apiUrl = props.getBaseUrl() + "/openapi/v2alpha1/robotCommand/tempTask:send";
+        String apiUrl = props.getBaseUrl() + "/xxxxx/xxxxx/xxxxxx/tempTask:send";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -369,8 +361,6 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     }
 
 
-
-
     //机器人指令列表
     @Override
     @SentinelResource(
@@ -380,7 +370,7 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
     )
     public List<Map<String, Object>> listRobotCommands(String robotSn, int page, int pageSize) {
         String url = props.getBaseUrl()
-                + "/v1alpha1/robots/" + robotSn
+                + "/xxxxx/xxxx/" + robotSn
                 + "/commands?page=" + page + "&pageSize=" + pageSize;
 
         HttpHeaders headers = new HttpHeaders();
@@ -426,11 +416,5 @@ public class GsOpenApiServiceImpl implements GsOpenApiService {
         List<Map<String, Object>> cached = (json != null) ? fromJsonToListOfMap(json) : null;
         return (cached != null) ? cached : Collections.emptyList();
     }
-
-
-
-
-
-
 
 }

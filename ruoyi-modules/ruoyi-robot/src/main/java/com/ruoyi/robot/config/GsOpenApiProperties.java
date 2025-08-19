@@ -1,6 +1,5 @@
 package com.ruoyi.robot.config;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +7,11 @@ import org.springframework.stereotype.Component;
  * 高仙开放平台的配置，通过 application.yml 注入
  */
 @Component
-@ConfigurationProperties(prefix = "openapi.gs")
+@ConfigurationProperties(prefix = "xxxx.xx")
 public class GsOpenApiProperties {
     /** OAuth Token 获取地址 */
     private String credentialUrl;
-    /** 高仙 OpenAPI 基础 URL，比如 https://openapi.gs-robot.com */
+    /** 高仙 OpenAPI URL，比如 https://xxxxxx.xx-xxxx.com */
     private String baseUrl;
     private String clientId;
     private String clientSecret;

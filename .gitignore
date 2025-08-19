@@ -1,46 +1,41 @@
-######################################################################
-# Build Tools
-
-.gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
-
+# Build artifacts
 target/
-!.mvn/wrapper/maven-wrapper.jar
-
-######################################################################
-# IDE
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### JRebel ###
-rebel.xml
-### NetBeans ###
-nbproject/private/
-build/*
-nbbuild/
+bin/
+out/
 dist/
-nbdist/
-.nb-gradle/
+*.class
+*.jar
+*.war
 
-######################################################################
-# Others
-*.log
-*.xml.versionsBackup
-*.swp
+# Maven/Gradle
+.mvn/wrapper/maven-wrapper.jar
+.gradle/
+build/
 
-!*/build/*.java
-!*/build/*.html
-!*/build/*.xml
+# Node / Frontend
+node_modules/
+**/node_modules/
+**/dist/
+pnpm-lock.yaml
+yarn.lock
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+**/*.log
+
+# Local configs & secrets
+.env
+.env.*
+application-*.yml
+bootstrap*.yml
+nacos-export*
+nacos/
+.nacos/
+sentinel-*
+skywalking/

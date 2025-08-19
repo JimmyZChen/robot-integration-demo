@@ -12,13 +12,13 @@ import java.util.Map;
  */
 public interface GsOpenApiService {
 
-    /** 查询机器人列表 */
+    //查询机器人列表
     List<GsRobotListResp.RobotInfo> listRobots();
 
-    //查询地图列表（原始返回），data字段下是地图信息数组
+    //查询地图列表
     Map<String, Object> postListRobotMap(String robotSn);
 
-    // 根据 mapId 查询所有地图分区（subareas）
+    //根据 mapId 查询所有地图分区（subareas）
     List<GxSubAreaDto> listSubareas(String mapId, String robotSn);
 
     //列出机器人指令

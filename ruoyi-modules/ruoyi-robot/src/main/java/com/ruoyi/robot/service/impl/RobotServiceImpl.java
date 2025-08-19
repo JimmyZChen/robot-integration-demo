@@ -5,7 +5,6 @@ import com.ruoyi.robot.mapper.RobotMapper;
 import com.ruoyi.robot.service.IRobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**

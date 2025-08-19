@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class OAuthTokenResp {
-    /** 令牌类型，一般为 bearer */
+    /** 令牌类型，为 bearer */
     private String tokenType;
     /** 实际用于授权的访问令牌 */
     private String accessToken;

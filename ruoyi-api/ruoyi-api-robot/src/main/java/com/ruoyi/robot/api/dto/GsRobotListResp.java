@@ -22,7 +22,6 @@ public class GsRobotListResp {
         /** JSON 字段 "serialNumber" → Java 字段 robotId */
         @JsonProperty("serialNumber")
         private String robotId;
-
         private String name;
         private String displayName;
         private String modelFamilyCode;

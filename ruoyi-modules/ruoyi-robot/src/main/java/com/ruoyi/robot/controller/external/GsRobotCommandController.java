@@ -13,7 +13,7 @@ import com.ruoyi.robot.api.dto.GsTempTaskDto;
 
 @Api(tags = "高仙机器人指令管理")
 @RestController
-@RequestMapping("/external/gs/robot/command")
+@RequestMapping("/external/xxx/xxxx/command")
 public class GsRobotCommandController {
     @Autowired
     private GsOpenApiService gsOpenApiService;
