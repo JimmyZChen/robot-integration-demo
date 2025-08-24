@@ -19,8 +19,12 @@
 - 原因：项目对接真实机器人/生产环境，公开可运行版本可能**误触发真实设备**或泄露隐私，因此默认禁用实际调用。  
 - 运行效果已在 Slides 展示（见下文），用于说明功能与界面，不依赖本仓库直接连外网。
 
-## 🎥 效果展示（Google Slides）
+## 🎥 效果展示
 👉 **运行效果与界面截图**：  
+百度网盘:
+https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp
+
+Google Slides:
 [https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/edit?slide=id.g375830d96d2_5_20#slide=id.g375830d96d2_5_20](https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/edit?slide=id.g375830d96d2_5_20#slide=id.g375830d96d2_5_20)
 
 > Slides 中展示了机器人列表、状态监控、地图/分区与任务下发等界面与流程（截图均已脱敏/打码）。
@@ -132,6 +136,9 @@ com.ruoyi
 ## 🎥 Demo (Google Slides)
 👉 **Screens & flows**:  
 [https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/edit?slide=id.g375830d96d2_5_20#slide=id.g375830d96d2_5_20](https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/edit?slide=id.g375830d96d2_5_20#slide=id.g375830d96d2_5_20)
+
+Baidu Netdisk:
+https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp
 
 > Slides include robot list, status monitoring, map/partition views, and task dispatch flows. All screenshots are redacted/anonymized.
 
