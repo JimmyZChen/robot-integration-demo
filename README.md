@@ -1,4 +1,140 @@
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">
+  Smart Park Robot Platform · Code Structure Demo (RuoYi-Cloud v3.6.6)
+</h1>
+<h4 align="center">
+  A vendor-agnostic robot integration, orchestration & scheduling platform (read-only sample, non-runnable by default)
+</h4>
+<p align="center">
+  <a href="https://gitee.com/y_project/RuoYi-Cloud">
+    <img src="https://img.shields.io/badge/RuoYi-v3.6.6-brightgreen.svg">
+  </a>
+  <img src="https://img.shields.io/badge/Java-17-blue">
+  <img src="https://img.shields.io/badge/Vue-2.x-4fc08d">
+  <img src="https://img.shields.io/badge/SpringCloud-Alibaba-blueviolet">
+  <img src="https://img.shields.io/badge/Status-Read--only-lightgrey">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-informational"></a>
+</p>
+
+> **What**: A **code structure & design showcase** for a multi-vendor robot management platform.  
+> **Why**: Publicly runnable builds may trigger real devices or leak sensitive data, so this repo is **non-runnable by default**.  
+> **Who**: Backend / platform / architecture readers (gateway governance, resilience, and observability).
+
+## 📌 Important Notes
+- This repository is **non-runnable by default** and focuses on **structure & design**.  
+- It **does not include Nacos configuration**, any secrets/credentials, or usable external endpoints; all third-party parameters are removed or replaced by placeholders.  
+- The project integrates real robots/production APIs in private environments. Publicly exposing runnable configs could **trigger real devices** or cause data leaks.  
+- UI and flows are demonstrated via **Slides / Baidu Netdisk** (see below). They do **not** require this repository to connect to external services.
+
+## 🎥 Demo
+- **Google Slides (flows & UI mock)**:  
+  https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/
+- **Baidu Netdisk (redacted screenshots)**:  
+  https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp
+
+> Slides/Netdisk include robot list, status monitoring, map/partition views, and temporary task dispatch flows (all screenshots redacted/anonymized).
+
+## 🧾 Overview
+Built on **RuoYi-Cloud v3.6.6**, this sample illustrates a **multi-vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, map/partition management, status monitoring, and observability.  
+For safety & compliance, the repository focuses on **service decomposition, gateway/service layering, rate limit & circuit ideas, and observability touchpoints**, without shipping runnable configuration.
+
+### Capabilities (focus of the sample)
+- **Vendor adapter layer**: wraps third-party OpenAPIs (e.g., Gaussian), abstracts device & command models, hides protocol differences.  
+- **Gateway governance**: unified routing; examples of rate-limit / circuit-break / degrade rules (Sentinel), allow/deny lists, and auth hooks.  
+- **Robot management (`/gsrobot`)**: controller/service skeletons for list/online status, maps/partitions, and temporary task orchestration.  
+- **Observability touchpoints**: trace propagation, log–trace correlation (example instrumentation & notes).
+
+---
+## 📂 Project Layout (sample)
+~~~
+com.ruoyi
+├── ruoyi-ui              // Frontend framework [80]
+├── ruoyi-gateway         // API Gateway module [8080]
+├── ruoyi-auth            // Authentication center [9200]
+├── ruoyi-api             // API modules
+│       └── ruoyi-api-system                          // System APIs
+│       └── ruoyi-api-robot                           // Robot APIs
+├── ruoyi-common          // Common modules
+│       └── ruoyi-common-core                         // Core module
+│       └── ruoyi-common-datascope                    // Data scope
+│       └── ruoyi-common-datasource                   // Multi-datasource
+│       └── ruoyi-common-log                          // Logging
+│       └── ruoyi-common-redis                        // Cache service
+│       └── ruoyi-common-seata                        // Distributed transactions
+│       └── ruoyi-common-security                     // Security module
+│       └── ruoyi-common-sensitive                    // Data masking
+│       └── ruoyi-common-swagger                      // Swagger/OpenAPI support
+├── ruoyi-modules         // Business modules
+│       └── ruoyi-robot-gs                            // Robot management
+│       └── ruoyi-system                              // System service [9201]
+│       └── ruoyi-gen                                 // Code generator [9202]
+│       └── ruoyi-job                                 // Scheduled jobs [9203]
+│       └── ruoyi-file                                // File service [9300]
+├── ruoyi-visual          // Visual management modules
+│       └── ruoyi-visual-monitor                      // Monitoring center [9100]
+├── pom.xml               // Parent POM / common dependencies
+~~~
+
+---
+
+## 🚫 What’s **not** included
+- **Nacos configuration** or any exported registration/config bundles.  
+- **Secrets/credentials** (e.g., `clientId/clientSecret/openAccessKey`, JWT secrets, DB/Redis accounts).  
+- **Usable external endpoints** (real `baseUrl`, internal IPs/domains, device serials, map IDs, company/geo data).  
+- **Implementations that could trigger real actions**: task dispatch and similar calls keep structure only; real calls are disabled.
+
+<a id="why-non-runnable"></a>
+## ℹ️ Why is it non-runnable?
+- To prevent accidental calls to real robots or production APIs.  
+- Public repos can’t safely host secrets/internal endpoints, so **all required runtime configuration is removed**.  
+- Outbound call sites use **placeholder paths** or read from config; without private environment variables, methods fail fast or return placeholder responses.
+
+## 🔐 Security & Compliance
+- All credentials and real addresses were removed. If you spot any leftover, please open an issue or PR.  
+- Do **not** commit `.env`, `application-*.yml`, `bootstrap*.yml`, or `nacos-export*`.  
+- “Gaussian Robotics / 高仙” and other vendor names are third-party trademarks. This repo is a technical demo and does not include their private docs/SDK/keys.
+
+## 🛠 Tech Stack (structure demo)
+- Backend: Spring Boot · Spring Cloud Alibaba (Gateway, OpenFeign, etc.)  
+- Resilience: Sentinel examples for rate limit / circuit break / degrade  
+- Observability: SkyWalking integration points & sample code  
+- Data: DTO/interface-driven examples; **no** runnable MySQL/Redis connections provided by default
+
+## 🗂 Reading Guide
+- Entry page: **`/gsrobot`** (frontend route sample)  
+- Vendor adapters: `ruoyi-robot-gs` → `openapi/` & `service/` packages (interfaces & skeletons)  
+- Gateway rules: example routes/filters in `ruoyi-gateway`  
+- Rate-limit / degrade: Sentinel annotations & sample rules (redacted)
+
+## 🧪 Private sandbox try (for you only)
+> This repo does **not** include run steps. For sandbox testing, you would need to:  
+> 1) Provide your own Nacos/config or environment variables;  
+> 2) Use your **own** test keys and **non-production** devices;  
+> 3) Run everything inside an isolated network with rate-limit/circuit-break & fallback configured.  
+**Never commit any keys or usable configs back to this repo.**
+
+## ❓ FAQ
+**Q: Why is the repo non-runnable?**  
+**A:** To avoid triggering real devices/production APIs; all runtime configs were removed.
+
+**Q: Can I try it inside a private network?**  
+**A:** Yes, but you must provide your own Nacos/test keys/devices and configure rate-limit & circuit-break inside an isolated sandbox.
+
+**Q: Do you accept PRs?**  
+**A:** This repo is primarily a showcase; feature PRs are not accepted for now. Documentation/security fix PRs are welcome.
+
+## 👤 Author / Maintainer
+Chen Zheng
+- Linkedin：https://www.linkedin.com/in/jimmy-chen-74a8182b8/
+- Github: https://github.com/JimmyZChen
+- Gitee: https://gitee.com/chen-zheng-jimmy
+
+## 📄 License & Disclaimer
+- Unless otherwise stated, sample code can be licensed under a common OSS license (**Apache-2.0 / MIT** recommended). Please add a matching `LICENSE` file at the repository root.  
+- This repository does not control real devices. You are responsible for legal and safe use in your own environment.
+
+---
+
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">
   园区机器人调度系统 · 代码结构演示（RuoYi-Cloud v3.6.6）
 </h1>
 <h4 align="center">
@@ -155,139 +291,4 @@ com.ruoyi
 - 若未特别声明，示例代码以常见开源协议发布（建议 Apache-2.0 / MIT）。  
 - 本仓库不对接真实设备，不为任何外部调用行为负责；使用者需自行保证合规与安全。
 
----
-
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">
-  Smart Park Robot Platform · Code Structure Demo (RuoYi-Cloud v3.6.6)
-</h1>
-<h4 align="center">
-  A vendor-agnostic robot integration, orchestration & scheduling platform (read-only sample, non-runnable by default)
-</h4>
-<p align="center">
-  <a href="https://gitee.com/y_project/RuoYi-Cloud">
-    <img src="https://img.shields.io/badge/RuoYi-v3.6.6-brightgreen.svg">
-  </a>
-  <img src="https://img.shields.io/badge/Java-17-blue">
-  <img src="https://img.shields.io/badge/Vue-2.x-4fc08d">
-  <img src="https://img.shields.io/badge/SpringCloud-Alibaba-blueviolet">
-  <img src="https://img.shields.io/badge/Status-Read--only-lightgrey">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-informational"></a>
-</p>
-
-> **What**: A **code structure & design showcase** for a multi-vendor robot management platform.  
-> **Why**: Publicly runnable builds may trigger real devices or leak sensitive data, so this repo is **non-runnable by default**.  
-> **Who**: Backend / platform / architecture readers (gateway governance, resilience, and observability).
-
-## 📌 Important Notes
-- This repository is **non-runnable by default** and focuses on **structure & design**.  
-- It **does not include Nacos configuration**, any secrets/credentials, or usable external endpoints; all third-party parameters are removed or replaced by placeholders.  
-- The project integrates real robots/production APIs in private environments. Publicly exposing runnable configs could **trigger real devices** or cause data leaks.  
-- UI and flows are demonstrated via **Slides / Baidu Netdisk** (see below). They do **not** require this repository to connect to external services.
-
-## 🎥 Demo
-- **Google Slides (flows & UI mock)**:  
-  https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/
-- **Baidu Netdisk (redacted screenshots)**:  
-  https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp
-
-> Slides/Netdisk include robot list, status monitoring, map/partition views, and temporary task dispatch flows (all screenshots redacted/anonymized).
-
-## 🧾 Overview
-Built on **RuoYi-Cloud v3.6.6**, this sample illustrates a **multi-vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, map/partition management, status monitoring, and observability.  
-For safety & compliance, the repository focuses on **service decomposition, gateway/service layering, rate limit & circuit ideas, and observability touchpoints**, without shipping runnable configuration.
-
-### Capabilities (focus of the sample)
-- **Vendor adapter layer**: wraps third-party OpenAPIs (e.g., Gaussian), abstracts device & command models, hides protocol differences.  
-- **Gateway governance**: unified routing; examples of rate-limit / circuit-break / degrade rules (Sentinel), allow/deny lists, and auth hooks.  
-- **Robot management (`/gsrobot`)**: controller/service skeletons for list/online status, maps/partitions, and temporary task orchestration.  
-- **Observability touchpoints**: trace propagation, log–trace correlation (example instrumentation & notes).
-
----
-## 📂 Project Layout (sample)
-~~~
-com.ruoyi
-├── ruoyi-ui              // Frontend framework [80]
-├── ruoyi-gateway         // API Gateway module [8080]
-├── ruoyi-auth            // Authentication center [9200]
-├── ruoyi-api             // API modules
-│       └── ruoyi-api-system                          // System APIs
-│       └── ruoyi-api-robot                           // Robot APIs
-├── ruoyi-common          // Common modules
-│       └── ruoyi-common-core                         // Core module
-│       └── ruoyi-common-datascope                    // Data scope
-│       └── ruoyi-common-datasource                   // Multi-datasource
-│       └── ruoyi-common-log                          // Logging
-│       └── ruoyi-common-redis                        // Cache service
-│       └── ruoyi-common-seata                        // Distributed transactions
-│       └── ruoyi-common-security                     // Security module
-│       └── ruoyi-common-sensitive                    // Data masking
-│       └── ruoyi-common-swagger                      // Swagger/OpenAPI support
-├── ruoyi-modules         // Business modules
-│       └── ruoyi-robot-gs                            // Robot management
-│       └── ruoyi-system                              // System service [9201]
-│       └── ruoyi-gen                                 // Code generator [9202]
-│       └── ruoyi-job                                 // Scheduled jobs [9203]
-│       └── ruoyi-file                                // File service [9300]
-├── ruoyi-visual          // Visual management modules
-│       └── ruoyi-visual-monitor                      // Monitoring center [9100]
-├── pom.xml               // Parent POM / common dependencies
-~~~
-
----
-
-## 🚫 What’s **not** included
-- **Nacos configuration** or any exported registration/config bundles.  
-- **Secrets/credentials** (e.g., `clientId/clientSecret/openAccessKey`, JWT secrets, DB/Redis accounts).  
-- **Usable external endpoints** (real `baseUrl`, internal IPs/domains, device serials, map IDs, company/geo data).  
-- **Implementations that could trigger real actions**: task dispatch and similar calls keep structure only; real calls are disabled.
-
-<a id="why-non-runnable"></a>
-## ℹ️ Why is it non-runnable?
-- To prevent accidental calls to real robots or production APIs.  
-- Public repos can’t safely host secrets/internal endpoints, so **all required runtime configuration is removed**.  
-- Outbound call sites use **placeholder paths** or read from config; without private environment variables, methods fail fast or return placeholder responses.
-
-## 🔐 Security & Compliance
-- All credentials and real addresses were removed. If you spot any leftover, please open an issue or PR.  
-- Do **not** commit `.env`, `application-*.yml`, `bootstrap*.yml`, or `nacos-export*`.  
-- “Gaussian Robotics / 高仙” and other vendor names are third-party trademarks. This repo is a technical demo and does not include their private docs/SDK/keys.
-
-## 🛠 Tech Stack (structure demo)
-- Backend: Spring Boot · Spring Cloud Alibaba (Gateway, OpenFeign, etc.)  
-- Resilience: Sentinel examples for rate limit / circuit break / degrade  
-- Observability: SkyWalking integration points & sample code  
-- Data: DTO/interface-driven examples; **no** runnable MySQL/Redis connections provided by default
-
-## 🗂 Reading Guide
-- Entry page: **`/gsrobot`** (frontend route sample)  
-- Vendor adapters: `ruoyi-robot-gs` → `openapi/` & `service/` packages (interfaces & skeletons)  
-- Gateway rules: example routes/filters in `ruoyi-gateway`  
-- Rate-limit / degrade: Sentinel annotations & sample rules (redacted)
-
-## 🧪 Private sandbox try (for you only)
-> This repo does **not** include run steps. For sandbox testing, you would need to:  
-> 1) Provide your own Nacos/config or environment variables;  
-> 2) Use your **own** test keys and **non-production** devices;  
-> 3) Run everything inside an isolated network with rate-limit/circuit-break & fallback configured.  
-**Never commit any keys or usable configs back to this repo.**
-
-## ❓ FAQ
-**Q: Why is the repo non-runnable?**  
-**A:** To avoid triggering real devices/production APIs; all runtime configs were removed.
-
-**Q: Can I try it inside a private network?**  
-**A:** Yes, but you must provide your own Nacos/test keys/devices and configure rate-limit & circuit-break inside an isolated sandbox.
-
-**Q: Do you accept PRs?**  
-**A:** This repo is primarily a showcase; feature PRs are not accepted for now. Documentation/security fix PRs are welcome.
-
-## 👤 Author / Maintainer
-Chen Zheng
-- Linkedin：https://www.linkedin.com/in/jimmy-chen-74a8182b8/
-- Github: https://github.com/JimmyZChen
-- Gitee: https://gitee.com/chen-zheng-jimmy
-
-## 📄 License & Disclaimer
-- Unless otherwise stated, sample code can be licensed under a common OSS license (**Apache-2.0 / MIT** recommended). Please add a matching `LICENSE` file at the repository root.  
-- This repository does not control real devices. You are responsible for legal and safe use in your own environment.
 
