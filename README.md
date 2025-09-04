@@ -23,6 +23,7 @@
 - [📌 重要声明（务必先读）](#-重要声明务必先读)
 - [🎥 效果展示](#-效果展示)
 - [🧾 项目简介](#-项目简介)
+- [📈 服务等级目标（SLO）](#slo-cn)
 - [🧩 模块速览](#-模块速览)
 - [📂 目录结构（示例）](#-目录结构示例)
 - [🧪 关键示例](#-关键示例)
@@ -58,6 +59,17 @@
 - **网关治理**：统一路由、限流/熔断/降级（Sentinel 规则示例）、黑白名单与基础鉴权位置。  
 - **机器人管理（/gsrobot）**：列表/在线状态、地图与分区、临时任务编排的接口骨架。  
 - **可观测性接入点**：链路透传、日志关联 TraceId（示例埋点与说明）。
+
+<a id="slo-cn"></a>
+## 📈 服务等级目标（SLO）
+
+- 状态查询 `/external/gs/status/**`：成功率 ≥ **99.9%**；P95 **< 300ms**（P99 **< 800ms**）
+- 地图列表 `/maps/list/**`：成功率 ≥ **99.9%**；P95 **< 400ms**
+- 任务下发（异步受理） `/external/gs/task/**`：受理成功率 ≥ **99.5%**；受理 P95 **< 1s**
+- WebSocket 恢复：**99% < 3s**
+
+> 统计口径：HTTP 非 5xx + 业务 `code==0` 计成功；**策略性 429（限流命中）不计失败**，单独作为容量与阈值校准指标。  
+> 细则见：[`docs/SLO.md`](./docs/SLO.md)
 
 ## 🧩 模块速览
 | 模块 | 作用 | 关键目录/类 | 推荐阅读顺序 |
@@ -178,6 +190,23 @@ com.ruoyi
 > **Why**: Publicly runnable builds may trigger real devices or leak sensitive data, so this repo is **non-runnable by default**.  
 > **Who**: Backend / platform / architecture readers (gateway governance, resilience, and observability).
 
+## 📚 Table of Contents
+- [📌 Important Notes](#-important-notes)
+- [🎥 Demo](#-demo)
+- [🧾 Overview](#-overview)
+- [📈 Service Level Objectives (SLO)](#slo-en)
+- [📂 Project Layout (sample)](#-project-layout-sample)
+- [🚫 What’s not included](#-whats-not-included)
+- [ℹ️ Why is it non-runnable?](#why-non-runnable)
+- [🔐 Security & Compliance](#-security--compliance)
+- [🛠 Tech Stack (structure demo)](#-tech-stack-structure-demo)
+- [🗂 Reading Guide](#-reading-guide)
+- [🧪 Private sandbox try (for you only)](#-private-sandbox-try-for-you-only)
+- [❓ FAQ](#-faq)
+- [👤 Author / Maintainer](#-author--maintainer)
+- [📄 License & Disclaimer](#-license--disclaimer)
+
+
 ## 📌 Important Notes
 - This repository is **non-runnable by default** and focuses on **structure & design**.  
 - It **does not include Nacos configuration**, any secrets/credentials, or usable external endpoints; all third-party parameters are removed or replaced by placeholders.  
@@ -195,6 +224,18 @@ com.ruoyi
 ## 🧾 Overview
 Built on **RuoYi-Cloud v3.6.6**, this sample illustrates a **multi-vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, map/partition management, status monitoring, and observability.  
 For safety & compliance, the repository focuses on **service decomposition, gateway/service layering, rate limit & circuit ideas, and observability touchpoints**, without shipping runnable configuration.
+
+<a id="slo-en"></a>
+## 📈 Service Level Objectives (SLO)
+
+- Status query `/external/gs/status/**`: Success ≥ **99.9%**; P95 **< 300ms** (P99 **< 800ms**)
+- Map list `/maps/list/**`: Success ≥ **99.9%**; P95 **< 400ms**
+- Task dispatch (async acceptance) `/external/gs/task/**`: Acceptance success ≥ **99.5%**; P95 **< 1s**
+- WebSocket recovery: **99% < 3s**
+
+> Measurement: HTTP non-5xx **and** business `code==0` are counted as success; **intentional 429 (rate-limit)** is excluded from failures and tracked separately for capacity/tuning.  
+> See details: [`docs/SLO.md`](./docs/SLO.md)
+
 
 ### Capabilities (focus of the sample)
 - **Vendor adapter layer**: wraps third-party OpenAPIs (e.g., Gaussian), abstracts device & command models, hides protocol differences.  
