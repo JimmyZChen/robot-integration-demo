@@ -51,6 +51,15 @@
 
 ---
 
+# Service Level Objectives (SLO)
+
+> Scope: Spring Cloud Gateway + Robot Service.  
+> Window: 28 days (monthly).  
+> Success definition: Count as success when the HTTP status is not 5xx and the business `code==0`; **intentional 429 (rate limiting) is not counted as a failure** and is tracked separately for capacity and threshold tuning.  
+> Latency: by default, measure the duration from **Gateway ingress → response sent**.
+
+---
+
 ## 📈 SLO (English)
 
 ### 1) SLO Table
