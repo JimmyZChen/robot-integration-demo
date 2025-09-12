@@ -480,8 +480,38 @@ com.ruoyi
 ```http
 POST /external/gs/async/robot/command/tempTask  → 202 Accepted {taskId}
 GET  /external/gs/async/tasks/{taskId}          → PENDING | DONE | FAILED
+```
 
+**Topology (consistent naming for easy console verification)**
+- `Exchange=robot.task.topic`（topic） → `Queue=robot.task.q`
+- `DLX=robot.task.dlx` → `DLQ=robot.task.dlq`（`rk=#`）
+- `RoutingKey=robot.task.dispatch`
 
+**Consumer policy**
+- Manual ack; on exception nack(requeue=false) → goes directly to **DLQ**
+- Reference settings: concurrency=2, prefetch=20 (up to 40 in-flight)
+- Producer confirm/return + mandatory=true (routing failures observable)
+
+**Idempotency & result cache**
+- Idempotency key: request header X-Request-Id → robot:idem:{id} (default TTL 3600s)
+- Task status: robot:task:{taskId} (default TTL 86400s) for the query API
+
+**Message model (sample)**
+```json
+{
+  "taskId": "c34c7980...f1b7",
+  "requestId": "rq-0002",
+  "type": "GS_TEMP_TASK",
+  "payload": {"...": "..."}
+}
+```
+Verification (see Appendix PDF)
+
+POST /external/gs/async/robot/command/tempTask → returns status=202 with taskId
+
+GET  /external/gs/async/tasks/{taskId}         → PENDING → DONE/FAILED
+
+Abnormal cases can be inspected in the DLQ to locate failed messages.
 
 ---
 
