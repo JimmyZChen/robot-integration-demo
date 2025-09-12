@@ -45,22 +45,52 @@
 本项目基于 **RuoYi-Cloud v3.6.6** 二次开发，目标是打造一个**多厂商机器人集成调度系统**：统一接入不同厂商 OpenAPI（以**高仙（Gaussian Robotics）**为例），提供任务编排、地图/分区管理、状态监控与可观测性。  
 为确保安全与合规，当前仓库以**示例代码结构**为主，聚焦工程拆分、网关与业务层设计、限流/降级与可观测性接入方式。
 
-### 主要能力（示例代码侧重）
-- **厂商适配层**：封装第三方 OpenAPI（以高仙为例），抽象设备模型与指令，隐藏协议差异。  
-- **网关治理**：统一路由、限流/熔断/降级（Sentinel 规则示例）、黑白名单与基础鉴权位置。  
-- **机器人管理（/gsrobot）**：列表/在线状态、地图与分区、临时任务编排的接口骨架。  
-- **可观测性接入点**：链路透传、日志关联 TraceId（示例埋点与说明）。
+---
 
-### 技术栈（结构演示）
-- 后端：Spring Boot · Spring Cloud Alibaba（Gateway、OpenFeign 等）
-- 稳定性：Sentinel（限流/熔断/降级）规则**示例**
-- 可观测性：SkyWalking 接入点说明与示例代码
-- 数据：示例使用接口/DTO 结构；默认不提供可用的 MySQL/Redis 连接is 连接
+## 主要能力（示例代码侧重）
+
+- **多厂商适配层**：封装第三方 OpenAPI（以高仙为例），抽象设备/指令与状态模型，屏蔽协议/字段差异。  
+- **任务编排与异步受理**：临时/循环任务的受理改为 **202 Accepted + taskId**，状态稳定查询；失败进入 **DLQ** 便于回溯。  
+- **资产与运行视图**：设备列表与在线状态、地图/分区清单，任务进度与异常联动（Demo 数据）。  
+- **网关治理**：统一路由聚合，**限流/熔断/降级**，黑白名单与基础鉴权挂点；读写分流的返回策略示例。  
+- **可观测性闭环**：全链路 **TraceId 贯通**（Gateway → Service → MQ → 厂商 OpenAPI），日志↔链路互查。  
+- **配置与灰度**：Nacos 作为服务发现与配置中心，按环境下发开关/阈值，支持规则热更新。  
+- **安全与合规**：公开仓库仅保留接口/DTO/骨架，**不包含**可运行地址与任何密钥，避免误连真实设备。  
+- **代码组织与可读性**：API/Service/Adapter 分层清晰，接口契约与命名统一，便于替换厂商或扩展能力。
+
+---
+
+## 技术栈（结构演示）
+
+- **后端框架**
+  - Java 17 · **Spring Boot**
+  - **Spring Cloud Alibaba**：Gateway（路由/治理）、OpenFeign（服务间调用）
+  - 校验与序列化：Spring Validation、Jackson（按需）
+
+- **中间件与数据**
+  - **RabbitMQ**：Topic→Queue→DLQ；手动 ack、幂等键（`X-Request-Id`）
+  - **Redis**：任务状态与幂等缓存（TTL），热点数据缓存
+  - **MySQL**：基础配置/业务表（示例不附带可用连接）
+  - **Nacos**：服务发现与配置下发
+
+- **可观测性**
+  - **SkyWalking**：OAP + UI；服务上报 Trace，日志携带 TraceId 做关联检索
+  - 统一日志：Logback（示例埋点）
+
+- **前端与交付**
+  - **ruoyi-ui（Vue 2.x）** 作为后台管理界面
+  - **Nginx** 静态托管/反向代理（驾驶舱 Demo 与后台）
+
+- **接口契约（示例约定）**
+  - 接口返回：**202 + taskId**（受理成功），查询接口返回 `PENDING|DONE|FAILED`
+  - 命名规范：`Exchange=robot.task.topic`、`DLQ=robot.task.dlq` 等
+  - 观测透传：`TraceId` 通过 Header 贯穿全链路
+
 
 ---
 
 <a id="showcase"></a>
-## 🎬 效果展示（驾驶舱 & 后台截图）
+## 🎬 效果展示
 
 - **百度网盘（脱敏截图打包）**：  
   [https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp](https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp)
@@ -256,22 +286,20 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
 ---
 
 ## 👤 作者
-陈峥
+陈峥 Jimmy Chen
 - 领英：https://www.linkedin.com/in/jimmy-chen-74a8182b8/
 - Gitee: https://gitee.com/chen-zheng-jimmy
 - Github: https://github.com/JimmyZChen
 
-## 📄 License & 免责声明
-- 若未特别声明，示例代码以常见开源协议发布（建议 Apache-2.0 / MIT）。  
-- 本仓库不对接真实设备，不为任何外部调用行为负责；使用者需自行保证合规与安全。
-
 ---
+
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">
 
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">
   Smart Park Robot Platform · Code Structure Demo (RuoYi-Cloud v3.6.6)
 </h1>
 <h4 align="center">
-  A vendor-agnostic robot integration, orchestration & scheduling platform (read-only sample, non-runnable by default)
+  A vendor‑agnostic robot integration, orchestration & scheduling platform (read‑only sample; non‑runnable by default)
 </h4>
 <p align="center">
   <a href="https://gitee.com/y_project/RuoYi-Cloud">
@@ -284,32 +312,79 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-informational"></a>
 </p>
 
-> **What**: A **code structure & design showcase** for a multi-vendor robot management platform.  
-> **Why**: Publicly runnable builds may trigger real devices or leak sensitive data, so this repo is **non-runnable by default**.  
-> **Who**: Backend / platform / architecture readers (gateway governance, resilience, and observability).
+> **What**: a **code structure & design showcase** for a multi‑vendor robot management platform.  
+> **Why**: publicly runnable builds may trigger real devices or leak secrets, so this repo is **non‑runnable by default**.  
+> **Who**: backend / platform / architecture readers (gateway governance, resilience, observability).
 
 ## 📚 Table of Contents
-- [📌 Important Notes](#-important-notes)
-- [🎥 Demo](#-demo)
-- [🧾 Overview](#-overview)
-- [📈 Service Level Objectives (SLO)](#slo-en)
-- [📂 Project Layout (sample)](#-project-layout-sample)
-- [🚫 What’s not included](#-whats-not-included)
-- [ℹ️ Why is it non-runnable?](#why-non-runnable)
-- [🔐 Security & Compliance](#-security--compliance)
-- [🛠 Tech Stack (structure demo)](#-tech-stack-structure-demo)
-- [🗂 Reading Guide](#-reading-guide)
-- [🧪 Private sandbox try (for you only)](#-private-sandbox-try-for-you-only)
-- [❓ FAQ](#-faq)
-- [👤 Author / Maintainer](#-author--maintainer)
-- [📄 License & Disclaimer](#-license--disclaimer)
+- 📌 Important Notes (Read First)
+- 🧾 Overview (with Tech Stack)
+- 🎬 Showcase (Cockpit & Backend)
+- 📈 Service Level Objectives (SLO)
+- 📂 Modules & Reading Path
+- 🏗️ Architecture (Runtime View)
+- 🗃️ Project Layout (sample)
+- 🧩 Key Design: RabbitMQ Async & Peak Shaving
+- 📘 Usage Notes (Compliance · Non‑runnable · Private demo · FAQ · License)
+- 👤 Author / Maintainer
+
+---
+
+## 📌 Important Notes (Read First)
+- This repository focuses on **structure & design**, and is **non‑runnable by default**.  
+- It **does not include Nacos configuration**, any secrets/credentials, or usable external endpoints — all third‑party params are removed or replaced by placeholders.  
+- Reason: the real project integrates robots/production APIs in private environments; exposing runnable configs could **trigger real devices** or leak data.  
+- UI/flows are shown via **Slides / Baidu Netdisk**; they do not require this repository to connect to external services.
+
+---
+
+## 🧾 Overview (with Tech Stack)
+Built on **RuoYi‑Cloud v3.6.6**, this sample illustrates a **multi‑vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, maps/partitions, status monitoring, and observability.  
+For safety & compliance, we emphasize **service decomposition, gateway & service layering, rate‑limit/circuit ideas, and observability touchpoints**.
+
+---
+
+## Key Capabilities (code-side focus)
+
+- **Vendor adaptation layer**: wrap third-party OpenAPIs (e.g., Gaussian), abstract device/command & state models, hide protocol/field gaps.  
+- **Task orchestration & async acceptance**: ad-hoc/loop tasks accepted as **202 Accepted + taskId**; status polling; failures go to **DLQ** for traceability.  
+- **Assets & runtime views**: device list & online state, map/partition lists, task progress and alert linkage (demo data).  
+- **Gateway governance**: unified routing; **rate-limit / circuit-break / degrade**; allow/deny lists and basic auth hooks; sample response policy for read/write.  
+- **Observability loop**: end-to-end **TraceId propagation** (Gateway → Service → MQ → Vendor OpenAPI), log↔trace correlation.  
+- **Config & rollout**: Nacos for service discovery and config delivery; env-based toggles/thresholds; hot rule updates.  
+- **Security & compliance**: public repo keeps only interfaces/DTOs/skeletons; **no** runnable endpoints or secrets, preventing real-device invocation.  
+- **Code organization & readability**: clear API/Service/Adapter layering; unified contracts & naming; easy to swap vendors or extend features.
+
+---
+
+## Tech Stack (structure demo)
+
+- **Backend framework**
+  - Java 17 · **Spring Boot**
+  - **Spring Cloud Alibaba**: Gateway (routing/governance), OpenFeign (service-to-service)
+  - Validation & serialization: Spring Validation, Jackson (as needed)
+
+- **Middleware & data**
+  - **RabbitMQ**: Topic→Queue→DLQ; manual ack; idempotency key (`X-Request-Id`)
+  - **Redis**: task status & idempotency cache (TTL), hot data caching
+  - **MySQL**: base config/business tables (sample does **not** ship runnable connections)
+  - **Nacos**: service discovery & config delivery
+
+- **Observability**
+  - **SkyWalking**: OAP + UI; services report traces; logs carry TraceId for cross-navigation
+  - Unified logging: Logback (sample markers)
+
+- **Frontend & delivery**
+  - **ruoyi-ui (Vue 2.x)** as the admin UI
+  - **Nginx** for static hosting / reverse proxy (cockpit demo & admin)
+
+- **API contract (sample conventions)**
+  - Response: **202 + taskId** (accepted), query returns `PENDING|DONE|FAILED`
+  - Naming: `Exchange=robot.task.topic`, `DLQ=robot.task.dlq`, etc.
+  - Trace propagation: `TraceId` forwarded via headers end-to-end
 
 
-## 📌 Important Notes
-- This repository is **non-runnable by default** and focuses on **structure & design**.  
-- It **does not include Nacos configuration**, any secrets/credentials, or usable external endpoints; all third-party parameters are removed or replaced by placeholders.  
-- The project integrates real robots/production APIs in private environments. Publicly exposing runnable configs could **trigger real devices** or cause data leaks.  
-- UI and flows are demonstrated via **Slides / Baidu Netdisk** (see below). They do **not** require this repository to connect to external services.
+---
 
 ## 🎥 Demo
 - **Google Slides (flows & UI mock)**:  
@@ -319,27 +394,49 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
 
 > Slides/Netdisk include robot list, status monitoring, map/partition views, and temporary task dispatch flows (all screenshots redacted/anonymized).
 
-## 🧾 Overview
-Built on **RuoYi-Cloud v3.6.6**, this sample illustrates a **multi-vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, map/partition management, status monitoring, and observability.  
-For safety & compliance, the repository focuses on **service decomposition, gateway/service layering, rate limit & circuit ideas, and observability touchpoints**, without shipping runnable configuration.
+### Backend · Robot Management
+<img src="./assets/web-robot.png" width="880" loading="lazy" alt="Web Robot Management"/>
 
-<a id="slo-en"></a>
+### Park Cockpit (3D Scene)
+<img src="./assets/cockpit.png" width="880" loading="lazy" alt="Park Cockpit (3D)"/>
+
+**Key Views**
+- Ad‑hoc/loop task dispatch & progress tracking  
+- Regional device distribution & utilization
+- Alarm → task/device view linkage
+- Campus 3D & route demo (demo data)
+
+**Observability Loop**
+- Cockpit events and backend chain (Gateway → Service → MQ → Vendor OpenAPI) share the same TraceId.
+
+---
+
 ## 📈 Service Level Objectives (SLO)
-
-- Status query `/external/gs/status/**`: Success ≥ **99.9%**; P95 **< 300ms** (P99 **< 800ms**)
-- Map list `/maps/list/**`: Success ≥ **99.9%**; P95 **< 400ms**
-- Task dispatch (async acceptance) `/external/gs/task/**`: Acceptance success ≥ **99.5%**; P95 **< 1s**
+- Status query `/external/gs/status/**`: Success ≥ **99.9%**; P95 **< 300ms** (P99 **< 800ms**)  
+- Map list `/maps/list/**`: Success ≥ **99.9%**; P95 **< 400ms**  
+- Task dispatch (async acceptance) `/external/gs/task/**`: Acceptance success ≥ **99.5%**; P95 **< 1s**  
 - WebSocket recovery: **99% < 3s**
 
-> Measurement: HTTP non-5xx **and** business `code==0` are counted as success; **intentional 429 (rate-limit)** is excluded from failures and tracked separately for capacity/tuning.  
-> See details: [`docs/SLO.md`](./docs/SLO.md)
+> Measurement: HTTP non‑5xx **and** business `code==0` count as success; **intentional 429** (rate‑limit) is excluded and tracked separately.  
+> Details: [`docs/SLO.md`](./docs/SLO.md)
 
+---
 
-### Capabilities (focus of the sample)
-- **Vendor adapter layer**: wraps third-party OpenAPIs (e.g., Gaussian), abstracts device & command models, hides protocol differences.  
-- **Gateway governance**: unified routing; examples of rate-limit / circuit-break / degrade rules (Sentinel), allow/deny lists, and auth hooks.  
-- **Robot management (`/gsrobot`)**: controller/service skeletons for list/online status, maps/partitions, and temporary task orchestration.  
-- **Observability touchpoints**: trace propagation, log–trace correlation (example instrumentation & notes).
+## 🏗️ Architecture (Runtime View)
+<div align="left">
+  <img src="./assets/architecture.png" width="960" loading="lazy" alt="Robot Management Platform Architecture"/>
+</div>
+
+*Legend*  
+- **Solid**: Request/Call  **Dashed**: Discovery/Config/Telemetry  
+- **Blue**: Entry **Green**: Services **Orange**: Data/Infra **Gray**: Observability **Pink**: External
+
+**Highlights**  
+- User/Browser → **Nginx** → **Spring Cloud Gateway** (unified routing/governance)  
+- Gateway → **RuoYi-System** / **RuoYi-Robot Adapter** (vendor OpenAPI aggregation)  
+- **Nacos**: service discovery + config; **MySQL/Redis**: config/cache  
+- **SkyWalking**: services report traces to OAP; UI for exploration  
+- **Gaussian OpenAPI**: external vendor API (HTTPS)
 
 ---
 ## 📂 Project Layout (sample)
@@ -373,52 +470,48 @@ com.ruoyi
 ~~~
 
 ---
+<a id="mq"></a>
+## 🧩 Key Design: RabbitMQ Asynchrony & Peak-Shaving
+- **Design**: integrate RabbitMQ and build an async task channel (Topic → Queue → DLQ) with **manual ack** and **idempotency checks**.  
+- **Contract**: APIs return **202 Accepted** with a `taskId`; the client polls for status. Burst traffic is smoothed.  
+- **Config**: MQ parameters are delivered via Nacos; failures can be quickly traced in the DLQ.
 
-## 🚫 What’s **not** included
-- **Nacos configuration** or any exported registration/config bundles.  
-- **Secrets/credentials** (e.g., `clientId/clientSecret/openAccessKey`, JWT secrets, DB/Redis accounts).  
-- **Usable external endpoints** (real `baseUrl`, internal IPs/domains, device serials, map IDs, company/geo data).  
-- **Implementations that could trigger real actions**: task dispatch and similar calls keep structure only; real calls are disabled.
+**Acceptance → Query (example)**
+```http
+POST /external/gs/async/robot/command/tempTask  → 202 Accepted {taskId}
+GET  /external/gs/async/tasks/{taskId}          → PENDING | DONE | FAILED
 
-<a id="why-non-runnable"></a>
-## ℹ️ Why is it non-runnable?
+
+
+---
+
+## 📘 Usage Notes (Compliance · Non‑runnable · Private demo · FAQ · License)
+
+### 🚫 Not Included
+- Nacos configs; any secrets/credentials (e.g., `clientId/clientSecret/openAccessKey`, JWT secrets, DB/Redis accounts).  
+- Usable external endpoints: real `baseUrl`, internal IPs/domains, device serials, map/company/geo data.  
+- Any implementations that could trigger real actions (we keep interface & skeleton only).
+
+### ℹ️ Why Non‑runnable
 - To prevent accidental calls to real robots or production APIs.  
-- Public repos can’t safely host secrets/internal endpoints, so **all required runtime configuration is removed**.  
-- Outbound call sites use **placeholder paths** or read from config; without private environment variables, methods fail fast or return placeholder responses.
+- Public repos can’t safely host secrets/internal endpoints, so **all runtime configs are removed**.  
+- Vendor‑related parts are placeholders; real access must be configured & verified in private environments.
 
-## 🔐 Security & Compliance
-- All credentials and real addresses were removed. If you spot any leftover, please open an issue or PR.  
-- Do **not** commit `.env`, `application-*.yml`, `bootstrap*.yml`, or `nacos-export*`.  
-- “Gaussian Robotics / 高仙” and other vendor names are third-party trademarks. This repo is a technical demo and does not include their private docs/SDK/keys.
+### 🧪 Private Sandbox Try (for you only)
+- Bring your own Nacos/env vars & **non‑production devices/keys**.  
+- Deploy inside an isolated network; configure **rate‑limit/circuit‑break & fallbacks**.  
+- **Never** commit keys or usable configs back to this repo.
 
-## 🛠 Tech Stack (structure demo)
-- Backend: Spring Boot · Spring Cloud Alibaba (Gateway, OpenFeign, etc.)  
-- Resilience: Sentinel examples for rate limit / circuit break / degrade  
-- Observability: SkyWalking integration points & sample code  
-- Data: DTO/interface-driven examples; **no** runnable MySQL/Redis connections provided by default
+### ❓ FAQ
+- **Why non‑runnable?** To avoid triggering real devices/APIs; runtime configs were removed.  
+- **Can I try locally?** Yes, inside a private sandbox with your configs/devices and proper governance.  
+- **Do you accept PRs?** Showcase‑first; no feature PRs for now. Docs/security fixes are welcome.
 
-## 🗂 Reading Guide
-- Entry page: **`/gsrobot`** (frontend route sample)  
-- Vendor adapters: `ruoyi-robot-gs` → `openapi/` & `service/` packages (interfaces & skeletons)  
-- Gateway rules: example routes/filters in `ruoyi-gateway`  
-- Rate-limit / degrade: Sentinel annotations & sample rules (redacted)
+### 📄 License & Disclaimer
+- Unless otherwise stated, code can be under **Apache‑2.0 / MIT**. Provide a matching `LICENSE` at repo root.  
+- This repo does not control real devices. Use it legally and safely in your environment.
 
-## 🧪 Private sandbox try (for you only)
-> This repo does **not** include run steps. For sandbox testing, you would need to:  
-> 1) Provide your own Nacos/config or environment variables;  
-> 2) Use your **own** test keys and **non-production** devices;  
-> 3) Run everything inside an isolated network with rate-limit/circuit-break & fallback configured.  
-**Never commit any keys or usable configs back to this repo.**
-
-## ❓ FAQ
-**Q: Why is the repo non-runnable?**  
-**A:** To avoid triggering real devices/production APIs; all runtime configs were removed.
-
-**Q: Can I try it inside a private network?**  
-**A:** Yes, but you must provide your own Nacos/test keys/devices and configure rate-limit & circuit-break inside an isolated sandbox.
-
-**Q: Do you accept PRs?**  
-**A:** This repo is primarily a showcase; feature PRs are not accepted for now. Documentation/security fix PRs are welcome.
+---
 
 ## 👤 Author / Maintainer
 Chen Zheng
@@ -426,7 +519,4 @@ Chen Zheng
 - Github: https://github.com/JimmyZChen
 - Gitee: https://gitee.com/chen-zheng-jimmy
 
-## 📄 License & Disclaimer
-- Unless otherwise stated, sample code can be licensed under a common OSS license (**Apache-2.0 / MIT** recommended). Please add a matching `LICENSE` file at the repository root.  
-- This repository does not control real devices. You are responsible for legal and safe use in your own environment.
 
