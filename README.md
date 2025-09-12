@@ -19,36 +19,27 @@
 > **Why**：避免误触发真实设备与泄露敏感信息，本仓库**默认不可运行**。  
 > **Who**：面向后端/架构/平台治理读者（网关治理、稳定性与可观测性）。
 
-## 目录
-- [📌 重要声明（务必先读）](#-重要声明务必先读)
-- [🎥 效果展示](#-效果展示)
-- [🧾 项目简介](#-项目简介)
-- [📈 服务等级目标（SLO）](#slo-cn)
-- [🧩 模块速览](#-模块速览)
-- [📂 目录结构（示例）](#-目录结构示例)
-- [🧪 关键示例](#-关键示例)
-- [🚫 本仓库不包含的内容](#-本仓库不包含的内容)
-- [ℹ️ 为什么默认不可运行](#ℹ️-为什么默认不可运行)
-- [🔐 安全与合规](#-安全与合规)
-- [🛠 技术栈（结构演示）](#-技术栈结构演示)
-- [🗂 代码可读指南](#-代码可读指南)
-- [🧪 私有环境试跑提示](#-私有环境试跑提示)
-- [❓ FAQ](#-faq)
-- [📄 License & 免责声明](#-license--免责声明)
-
 ## 📌 重要声明（务必先读）
 - 本仓库为**代码结构与设计演示**，**默认不可运行**。  
 - **未包含 Nacos 配置**、任何密钥/凭据与可用的外部地址；所有第三方参数均已移除或以占位符存在。  
 - 原因：项目对接真实机器人/生产环境，公开可运行版本可能**误触发真实设备**或泄露隐私，因此默认禁用实际调用。  
 - 运行效果已在 **百度网盘 / Slides** 展示（见下文），用于说明功能与界面，不依赖本仓库直接连外网。
 
-## 🎥 效果展示
-- **百度网盘（脱敏截图打包）**：  
-  [https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp](https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp)
-- **Google Slides（示意流程与界面）**：  
-  [https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/](https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/)
+---
 
-> 网盘/Slides展示了机器人列表、状态监控、地图/分区与任务下发等界面与流程（截图均已脱敏/打码）。
+## 📚 目录
+- 📌 重要声明（必读）
+- 🧾 项目简介（含技术栈）
+- 🎬 效果展示（驾驶舱 & 后台截图）
+- 📈 服务等级目标（SLO）
+- 📂 模块与阅读路线
+- 🏗️ 架构设计（运行时视图）
+- 🗃️ 目录结构（示例）
+- 🧩 关键方案：RabbitMQ 异步化 & 抗洪峰
+- 📘 使用须知（合规·不可运行·私有演示·FAQ·License）
+- 👤 Author
+
+---
 
 ## 🧾 项目简介
 本项目基于 **RuoYi-Cloud v3.6.6** 二次开发，目标是打造一个**多厂商机器人集成调度系统**：统一接入不同厂商 OpenAPI（以**高仙（Gaussian Robotics）**为例），提供任务编排、地图/分区管理、状态监控与可观测性。  
@@ -59,6 +50,55 @@
 - **网关治理**：统一路由、限流/熔断/降级（Sentinel 规则示例）、黑白名单与基础鉴权位置。  
 - **机器人管理（/gsrobot）**：列表/在线状态、地图与分区、临时任务编排的接口骨架。  
 - **可观测性接入点**：链路透传、日志关联 TraceId（示例埋点与说明）。
+
+### 技术栈（结构演示）
+- 后端：Spring Boot · Spring Cloud Alibaba（Gateway、OpenFeign 等）
+- 稳定性：Sentinel（限流/熔断/降级）规则**示例**
+- 可观测性：SkyWalking 接入点说明与示例代码
+- 数据：示例使用接口/DTO 结构；默认不提供可用的 MySQL/Redis 连接is 连接
+
+---
+
+<a id="showcase"></a>
+## 🎬 效果展示（驾驶舱 & 后台截图）
+
+- **百度网盘（脱敏截图打包）**：  
+  [https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp](https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp)
+- **Google Slides（示意流程与界面）**：  
+  [https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/](https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/)
+
+> 网盘/Slides展示了机器人列表、状态监控、地图/分区与任务下发等界面与流程（截图均已脱敏/打码）。
+
+### 后台 · 机器人管理  
+<img src="./assets/web-robot.png" width="880" loading="lazy" alt="Web 机器人管理示意"/>
+
+### 园区驾驶舱（3D 场景）  
+<img src="./assets/cockpit.png" width="880" loading="lazy" alt="园区驾驶舱示意"/>
+
+**主要视图**  
+- 任务态势：临时/循环任务的批量下发与进度  
+- 设备分布：区域化检索、利用率热力  
+- 异常联动：告警→任务/设备视图联动  
+- 3D 场景：园区模型与路线演示（Demo 数据）
+
+**观测闭环**  
+- 驾驶舱事件与后台链路（Gateway → Service → MQ → 厂商 OpenAPI）共享 TraceId，便于从“点到因”回溯链路。
+
+
+
+> 目标：面向园区的一张图态势；展示设备在线、任务流转、地图分区/位姿与告警联动。  
+> 说明：本仓库展示**演示数据/截图**；真实联调与运行效果见《Project Appendix.pdf》。
+
+**主要视图**
+- 任务态势：临时/循环任务的地图叠加与进度
+- 设备分布：区域在线数、利用率/热力
+- 告警联动：异常点位与处置流程示意
+- 3D 场景：园区模型与路径演示（Demo 数据）
+
+**观测闭环**
+- 驾驶舱事件与后台链路（Gateway → 服务 → MQ → 厂商 OpenAPI）共享 TraceId，便于从“点图回溯”到日志/链路。
+
+---
 
 <a id="slo-cn"></a>
 ## 📈 服务等级目标（SLO）
@@ -71,15 +111,35 @@
 > 统计口径：HTTP 非 5xx + 业务 `code==0` 计成功；**策略性 429（限流命中）不计失败**，单独作为容量与阈值校准指标。  
 > 细则见：[`docs/SLO.md`](./docs/SLO.md)
 
-## 🧩 模块速览
-| 模块 | 作用 | 关键目录/类 | 推荐阅读顺序 |
+## 📂 模块与阅读路线
+| 模块 | 作用 | 关键目录/类 | 顺序 |
 |---|---|---|---|
-| ruoyi-gateway | 网关路由与治理（限流/熔断/鉴权钩子） | `filters/`, `routes/` | 1 |
-| ruoyi-robot-gs | 厂商适配与业务接口骨架 | `openapi/`, `service/` | 2 |
-| ruoyi-common-* | 日志、Redis、数据源、Swagger 等 | `ruoyi-common-swagger`（Swagger/OpenAPI 支持） | 3 |
-| ruoyi-visual-monitor | 监控台示例 | 暂未完成 | 4 |
+| ruoyi-gateway | 路由与治理（限流/熔断/鉴权钩子） | filters/, routes/ | 1 |
+| ruoyi-robot-gs | 厂商适配与业务骨架 | openapi/, service/ | 2 |
+| ruoyi-common-* | 日志、Redis、Swagger 等 | ruoyi-common-swagger 等 | 3 |
+| ruoyi-system | 系统服务 | controller/, service/ | 4 |
 
-## 📂 目录结构（示例）
+**阅读路线**：`/gsrobot` → `ruoyi-api` → `ruoyi-gateway` → Sentinel 规则
+
+## 🏗️ 架构设计（运行时视图）
+<div align="left">
+  <img src="./assets/architecture.png" width="960" loading="lazy" alt="Robot Management Platform Architecture"/>
+</div>
+
+*图例*  
+- **实线**：请求 / 调用  **虚线**：服务发现 / 配置 / 遥测  
+- **蓝**：入口 **绿**：服务 **橙**：数据/基础设施 **灰**：可观测 **粉**：外部
+
+**要点**  
+- User/Browser → **Nginx** → **Spring Cloud Gateway**（统一路由/治理）  
+- Gateway → **RuoYi-System** / **RuoYi-Robot Adapter**（厂商 OpenAPI 聚合）  
+- **Nacos**：服务发现 + 配置；**MySQL/Redis**：配置/缓存  
+- **SkyWalking**：服务上报 Trace 到 OAP，UI 查询展示  
+- **Gaussian OpenAPI**：外部厂商接口（HTTPS）
+
+
+
+## 🗃️ 目录结构（示例）
 
 ~~~
 com.ruoyi     
@@ -109,29 +169,6 @@ com.ruoyi
 │       └── ruoyi-visual-monitor                      // 监控中心 [9100]
 ├──pom.xml                // 公共依赖
 ~~~
----
-
-## 🚫 本仓库**不包含**的内容
-- **Nacos 配置**与任何可用的注册/配置中心导出文件。  
-- **密钥/凭据**：如第三方 `clientId/clientSecret/openAccessKey`、JWT Secret、数据库/Redis 账号等。  
-- **可运行的外部地址**：真实 `baseUrl`、内网 IP/域名、设备序列号、地图 ID、公司/地理信息等。  
-- **可直接触发外部动作的实现**：任务下发等方法仅保留结构，默认禁用实际调用。
-
-## ℹ️ 为什么默认不可运行？
-- 为避免误调用真实机器人或第三方生产 API。  
-- 公开仓库无法安全托管密钥/内网地址，因此**移除了全部运行所需的敏感配置**。  
-- 代码中涉及外呼的位置均已改为**占位路径**或通过配置读取；若未注入私有环境变量，方法将直接失败或返回占位响应。
-
-## 🔐 安全与合规
-- 已移除所有凭据与真实地址；若发现遗漏，请提 Issue 或直接 PR。  
-- 请勿在公开仓库提交 `.env`、`application-*.yml`、`bootstrap*.yml`、`nacos-export*` 等文件。  
-- “Gaussian Robotics / 高仙”等为第三方商标；本仓库仅为技术演示，不包含其私有文档/SDK/密钥。
-
-## 🛠 技术栈（结构演示）
-- 后端：Spring Boot · Spring Cloud Alibaba（Gateway、OpenFeign 等）
-- 稳定性：Sentinel（限流/熔断/降级）规则**示例**
-- 可观测性：SkyWalking 接入点说明与示例代码
-- 数据：示例使用接口/DTO 结构；默认不提供可用的 MySQL/Redis 连接
 
 ## 🗂 代码可读指南
 - 入口页面：`/gsrobot`（前端路由示例）
@@ -139,23 +176,84 @@ com.ruoyi
 - 网关规则：`ruoyi-gateway` 的路由与过滤器示例
 - 限流/降级：Sentinel 注解与示例规则（已脱敏）
 
-## 🧪 想在**私有环境**试跑？（仅供你自己）
-> 本仓库不提供运行步骤。若需在你自己的隔离环境内测试，请自行：  
-> 1) 配置私有 `Nacos` / 环境变量注入第三方参数；  
-> 2) 使用你自己的测试密钥与测试设备（非生产）；  
-> 3) 确保网关与下游服务均在内网沙箱中运行，并做好限流/降级与回退策略。  
-**请勿将任何密钥或可用配置提交回此仓库。**
+---
 
-## ❓ FAQ
+<a id="mq"></a>
+## 🧩 关键方案：RabbitMQ 异步化 & 抗洪峰
+- 设计：接入 RabbitMQ，建立异步任务通道（Topic→Queue→DLQ），**手动 ack** 与**幂等校验**  
+- 协议：接口改为 **202 Accepted**，返回 taskId，客户端轮询查询；峰值时从容削峰  
+- 配置：由 Nacos 下发 MQ 参数，问题可在 DLQ 快速回溯
 
-**Q：为什么默认不可运行？**  
-**A：** 为避免误触发真实设备/生产 API，已移除运行所需配置。
+**受理—查询（示意）**
+```http
+POST /external/gs/async/robot/command/tempTask  → 202 Accepted {taskId}
+GET  /external/gs/async/tasks/{taskId}          → PENDING | DONE | FAILED
+```
 
-**Q：能否在本地私有网试跑？**  
-**A：** 可以，但需自备 Nacos/测试密钥/测试设备，并在内网沙箱中配置限流与熔断。
+**拓扑（命名一致，便于控制台校验）**
+- `Exchange=robot.task.topic`（topic） → `Queue=robot.task.q`
+- `DLX=robot.task.dlx` → `DLQ=robot.task.dlq`（`rk=#`）
+- `RoutingKey=robot.task.dispatch`
 
-**Q：是否接受 PR？**  
-**A：** 当前仓库以演示为主，暂不接受功能性 PR；欢迎修正文档与安全问题的 PR。
+**消费策略**
+- 手动 `ack`；异常 `nack(requeue=false)` → 直达 **DLQ**
+- 参考配置：`concurrency=2`，`prefetch=20`（最多 40 in-flight）
+- 生产端 `confirm/return` + `mandatory=true`（路由失败可见）
+
+**幂等 & 结果缓存**
+- 幂等键：请求头 `X-Request-Id` → `robot:idem:{id}`（默认 TTL 3600s）
+- 任务状态：`robot:task:{taskId}`（默认 TTL 86400s）用于查询接口
+
+**消息模型（示例）**
+```json
+{
+  "taskId": "c34c7980...f1b7",
+  "requestId": "rq-0002",
+  "type": "GS_TEMP_TASK",
+  "payload": {"...": "..."}
+}
+```
+验证方式（见配套 PDF）
+
+POST /external/gs/async/robot/command/tempTask → 返回 status=202 与 taskId
+
+GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
+
+异常场景可在 DLQ 查看失败消息
+
+---
+
+<a id="usage"></a>
+## 📘 使用须知（合规·不可运行·私有演示·FAQ·License）
+
+### 🚫 不包含的内容
+- Nacos 可用配置、任何密钥/凭据（如 clientId/clientSecret/openAccessKey、JWT Secret、数据库/Redis 账号等）。
+- 可运行的外部地址：真实 `baseUrl`、内网 IP/网关、设备序列号、地图/公司/地理信息等。
+- 任何可直接触发真实设备的实现（仅保留方法位与接口骨架）。
+
+### ℹ️ 为什么默认不可运行
+- 避免误调用真实机器人或第三方 API。
+- 公有仓库无法安全托管外网地址与密钥，因此**移除了所有运行所需配置**。
+- 涉及厂商协作内容仅为占位/示意，真实接入需在私有环境按规范配置并完成回归。
+
+### 🧪 私有环境试跑（仅供你自己）
+- 自备 **Nacos / 环境变量** 注入第三方参数和测试密钥；使用**非生产设备**。
+- 在隔离网络中部署网关与服务，并配置**限流/熔断/降级与回退**。
+- **勿**将任何密钥或可用配置提交回此仓库。
+
+### ❓ FAQ
+- **Q：为什么默认不可运行？**  
+  **A：** 为避免触发真实设备/生产 API，已移除运行所需配置。
+- **Q：能否在本地沙箱试跑？**  
+  **A：** 可以，但需自备 Nacos/测试密钥/测试设备，并在内网沙箱中做好限流/熔断。
+- **Q：接受 PR 吗？**  
+  **A：** 以展示为主，暂不接受功能型 PR；欢迎文档/安全修订。
+
+### 📄 License & 免责声明
+- 若未特别声明，示例代码建议采用 **Apache-2.0 / MIT**；请在仓库根目录提供匹配的 `LICENSE`。
+- 本仓库不对接真实设备；使用者需自行确保合规与安全。
+
+---
 
 ## 👤 作者
 陈峥
