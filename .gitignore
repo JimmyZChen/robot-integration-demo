@@ -33,7 +33,6 @@ logs/
 .env
 .env.*
 application-*.yml
-bootstrap*.yml
 nacos-export*
 nacos/
 .nacos/

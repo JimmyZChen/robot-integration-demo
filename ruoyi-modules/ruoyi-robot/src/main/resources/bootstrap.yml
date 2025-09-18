@@ -1,0 +1,41 @@
+server:
+  port: 9300
+
+spring:
+  application:
+    name: ruoyi-robot
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: xxxxxxxxx
+        username: nacos
+        password: nacos
+      config:
+        server-addr: xxxxxxxxx
+        username: nacos
+        password: nacos
+        file-extension: yml
+        group: DEFAULT_GROUP
+
+        # 如果你想和 system 一样支持共享 application 配置，加下面这一段：
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+        # ✅ 只需在这里追加（顺序无所谓）
+        extension-configs:
+          # （可选）如果希望显式声明 robot-dev 也可热刷，加这一条
+          - data-id: ruoyi-robot-${spring.profiles.active}.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+          # ✅ 新增：RabbitMQ 专用配置，支持热刷新
+          - data-id: ruoyi-robot-mq.yml
+            group: DEFAULT_GROUP
+            refresh: true
+
+          #JMeter压测使用，不用使用就注释掉
+          - data-id: ruoyi-robot-perf.yml
+            group: DEFAULT_GROUP
+            refresh: true
