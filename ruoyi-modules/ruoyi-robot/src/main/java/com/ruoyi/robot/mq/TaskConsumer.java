@@ -26,17 +26,44 @@ public class TaskConsumer {
     private final GsOpenApiService gsApi;
     private final ObjectMapper objectMapper; // 将 Map 转成目标 DTO
 
+    /** JMeter压测使用，不用使用就注释掉 */
+    @Value("${robot.dry-run:false}")
+    private boolean dryRun;
+
+    @Value("${robot.reject-non-test-when-dry-run:false}")
+    private boolean rejectNonTest;
+
+    @Value("#{'${robot.test-robot-ids:}'.empty ? null : '${robot.test-robot-ids:}'.split(',')}")
+    private java.util.List<String> testIds;
+
+
     @Value("${robot.mq.idem-ttl-seconds:3600}")
     private long idemTtlSeconds;
 
     @Trace // SkyWalking 本地 Span
-    @RabbitListener(queues = "${robot.mq.queue:robot.task.q}", containerFactory = "mqListenerFactory")
+
+     /** 正常情况用这个 */
+    // @RabbitListener(queues = "${robot.mq.queue:robot.task.q}", containerFactory = "mqListenerFactory")
+
+    /** JMeter压测使用，不用使用就注释掉 */
+    @RabbitListener(queues = "${robot.mq.queue:robot.task.q}", containerFactory = "mqListenerFactory",  autoStartup = "${robot.consumer.enabled:true}" )
+
+    
     public void onMessage(@Payload TaskMessage<?> msg,
                           @Header(name = "type", required = false) String headerType,
                           Message raw, Channel channel) throws Exception {
 
         final long tag = raw.getMessageProperties().getDeliveryTag();
         final String taskId = msg.getTaskId();
+
+        /** JMeter压测使用，不用使用就注释掉 */
+        if (dryRun) {
+            log.info("DRY_RUN: just ack msg, no real dispatch.");
+            // ✅ 这里用 raw，别写成 message
+            channel.basicAck(raw.getMessageProperties().getDeliveryTag(), false);
+            return;
+        }
+
 
         try {
             // 1) 统一计算任务类型：header 优先，消息体兜底
