@@ -2,8 +2,6 @@
 
 > 统一接入多厂商 OpenAPI，前置治理（鉴权/限流）、异步化抗洪、可观测闭环与一键交付。
 
-[![](assets/live/p10-dashboard.png){ .img-90 }](assets/live/p10-dashboard.png)
-
 ## 我们在做什么
 - 统一管理：机器人状态 / 地图分区 / 临时任务  
 - 治理前置：Gateway 鉴权/审计，限流前置  
@@ -63,4 +61,10 @@
   </a>
 
 </div>
+
+
+
+
+
+
 

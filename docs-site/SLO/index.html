@@ -1,0 +1,693 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Service Level Objectives (SLO) · 服务等级目标 - 机器人调度系统文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../styles.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#service-level-objectives-slo" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            机器人调度系统文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Service Level Objectives (SLO) · 服务等级目标
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Gitee
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    机器人调度系统文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Gitee
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览 Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../live-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运行效果（Live Demo）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config-nacos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置中心（Nacos）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    可观测性（SkyWalking）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stability-sentinel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    稳定性（Sentinel）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mq-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    异步化（RabbitMQ）
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    容器化部署
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loadtest-jmeter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    压测与证据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../issues-rca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    问题—原因—修复
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="service-level-objectives-slo">Service Level Objectives (SLO) · 服务等级目标<a class="headerlink" href="#service-level-objectives-slo" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Scope 范围：Gateway（Spring Cloud Gateway）+ Robot Service。<br />
+Window 统计窗口：28 天（月度）。<br />
+Success 口径：HTTP 非 5xx 且业务 <code>code==0</code> 计成功；<strong>策略性 429（限流）不计失败</strong>，单独跟踪其比例用于容量与阈值校准。<br />
+Latency 延迟：默认以 <strong>Gateway 入站→响应发出</strong> 的时长统计。</p>
+</blockquote>
+<hr />
+<h2 id="slo">📈 SLO（中文）<a class="headerlink" href="#slo" title="Permanent link">&para;</a></h2>
+<h3 id="1">1) 指标表<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>用户旅程 / 接口</th>
+<th>SLI</th>
+<th>目标值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机器人状态查询 <code>GET /external/gs/status/**</code></td>
+<td>成功率 ≥ 99.9%</td>
+<td>月度达标</td>
+<td>网关限流在前；单实例稳定 QPS × 0.7 预留冗余</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 300ms（P99 &lt; 800ms）</td>
+<td>月度达标</td>
+<td>客户端通常 1–2 次退避重试</td>
+</tr>
+<tr>
+<td>地图列表 <code>GET /maps/list/**</code></td>
+<td>成功率 ≥ 99.9%</td>
+<td>月度达标</td>
+<td>稳定读；缓存/多副本</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 400ms</td>
+<td>月度达标</td>
+<td>接口基线</td>
+</tr>
+<tr>
+<td>下发任务（异步受理）<code>POST /external/gs/task/**</code></td>
+<td>受理成功率 ≥ 99.5%</td>
+<td>月度达标（≈3.6h 预算）</td>
+<td>入库+入队成功计为“受理成功”；幂等键 <code>taskId</code></td>
+</tr>
+<tr>
+<td></td>
+<td>受理 P95 &lt; 1s</td>
+<td>月度达标</td>
+<td>同步返回“已受理”；<strong>执行 ACK 不纳入本 SLO</strong></td>
+</tr>
+<tr>
+<td>WebSocket 状态推送</td>
+<td>断线后恢复：99% &lt; 3s</td>
+<td>月度达标</td>
+<td>自动重连；<code>stale</code> 触发告警</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-sli">2) SLI 统计口径<a class="headerlink" href="#2-sli" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>成功率</strong> = (总请求 − HTTP 5xx − 业务失败码) ÷ 总请求；业务失败码以统一 <code>code</code> 字段为准。  </li>
+<li><strong>延迟</strong>：统计 P50 / P95 / P99（Gateway 入站→出站）；必要时补充服务内子跨度。  </li>
+<li><strong>受理成功率（异步）</strong>：HTTP 202/200 且<strong>入库+入队成功</strong>才计成功（需服务内埋点）。  </li>
+<li><strong>WebSocket 恢复</strong>：从断开到重新收流（心跳/订阅确认）的时长分布。</li>
+</ul>
+<h3 id="3-sentinel">3) 保护阈值（与 Sentinel 规则对齐）<a class="headerlink" href="#3-sentinel" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>慢调用阈值</strong> <code>τ = min(1000ms, 1.2 × 当前基线 P95)</code>  </li>
+<li><strong>统计窗口</strong> 10s；<strong>最小样本数</strong> ≥ 20；<strong>慢调占比</strong> ≥ 50% → 打开熔断  </li>
+<li><strong>Open</strong> 30s；<strong>Half-Open 探测</strong> 5–10 请求  </li>
+<li><strong>入口限流</strong>：优先在 Gateway 对 <code>/external/gs/**</code> 做 API 组限流（命中统一 429）</li>
+</ul>
+<h3 id="4-slo">4) 告警与处置（把 SLO 变成操作）<a class="headerlink" href="#4-slo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>错误预算</strong>：目标 99.9% ⇒ 月度预算 0.1%  </li>
+<li><strong>燃尽告警（任一满足即告警）</strong>：  </li>
+<li>1 小时消耗 &gt; 10% 预算 ⇒ P1，自动切 <strong>降级/限流回退组</strong>  </li>
+<li>6 小时消耗 &gt; 20% 预算 ⇒ P1 升级，<strong>灰度回滚</strong>或<strong>摘除不健康实例</strong>  </li>
+<li><strong>发布管控</strong>：发布后 15 分钟内若 P95/P99 恶化且错误率超阈 ⇒ 暂停灰度/回滚  </li>
+<li><strong>流量治理</strong>：Gateway 限流配额按 5%→30%→50%→100% 梯度放大；持续恶化时分级熔断并提供稳定兜底</li>
+</ul>
+<h3 id="5">5) 观测与数据来源<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SkyWalking：Trace/指标（请求数、错误、分位延迟）  </li>
+<li>统一日志：按 <code>traceId</code> 串联，结构化记录 429/503/超时字段  </li>
+<li>Nacos：<code>*-gw-api-defs</code> / <code>*-gw-flow-rules</code> 分组，支持灰度与一键回滚</li>
+</ul>
+<h3 id="6">6) 例外<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>异步任务的<strong>执行结果</strong>不计入“受理成功率”，另立“任务执行 SLA”  </li>
+<li>网外网络问题在统计中标注“外部原因”维度用于复盘，不从工程侧强行剔除</li>
+</ul>
+<hr />
+<h1 id="service-level-objectives-slo_1">Service Level Objectives (SLO)<a class="headerlink" href="#service-level-objectives-slo_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Scope: Spring Cloud Gateway + Robot Service.<br />
+Window: 28 days (monthly).<br />
+Success definition: Count as success when the HTTP status is not 5xx and the business <code>code==0</code>; <strong>intentional 429 (rate limiting) is not counted as a failure</strong> and is tracked separately for capacity and threshold tuning.<br />
+Latency: by default, measure the duration from <strong>Gateway ingress → response sent</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="slo-english">📈 SLO (English)<a class="headerlink" href="#slo-english" title="Permanent link">&para;</a></h2>
+<h3 id="1-slo-table">1) SLO Table<a class="headerlink" href="#1-slo-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Journey / API</th>
+<th>SLI</th>
+<th>Target</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status query <code>GET /external/gs/status/**</code></td>
+<td>Success ≥ 99.9%</td>
+<td>Monthly</td>
+<td>Gateway rate-limit first; single-instance stable QPS × 0.7 headroom</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 300ms (P99 &lt; 800ms)</td>
+<td>Monthly</td>
+<td>Client typically retries with backoff 1–2 times</td>
+</tr>
+<tr>
+<td>Map list <code>GET /maps/list/**</code></td>
+<td>Success ≥ 99.9%</td>
+<td>Monthly</td>
+<td>Read-heavy; cache/replica</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 400ms</td>
+<td>Monthly</td>
+<td>API baseline</td>
+</tr>
+<tr>
+<td>Task dispatch (async acceptance) <code>POST /external/gs/task/**</code></td>
+<td>Acceptance success ≥ 99.5%</td>
+<td>Monthly (~3.6h budget)</td>
+<td>Count success only if <strong>persisted + enqueued</strong>; idempotency key <code>taskId</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Acceptance P95 &lt; 1s</td>
+<td>Monthly</td>
+<td>Synchronous “accepted” only; <strong>execution ACK not in this SLO</strong></td>
+</tr>
+<tr>
+<td>WebSocket updates</td>
+<td>Reconnect 99% &lt; 3s</td>
+<td>Monthly</td>
+<td>Auto-reconnect; <code>stale</code> triggers alert</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-sli-definitions">2) SLI Definitions<a class="headerlink" href="#2-sli-definitions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Success rate</strong> = (requests − HTTP 5xx − business failures) ÷ requests; business failure per unified <code>code</code>.  </li>
+<li><strong>Latency</strong>: P50/P95/P99 from <strong>gateway ingress to response</strong>; add service spans if needed.  </li>
+<li><strong>Async acceptance</strong>: HTTP 202/200 <strong>and</strong> persisted+enqueued = success (requires app metric).  </li>
+<li><strong>WebSocket recovery</strong>: disconnect to “receiving again” (heartbeat/subscription ack).</li>
+</ul>
+<h3 id="3-protection-thresholds-aligned-with-sentinel">3) Protection thresholds (aligned with Sentinel)<a class="headerlink" href="#3-protection-thresholds-aligned-with-sentinel" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Slow-call threshold</strong> <code>τ = min(1000ms, 1.2 × current baseline P95)</code>  </li>
+<li><strong>Window</strong> 10s; <strong>minimum samples</strong> ≥ 20; <strong>slow-call ratio</strong> ≥ 50% → open circuit  </li>
+<li><strong>Open</strong> 30s; <strong>Half-open probes</strong> 5–10  </li>
+<li><strong>Ingress rate-limit</strong> on <code>/external/gs/**</code> at Gateway (returns 429)</li>
+</ul>
+<h3 id="4-alerting-actions">4) Alerting &amp; Actions<a class="headerlink" href="#4-alerting-actions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Error budget</strong>: 99.9% target ⇒ 0.1% monthly  </li>
+<li><strong>Burn rate alerts</strong> (either condition): 1h &gt; 10% budget ⇒ P1 (auto degrade/limit); 6h &gt; 20% ⇒ P1 escalate (rollback / remove unhealthy instance)  </li>
+<li><strong>Release guard</strong>: within 15min after release, if P95/P99 worsens and error &gt; threshold ⇒ pause/rollback  </li>
+<li><strong>Traffic control</strong>: ramp Gateway quotas 5%→30%→50%→100%; if worse, staged circuit with stable fallback</li>
+</ul>
+<h3 id="5-observability-sources">5) Observability &amp; Sources<a class="headerlink" href="#5-observability-sources" title="Permanent link">&para;</a></h3>
+<p>SkyWalking traces/metrics; structured logs with <code>traceId</code> + 429/503/timeout fields; Nacos groups for rules with gray &amp; rollback.</p>
+<h3 id="6-exceptions">6) Exceptions<a class="headerlink" href="#6-exceptions" title="Permanent link">&para;</a></h3>
+<p>Execution SLA of long-running async tasks is <strong>out of scope</strong> here; external-network incidents are labeled for review, not forcibly excluded.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
