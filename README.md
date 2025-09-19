@@ -288,7 +288,7 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
 ## 👤 作者
 陈峥 Jimmy Chen
 - 领英：https://www.linkedin.com/in/jimmy-chen-74a8182b8/
-- Gitee: https://gitee.com/chen-zheng-jimmy
+- Gitee: https://gitee.com/Jimmy-chen-zheng
 - Github: https://github.com/JimmyZChen
 
 ---
@@ -547,6 +547,6 @@ Abnormal cases can be inspected in the DLQ to locate failed messages.
 Chen Zheng
 - Linkedin：https://www.linkedin.com/in/jimmy-chen-74a8182b8/
 - Github: https://github.com/JimmyZChen
-- Gitee: https://gitee.com/chen-zheng-jimmy
+- Gitee: https://gitee.com/Jimmy-chen-zheng
 
 
