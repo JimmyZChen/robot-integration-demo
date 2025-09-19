@@ -1,6 +1,6 @@
 # 运行效果（Live Demo）
 
-> 本页展示 PPT 第 **10–18** 页的运行截图。所有图片均已做脱敏处理；密钥等敏感信息不对外展示。
+> 所有图片均已做脱敏处理；密钥等敏感信息不对外展示。
 
 ## 0 · 首页（Dashboard）
 [![](assets/live/p10-dashboard.png){ .img-90 }](assets/live/p10-dashboard.png)

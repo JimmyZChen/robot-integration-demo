@@ -1,4 +1,4 @@
-site_name: Robot Interface Demo Docs
+site_name: 机器人调度系统文档 
 repo_url: https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git
 theme:
   name: material
@@ -12,14 +12,7 @@ theme:
     - toc.integrate           # 进入页面后，左侧显示该页的标题小目录（TOC）替代全站导航
 nav:
   - 首页: index.md
-  - 快速开始: quickstart.md
-  - 概览:
-    - What / Why: overview/02-what-why.md
-    - 单体 → 微服务: overview/03-monolith-to-microservices.md
-    - 架构总览: overview/04-architecture-overview.md
-    - 项目阶段 & 里程碑: overview/05-phases-milestones.md
-    - OpenAPI 封装与稳定性: overview/06-openapi-stability.md
-    - 服务等级目标SLO: SLO.md 
+  - 概览 Overview: overview.md 
   - 运行效果（Live Demo）: live-demo.md 
   - 配置中心（Nacos）: config-nacos.md 
   - 可观测性（SkyWalking）: observability.md
@@ -34,6 +27,7 @@ markdown_extensions:
   - admonition
   - toc:
       permalink: true
+      toc_depth: 1-2
   - tables
   - attr_list        # ← 新增
   
