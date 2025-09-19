@@ -1,0 +1,39 @@
+site_name: Robot Interface Demo Docs
+repo_url: https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+    - content.image.zoom 
+    - content.image.lightbox
+    - toc.integrate           # 进入页面后，左侧显示该页的标题小目录（TOC）替代全站导航
+nav:
+  - 首页: index.md
+  - 快速开始: quickstart.md
+  - 概览:
+    - What / Why: overview/02-what-why.md
+    - 单体 → 微服务: overview/03-monolith-to-microservices.md
+    - 架构总览: overview/04-architecture-overview.md
+    - 项目阶段 & 里程碑: overview/05-phases-milestones.md
+    - OpenAPI 封装与稳定性: overview/06-openapi-stability.md
+    - 服务等级目标SLO: SLO.md 
+  - 运行效果（Live Demo）: live-demo.md 
+  - 配置中心（Nacos）: config-nacos.md 
+  - 可观测性（SkyWalking）: observability.md
+  - 稳定性（Sentinel）: stability-sentinel.md
+  - 异步化（RabbitMQ）: mq-async.md
+  - 容器化部署: docker-deploy.md
+  - 压测与证据: loadtest-jmeter.md            
+  - 问题—原因—修复: issues-rca.md
+extra_css:              # ← 顶层键，放这里即可（顺序无所谓）
+  - styles.css          # ← 文件在 docs/styles.css  
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - attr_list        # ← 新增
+  

@@ -1,0 +1,29 @@
+/* 两列并排 */
+.twoup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.twoup img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--md-default-fg-color--light);
+}
+
+/* 三列并排（用于三图） */
+.threeup {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.threeup img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--md-default-fg-color--light);
+}
+/* 居中 + 设定一个舒适的宽度；可按需改百分比 */
+.img-90 { width: 90%; display: block; margin: 12px auto; }
