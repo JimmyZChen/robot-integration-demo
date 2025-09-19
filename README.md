@@ -101,7 +101,7 @@
 - **Google Slides（示意流程与界面）**：  
   [https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/](https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/)
 
-> 网盘/Slides展示了机器人列表、状态监控、地图/分区与任务下发等界面与流程（截图均已脱敏/打码）。
+> 展示了机器人列表、状态监控、地图/分区与任务下发等界面与流程（截图均已脱敏/打码）。
 
 ### 后台 · 机器人管理  
 <img src="./assets/web-robot.png" width="880" loading="lazy" alt="Web 机器人管理示意"/>
@@ -400,7 +400,7 @@ For safety & compliance, we emphasize **service decomposition, gateway & service
 - **Baidu Netdisk (redacted screenshots)**:  
   https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp
 
-> Slides/Netdisk include robot list, status monitoring, map/partition views, and temporary task dispatch flows (all screenshots redacted/anonymized).
+> Online document include robot list, status monitoring, map/partition views, and temporary task dispatch flows (all screenshots redacted/anonymized).
 
 ### Backend · Robot Management
 <img src="./assets/web-robot.png" width="880" loading="lazy" alt="Web Robot Management"/>
