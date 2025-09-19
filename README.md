@@ -93,11 +93,9 @@
 ## 🎬 效果展示
 
 ## 在线文档
-👉 **https://robot-interface-demo-docs.pages.dev**
+- **https://robot-interface-demo-docs.pages.dev**
 
-[![Open Docs](https://img.shields.io/badge/Docs-Open-blue)](https://robot-interface-demo-docs.pages.dev)
-
-
+## 其他
 - **百度网盘（脱敏截图打包）**：  
   [https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp](https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp)
 - **Google Slides（示意流程与界面）**：  
@@ -393,6 +391,10 @@ For safety & compliance, we emphasize **service decomposition, gateway & service
 ---
 
 ## 🎥 Demo
+## Online document
+- **https://robot-interface-demo-docs.pages.dev**
+
+## Other
 - **Google Slides (flows & UI mock)**:  
   https://docs.google.com/presentation/d/1I7oIYdUIYdgaCM-MY_42yEG9jm_DSXGXnCeFv1YzYWM/
 - **Baidu Netdisk (redacted screenshots)**:  
