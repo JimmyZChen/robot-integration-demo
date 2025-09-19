@@ -1,3 +1,51 @@
+# Service Level Objectives (SLO)
+
+> Scope: Spring Cloud Gateway + Robot Service.  
+> Window: 28 days (monthly).  
+> Success definition: Count as success when the HTTP status is not 5xx and the business `code==0`; **intentional 429 (rate limiting) is not counted as a failure** and is tracked separately for capacity and threshold tuning.  
+> Latency: by default, measure the duration from **Gateway ingress → response sent**.
+
+---
+
+## 📈 SLO (English)
+
+### 1) SLO Table
+| Journey / API | SLI | Target | Notes |
+|---|---|---|---|
+| Status query `GET /external/gs/status/**` | Success ≥ 99.9% | Monthly | Gateway rate-limit first; single-instance stable QPS × 0.7 headroom |
+|  | P95 < 300ms (P99 < 800ms) | Monthly | Client typically retries with backoff 1–2 times |
+| Map list `GET /maps/list/**` | Success ≥ 99.9% | Monthly | Read-heavy; cache/replica |
+|  | P95 < 400ms | Monthly | API baseline |
+| Task dispatch (async acceptance) `POST /external/gs/task/**` | Acceptance success ≥ 99.5% | Monthly (~3.6h budget) | Count success only if **persisted + enqueued**; idempotency key `taskId` |
+|  | Acceptance P95 < 1s | Monthly | Synchronous “accepted” only; **execution ACK not in this SLO** |
+| WebSocket updates | Reconnect 99% < 3s | Monthly | Auto-reconnect; `stale` triggers alert |
+
+### 2) SLI Definitions
+- **Success rate** = (requests − HTTP 5xx − business failures) ÷ requests; business failure per unified `code`.  
+- **Latency**: P50/P95/P99 from **gateway ingress to response**; add service spans if needed.  
+- **Async acceptance**: HTTP 202/200 **and** persisted+enqueued = success (requires app metric).  
+- **WebSocket recovery**: disconnect to “receiving again” (heartbeat/subscription ack).
+
+### 3) Protection thresholds (aligned with Sentinel)
+- **Slow-call threshold** `τ = min(1000ms, 1.2 × current baseline P95)`  
+- **Window** 10s; **minimum samples** ≥ 20; **slow-call ratio** ≥ 50% → open circuit  
+- **Open** 30s; **Half-open probes** 5–10  
+- **Ingress rate-limit** on `/external/gs/**` at Gateway (returns 429)
+
+### 4) Alerting & Actions
+- **Error budget**: 99.9% target ⇒ 0.1% monthly  
+- **Burn rate alerts** (either condition): 1h > 10% budget ⇒ P1 (auto degrade/limit); 6h > 20% ⇒ P1 escalate (rollback / remove unhealthy instance)  
+- **Release guard**: within 15min after release, if P95/P99 worsens and error > threshold ⇒ pause/rollback  
+- **Traffic control**: ramp Gateway quotas 5%→30%→50%→100%; if worse, staged circuit with stable fallback
+
+### 5) Observability & Sources
+SkyWalking traces/metrics; structured logs with `traceId` + 429/503/timeout fields; Nacos groups for rules with gray & rollback.
+
+### 6) Exceptions
+Execution SLA of long-running async tasks is **out of scope** here; external-network incidents are labeled for review, not forcibly excluded.
+
+---
+
 # Service Level Objectives (SLO) · 服务等级目标
 
 > Scope 范围：Gateway（Spring Cloud Gateway）+ Robot Service。  
@@ -48,51 +96,3 @@
 ### 6) 例外
 - 异步任务的**执行结果**不计入“受理成功率”，另立“任务执行 SLA”  
 - 网外网络问题在统计中标注“外部原因”维度用于复盘，不从工程侧强行剔除
-
----
-
-# Service Level Objectives (SLO)
-
-> Scope: Spring Cloud Gateway + Robot Service.  
-> Window: 28 days (monthly).  
-> Success definition: Count as success when the HTTP status is not 5xx and the business `code==0`; **intentional 429 (rate limiting) is not counted as a failure** and is tracked separately for capacity and threshold tuning.  
-> Latency: by default, measure the duration from **Gateway ingress → response sent**.
-
----
-
-## 📈 SLO (English)
-
-### 1) SLO Table
-| Journey / API | SLI | Target | Notes |
-|---|---|---|---|
-| Status query `GET /external/gs/status/**` | Success ≥ 99.9% | Monthly | Gateway rate-limit first; single-instance stable QPS × 0.7 headroom |
-|  | P95 < 300ms (P99 < 800ms) | Monthly | Client typically retries with backoff 1–2 times |
-| Map list `GET /maps/list/**` | Success ≥ 99.9% | Monthly | Read-heavy; cache/replica |
-|  | P95 < 400ms | Monthly | API baseline |
-| Task dispatch (async acceptance) `POST /external/gs/task/**` | Acceptance success ≥ 99.5% | Monthly (~3.6h budget) | Count success only if **persisted + enqueued**; idempotency key `taskId` |
-|  | Acceptance P95 < 1s | Monthly | Synchronous “accepted” only; **execution ACK not in this SLO** |
-| WebSocket updates | Reconnect 99% < 3s | Monthly | Auto-reconnect; `stale` triggers alert |
-
-### 2) SLI Definitions
-- **Success rate** = (requests − HTTP 5xx − business failures) ÷ requests; business failure per unified `code`.  
-- **Latency**: P50/P95/P99 from **gateway ingress to response**; add service spans if needed.  
-- **Async acceptance**: HTTP 202/200 **and** persisted+enqueued = success (requires app metric).  
-- **WebSocket recovery**: disconnect to “receiving again” (heartbeat/subscription ack).
-
-### 3) Protection thresholds (aligned with Sentinel)
-- **Slow-call threshold** `τ = min(1000ms, 1.2 × current baseline P95)`  
-- **Window** 10s; **minimum samples** ≥ 20; **slow-call ratio** ≥ 50% → open circuit  
-- **Open** 30s; **Half-open probes** 5–10  
-- **Ingress rate-limit** on `/external/gs/**` at Gateway (returns 429)
-
-### 4) Alerting & Actions
-- **Error budget**: 99.9% target ⇒ 0.1% monthly  
-- **Burn rate alerts** (either condition): 1h > 10% budget ⇒ P1 (auto degrade/limit); 6h > 20% ⇒ P1 escalate (rollback / remove unhealthy instance)  
-- **Release guard**: within 15min after release, if P95/P99 worsens and error > threshold ⇒ pause/rollback  
-- **Traffic control**: ramp Gateway quotas 5%→30%→50%→100%; if worse, staged circuit with stable fallback
-
-### 5) Observability & Sources
-SkyWalking traces/metrics; structured logs with `traceId` + 429/503/timeout fields; Nacos groups for rules with gray & rollback.
-
-### 6) Exceptions
-Execution SLA of long-running async tasks is **out of scope** here; external-network incidents are labeled for review, not forcibly excluded.
