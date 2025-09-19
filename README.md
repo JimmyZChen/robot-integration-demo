@@ -92,6 +92,12 @@
 <a id="showcase"></a>
 ## 🎬 效果展示
 
+## 在线文档
+👉 **https://robot-interface-demo-docs.pages.dev**
+
+[![Open Docs](https://img.shields.io/badge/Docs-Open-blue)](https://robot-interface-demo-docs.pages.dev)
+
+
 - **百度网盘（脱敏截图打包）**：  
   [https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp](https://pan.baidu.com/s/11KPn1tRsMa1jslKZIbxPTA?pwd=xgbp)
 - **Google Slides（示意流程与界面）**：  
