@@ -36,5 +36,9 @@ application-*.yml
 nacos-export*
 nacos/
 .nacos/
-sentinel-*
+# Sentinel 相关产物（仅限仓库根目录）
+/sentinel-dashboard*/
+/sentinel-*.jar
+/sentinel-*.zip
+
 skywalking/
