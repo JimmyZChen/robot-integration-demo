@@ -69,4 +69,66 @@
   font-family: "Noto Sans SC","PingFang SC","Microsoft YaHei",
                system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+/* 左侧目录：给一个明显的淡底卡片，不区分屏宽 */
+.md-sidebar--primary .md-sidebar__scrollwrap,
+.md-sidebar--primary .md-sidebar__inner { /* 两个都写，兼容不同版本结构 */
+  background: rgba(0, 0, 0, .03);           /* 亮色：很淡的灰 */
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+/* 暗色模式下的底色与边框对比度 */
+:root[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap,
+:root[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__inner {
+  background: rgba(255, 255, 255, .05);
+  border-color: rgba(255, 255, 255, .12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+}
+/* 当前页/悬停更明显的胶囊背景 */
+.md-sidebar--primary .md-nav__link {
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__link:hover {
+  background: rgba(0,0,0,.06);
+}
+:root[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link--active,
+:root[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:hover {
+  background: rgba(255,255,255,.08);
+}
+/* 活动项左侧 3px 主色条 */
+.md-sidebar--primary .md-nav__link--active {
+  box-shadow: inset 3px 0 0 var(--md-primary-fg-color);
+}
+/* 组标题（粗+浅灰底） */
+.md-sidebar--primary .md-nav__title {
+  font-weight: 700;
+  background: rgba(0,0,0,.03);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+:root[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__title {
+  background: rgba(255,255,255,.06);
+}
+/* 次级项前加细导引线 */
+.md-sidebar--primary .md-nav__item .md-nav__link {
+  position: relative;
+}
+.md-sidebar--primary .md-nav__item .md-nav__list .md-nav__link::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0.9em;
+  width: 6px;
+  height: 1px;
+  background: currentColor;
+  opacity: .18;
+}
+/* 目录滚动区域上下阴影，提示可滚动 */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  mask-image: linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+}
 

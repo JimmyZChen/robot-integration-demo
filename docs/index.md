@@ -16,7 +16,7 @@ hide:
 
 ---
 
-## 我们解决什么问题 
+## 解决什么问题 
 - :material-source-branch: **多厂商聚合**：异构 OpenAPI 统一入口与协议约束  
 - :material-shield-check: **前置治理**：网关鉴权、审计、限流、灰度  
 - :material-rabbit: **异步解耦**：RabbitMQ（Topic→Queue→DLQ）、手动 ack、幂等校验  
@@ -90,7 +90,19 @@ hide:
 ### 仓库与版本
 [GitHub](https://github.com/JimmyZChen/robot-integration-demo){ target=_blank } ·
 [Gitee](https://gitee.com/Jimmy-chen-zheng/robot-interface-demo){ target=_blank }  
-**Doc version:** v0.1 · **Last updated:** {{ git.commit_date }}
+**Doc version:** v0.1 · **Last updated:** 2025/09/20
+
+---
+
+### 作者 Author
+
+<div class="grid cards" markdown>
+-   :material-account-circle: **陈峥 (Jimmy Chen)**
+    
+    :material-briefcase-outline: Jva后端开发工程师
+    :material-map-marker: 中国，深圳 
+    
+</div>
 
 
 
