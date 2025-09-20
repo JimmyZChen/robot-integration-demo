@@ -18,11 +18,14 @@
     
     
       
-        <title>问题—原因—修复 - 机器人调度系统文档</title>
+        <title>问题—原因—修复 Issues - 机器人调度系统文档</title>
       
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -53,7 +56,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -98,12 +108,38 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              问题—原因—修复
+              问题—原因—修复 Issues
             
           </span>
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="亮色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="亮色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -225,7 +261,7 @@
   
   
   <span class="md-ellipsis">
-    首页
+    首页 Dashboard
     
   </span>
   
@@ -269,7 +305,7 @@
   
   
   <span class="md-ellipsis">
-    运行效果（Live Demo）
+    运行效果 Live Demo
     
   </span>
   
@@ -291,7 +327,7 @@
   
   
   <span class="md-ellipsis">
-    配置中心（Nacos）
+    配置中心 Nacos
     
   </span>
   
@@ -313,7 +349,7 @@
   
   
   <span class="md-ellipsis">
-    可观测性（SkyWalking）
+    可观测性 SkyWalking
     
   </span>
   
@@ -335,7 +371,7 @@
   
   
   <span class="md-ellipsis">
-    稳定性（Sentinel）
+    稳定性 Sentinel
     
   </span>
   
@@ -357,7 +393,7 @@
   
   
   <span class="md-ellipsis">
-    异步化（RabbitMQ）
+    异步化 RabbitMQ
     
   </span>
   
@@ -379,7 +415,7 @@
   
   
   <span class="md-ellipsis">
-    容器化部署
+    容器化部署 Docker
     
   </span>
   
@@ -401,7 +437,7 @@
   
   
   <span class="md-ellipsis">
-    压测与证据
+    高并发压测 JMeter
     
   </span>
   
@@ -432,7 +468,7 @@
   
   
   <span class="md-ellipsis">
-    问题—原因—修复
+    问题—原因—修复 Issues
     
   </span>
   
@@ -445,7 +481,7 @@
   
   
   <span class="md-ellipsis">
-    问题—原因—修复
+    问题—原因—修复 Issues
     
   </span>
   
@@ -468,27 +504,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.上线口径与压测基线
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-gateway-nacos-sentinel" class="md-nav__link">
     <span class="md-ellipsis">
-      1) Gateway / Nacos / Sentinel
+      1. Gateway / Nacos / Sentinel
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-observability-infrastructure" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2) 可观测性 &amp; 基础设施（Observability &amp; Infrastructure）
+      2. 可观测性与基础设施
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-code-client" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      3) 代码与客户端（Code &amp; Client）
+      3. 异步化与幂等
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ruoyi-vue" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 代码与前端（RuoYi + Vue）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 规约与治理（统一命名 &amp; 回溯）
     </span>
   </a>
   
@@ -520,89 +583,146 @@
 
 <h1 id="issues-root-cause-fixes">问题—原因—修复（Issues · Root Cause · Fixes）<a class="headerlink" href="#issues-root-cause-fixes" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>下面三大类与 PPT 一一对应：<br />
-1) <strong>Gateway / Nacos / Sentinel</strong><br />
-2) <strong>可观测性 &amp; 基础设施（Observability &amp; Infrastructure）</strong><br />
-3) <strong>代码与客户端（Code &amp; Client）</strong></p>
+<p>环境说明：RuoYi-Cloud（ruoyi-modules-robot / ruoyi-api-robot），Gateway 统一入口 <code>/external/gs/**</code>；<br />
+Nacos 注册与配置，Sentinel 动态规则，SkyWalking 全链路，可选 RabbitMQ 异步；Docker Compose 一键交付。</p>
 </blockquote>
 <hr />
-<h2 id="1-gateway-nacos-sentinel">1) Gateway / Nacos / Sentinel<a class="headerlink" href="#1-gateway-nacos-sentinel" title="Permanent link">&para;</a></h2>
+<h2 id="0">0.上线口径与压测基线<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>口径与基线不清</strong><br />
+<strong>表现</strong>：不同同学对“成功/失败”“是否算 429”口径不一致，导致指标解读偏差。<br />
+<strong>修复</strong>：统一口径与基线：  </li>
+<li><strong>Dry-Run/关消费</strong>压测基线：100 QPS × 3 分钟，视 200/429 为成功（验证网关限流/稳定性）。  </li>
+<li><strong>观测指标</strong>：P95/P99、Throughput、Error%、队列累积、SkyWalking Success Rate。  </li>
+<li>
+<p><strong>结果样例</strong>：18035 样本 <strong>P95=6ms</strong>、<strong>P99≈10ms</strong>、<strong>Error=0</strong>、Throughput≈<strong>100.2/s</strong>（多轮结果一致）。</p>
+</li>
+<li>
+<p><strong>回滚与冷启动不可量化</strong><br />
+<strong>修复</strong>：落库到《变更记录》：  </p>
+</li>
+<li><strong>冷启动</strong>：Docker Compose + 首启 SQL → <strong>≤ 12 分钟</strong> 新环境就绪；  </li>
+<li><strong>回滚</strong>：微服务化后 <strong>≤ 5 分钟</strong>（回滚镜像/配置） 。</li>
+</ul>
+<hr />
+<h2 id="1-gateway-nacos-sentinel">1. Gateway / Nacos / Sentinel<a class="headerlink" href="#1-gateway-nacos-sentinel" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>Nacos 启动卡在 STARTING</strong><br />
-<strong>原因</strong>：持久化 <strong>MySQL 配置/版本不匹配</strong>，未初始化 SQL。<br />
-<strong>修复</strong>：补齐 <code>spring.datasource.*</code> 配置，导入初始化脚本；建议使用 <strong>Nacos 2.2.3</strong>（或与镜像一致版本）。</p>
-</li>
-<li>
-<p><strong>Sentinel API 分组空白/规则不生效</strong><br />
-<strong>原因</strong>：缺少 <code>sentinel-datasource-nacos</code> 依赖，或 <strong>DataId/Group 与规则 JSON</strong> 不一致。<br />
-<strong>修复</strong>：统一网关规则：<code>ruoyi-gateway-gw-api-defs/gw-flow/gw-degrade</code>，对齐 DataId/Group 与 JSON 结构。</p>
+<strong>原因</strong>：持久化 <strong>MySQL 版本/字符集不匹配</strong> 或未导入初始化 SQL。<br />
+<strong>修复</strong>：补齐 <code>spring.datasource.*</code>，导入官方/项目初始化脚本；版本与镜像对齐（建议 <strong>2.2.x</strong>）。</p>
 </li>
 <li>
 <p><strong>网关 404 / Swagger “Try it out” 失败</strong><br />
-<strong>原因</strong>：<code>Path/StripPrefix</code> 与 <strong>服务前缀/<code>context-path</code></strong> 不一致。<br />
-<strong>修复</strong>：统一路径策略；必要时<strong>移除</strong> <code>context-path</code> 或调整 Strip 规则。</p>
+<strong>原因</strong>：<code>StripPrefix/Path</code> 与 <strong>下游 <code>context-path</code></strong> 不一致；服务前缀改动未更新路由。<br />
+<strong>修复</strong>：统一路径策略；必要时<strong>移除</strong> <code>context-path</code> 或同步调整 Strip 规则；灰度后统一回收旧前缀。</p>
 </li>
 <li>
 <p><strong>限流路径不一致，规则无法命中</strong><br />
-<strong>原因</strong>：<code>@SentinelResource</code> <strong>分散在 Controller</strong>，资源名混乱。<br />
-<strong>修复</strong>：下沉统一到 <strong><code>GsOpenApiServiceImpl</code></strong>，规范资源命名，并与 Nacos 规则一一对应。</p>
+<strong>原因</strong>：<code>@SentinelResource</code> <strong>分散在 Controller</strong>，资源名不统一。<br />
+<strong>修复</strong>：统一下沉到 <strong><code>GsOpenApiServiceImpl</code></strong>；规范资源命名，并与 Nacos 规则一一对应<br />
+  （如：<code>ruoyi-gateway-gw-api-defs/gw-flow/gw-degrade</code>）。</p>
 </li>
 <li>
-<p><strong>看不到熔断/降级效果</strong><br />
-<strong>原因</strong>：入口网关阈值过小，压测请求先被 <strong>429</strong> 挡住；或“<strong>慢调用比例</strong>”阈值设置不当。<br />
-<strong>修复</strong>：压测时<strong>上调网关阈值</strong>；基于业务延迟/错误率设置“慢调用/异常比例”规则，确保规则实际触发。</p>
-</li>
-</ul>
-<hr />
-<h2 id="2-observability-infrastructure">2) 可观测性 &amp; 基础设施（Observability &amp; Infrastructure）<a class="headerlink" href="#2-observability-infrastructure" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>SkyWalking 无 Gateway 链路/日志无 <code>traceId</code></strong><br />
-<strong>原因</strong>：未加载 <strong>SCG/WebFlux 插件</strong>；<code>-javaagent</code> 未注入；Logback 无 MDC。<br />
-<strong>修复</strong>：  </li>
-<li>将 <code>apm-spring-cloud-gateway-3.x-plugin</code> 放入 <strong>plugins</strong>；  </li>
-<li>启动参数添加 <strong><code>-javaagent:/path/to/agent.jar</code></strong>；  </li>
-<li>
-<p>Logback Pattern 增加 <strong><code>%X{traceId}</code></strong>。</p>
-</li>
-<li>
-<p><strong>Docker：MySQL 端口冲突/首次无数据</strong><br />
-<strong>原因</strong>：<code>3306</code> 被占或未导入初始化 SQL。<br />
-<strong>修复</strong>：变更端口映射或停用宿主 MySQL；在 compose 中<strong>预导入 SQL</strong>；增加健康检查。</p>
-</li>
-<li>
-<p><strong>容器内访问失败（误用 <code>本地ip地址</code>）</strong><br />
-<strong>原因</strong>：容器将宿主地址当本地。<br />
-<strong>修复</strong>：容器间调用使用 <strong>服务名:端口</strong>；访问宿主在 <strong>Win/Mac</strong> 使用 <code>host.docker.internal</code>。</p>
-</li>
-<li>
-<p><strong>依赖/插件冲突（Reactor Netty 等）</strong><br />
-<strong>原因</strong>：Spring Boot/Cloud 与依赖版本矩阵不一致，网关/WebFlux 插件缺失。<br />
-<strong>修复</strong>：<strong>统一版本并锁定</strong>；按需引入 gateway/webflux 相关插件。</p>
-</li>
-</ul>
-<hr />
-<h2 id="3-code-client">3) 代码与客户端（Code &amp; Client）<a class="headerlink" href="#3-code-client" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p><strong>MyBatis <code>Invalid bound statement</code></strong><br />
-<strong>原因</strong>：<code>mapper-locations</code> 路径或 <strong>namespace 与接口 FQN 不一致</strong>；XML 未打包。<br />
-<strong>修复</strong>：校对 <code>@MapperScan + namespace</code>；确保 XML 被正确打包并能被扫描到。</p>
-</li>
-<li>
-<p><strong><code>RestTemplate</code> 堆积/重试放大故障</strong><br />
-<strong>原因</strong>：<strong>未设置超时/连接池</strong>，启用自动重试。<br />
-<strong>修复</strong>：设置 <code>connect/read</code> 超时与连接池大小；<strong>禁用自动重试</strong>；关键写操作做幂等（如幂等键）。</p>
+<p><strong>Sentinel 规则不生效/分组空白</strong><br />
+<strong>原因</strong>：缺 <code>sentinel-datasource-nacos</code> 依赖，或 <strong>DataId/Group 与 JSON</strong> 不一致。<br />
+<strong>修复</strong>：补依赖；校验三元组 <code>{AppName, DataId, Group}</code> 与 JSON 结构；压测前提高网关阈值避免被 429 抢先挡掉。</p>
 </li>
 <li>
 <p><strong>CORS 预检被拦</strong><br />
-<strong>原因</strong>：网关未放行 <strong>OPTIONS</strong> 或响应头不完整。<br />
-<strong>修复</strong>：配置<strong>全局 CORS</strong>：允许所需 <code>Origin/Headers/Methods</code>，暴露必要响应头；显式放行 <strong>OPTIONS</strong>。</p>
+<strong>原因</strong>：未放行 <strong>OPTIONS</strong> 或响应头缺失。<br />
+<strong>修复</strong>：配置全局 CORS：允许所需 <code>Origin/Headers/Methods</code>，暴露必要响应头；显式放行 <strong>OPTIONS</strong>。</p>
 </li>
 </ul>
 <hr />
+<h2 id="2">2. 可观测性与基础设施<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>无 Gateway 链路 / 日志无 <code>traceId</code></strong><br />
+<strong>原因</strong>：未加载 <strong>SCG/WebFlux 插件</strong>；<code>-javaagent</code> 未注入；Logback 无 MDC。<br />
+<strong>修复</strong>：  </li>
+<li>将 <code>apm-spring-cloud-gateway-3.x-plugin</code> 放入 <strong>plugins</strong>；  </li>
+<li>启动加入 <code>-javaagent:/path/to/agent/agent.jar</code>；  </li>
+<li>
+<p>Logback Pattern 增加 <code>%X{traceId}</code>；压测期适当提高采样率，生产按 QPS 降噪。</p>
+</li>
+<li>
+<p><strong>Docker：MySQL 端口冲突/首次无数据</strong><br />
+<strong>原因</strong>：宿主占用 <code>3306</code> 或未导入 SQL。<br />
+<strong>修复</strong>：调整端口映射或停宿主 MySQL；<strong>compose 预导入 SQL</strong>；增加 <code>healthcheck</code> 并让上游依赖 <code>depends_on.condition=service_healthy</code>。</p>
+</li>
+<li>
+<p><strong>容器内访问失败（误用宿主 <code>localhost</code>）</strong><br />
+<strong>原因</strong>：容器将宿主地址当本地。<br />
+<strong>修复</strong>：容器间互调用 <strong>服务名:端口</strong>；访问宿主在 Win/Mac 使用 <code>host.docker.internal</code>。</p>
+</li>
+<li>
+<p><strong>依赖/插件冲突（Reactor Netty 等）</strong><br />
+<strong>原因</strong>：Spring Boot/Cloud 与依赖矩阵不一致。<br />
+<strong>修复</strong>：锁定版本矩阵；仅按需引入 gateway/webflux/skywalking 插件并校验兼容性。</p>
+</li>
+</ul>
+<hr />
+<h2 id="3">3. 异步化与幂等<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>压测时队列无限累积/消息重复消费</strong><br />
+<strong>原因</strong>：演示环境 <strong>关消费（Dry-Run）</strong> 或缺少 <strong>prefetch/手动 ack</strong>；失败重试无上限。<br />
+<strong>修复</strong>：  </li>
+<li>压测口径：关消费只校验入口与可观测，允许累积；  </li>
+<li>正式：开启消费者，设 <code>prefetch= n</code>、<strong>手动 ack</strong>，失败进入 <strong>DLQ</strong>；  </li>
+<li>
+<p>写操作引入<strong>幂等键</strong>，超时/重试<strong>禁止放大故障</strong>。</p>
+</li>
+<li>
+<p><strong>RestTemplate 堆积/重试放大</strong><br />
+<strong>原因</strong>：未设置超时与连接池，自动重试开启。<br />
+<strong>修复</strong>：设置 <code>connect/read</code> 超时、连接池大小；禁用自动重试；关键写操作幂等化。</p>
+</li>
+</ul>
+<hr />
+<h2 id="4-ruoyi-vue">4. 代码与前端（RuoYi + Vue）<a class="headerlink" href="#4-ruoyi-vue" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>MyBatis <code>Invalid bound statement</code></strong><br />
+<strong>原因</strong>：<code>mapper-locations</code> 或 <strong>XML <code>namespace</code> ≠ 接口 FQN</strong>；XML 未打包。<br />
+<strong>修复</strong>：校对 <code>@MapperScan + namespace</code>；确保 XML 被扫描与打包。</p>
+</li>
+<li>
+<p><strong>前端跨域/端口不一致</strong><br />
+<strong>原因</strong>：环境切换时 proxy 未同步。<br />
+<strong>修复</strong>：<code>vue.config.js</code> 统一代理，端口/目标随环境变量切换。</p>
+</li>
+<li>
+<p><strong>UI 小问题（来自阶段总结）</strong><br />
+<strong>表现</strong>：分区/地图名换行、状态未自动刷新、接口结果结构不一致等。<br />
+<strong>修复</strong>：  </p>
+</li>
+<li>表格列宽 + <code>tooltip</code> 优化；  </li>
+<li>增加“手动刷新”（后续再上定时刷新）；  </li>
+<li>API 返回做“字符串/对象”<strong>健壮解析</strong>，避免任务下发提示错误；  </li>
+<li><code>areaId</code> 与坐标映射缺数据 → 与厂商对齐数据表，纳入后续里程碑。</li>
+</ul>
+<hr />
+<h2 id="5">5. 规约与治理（统一命名 &amp; 回溯）<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>资源命名/日志字段不统一，排障困难</strong><br />
+<strong>修复</strong>：  </li>
+<li>统一资源命名（与 Sentinel 规则一致），统一异常体；  </li>
+<li>日志注入 <code>traceId</code>、<code>requestId</code>、<code>taskId</code>、<code>resource</code>；  </li>
+<li>复盘流程：<strong>先交付后演进</strong>，变更与回滚留痕，按“问题→原因→修复”固化到文档。</li>
+</ul>
+<hr />
+<h3 id="_1">附：可复用清单（上线前自检）<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <code>gateway</code> 路由/前缀 与下游路径一致；  </li>
+<li>[ ] Nacos 规则（DataId/Group）与应用资源名一致；  </li>
+<li>[ ] SkyWalking <code>-javaagent</code> 与 Gateway/WebFlux 插件到位；  </li>
+<li>[ ] Docker <code>healthcheck</code> 完整，首次启动 SQL 自动导入；  </li>
+<li>[ ] 关消费压测口径/观测指标一致，正式环境开启消费者并配好 DLQ；  </li>
+<li>[ ] CORS、超时、连接池、幂等与重试策略到位；  </li>
+<li>[ ] 日志包含 trace 字段，可实现 <strong>trace ↔ log</strong> 互查。</li>
+</ul>
 <blockquote>
-<p>相关示例/配置可在「可观测性（SkyWalking）」「稳定性（Sentinel）」「容器化（Docker）」章节对照落地。</p>
+<p>指标来源：阶段总结与演示压测记录（基线 100 QPS，P95≈6ms，P99≈9–10ms，Error=0）。</p>
 </blockquote>
 
 
@@ -624,9 +744,39 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../loadtest-jmeter/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 高并发压测 JMeter">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                高并发压测 JMeter
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -636,6 +786,43 @@
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/JimmyZChen" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33s1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://gitee.com/Jimmy-chen-zheng" target="_blank" rel="noopener" title="Gitee" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.984 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm6.09 5.333c.328 0 .593.266.592.593v1.482a.594.594 0 0 1-.593.592H9.777c-.982 0-1.778.796-1.778 1.778v5.63c0 .327.266.592.593.592h5.63c.982 0 1.778-.796 1.778-1.778v-.296a.593.593 0 0 0-.592-.593h-4.15a.59.59 0 0 1-.592-.592v-1.482a.593.593 0 0 1 .593-.592h6.815c.327 0 .593.265.593.592v3.408a4 4 0 0 1-4 4H5.926a.593.593 0 0 1-.593-.593V9.778a4.444 4.444 0 0 1 4.445-4.444h8.296Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:chenzheng2024xm@163.com" target="_blank" rel="noopener" title="Email" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/in/jimmy-chen-74a8182b8/" target="_blank" rel="noopener" title="LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"/></svg>
     </a>
   
 </div>
@@ -652,7 +839,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
