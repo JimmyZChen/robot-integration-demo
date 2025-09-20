@@ -99,7 +99,7 @@ hide:
 <div class="grid cards" markdown>
 -   :material-account-circle: **陈峥 (Jimmy Chen)**
     
-    :material-briefcase-outline: Jva后端开发工程师
+    :material-briefcase-outline: Java后端开发工程师
     :material-map-marker: 中国，深圳 
     
 </div>
