@@ -4,7 +4,7 @@
 
 ---
 
-## 1) 测试目标与链路范围（Scope & Topology）
+## 1.测试目标与链路范围
 
 [![](assets/loadtest/p01-scope-topology.png){ .img-90 }](assets/loadtest/p01-scope-topology.png)
 
@@ -16,7 +16,7 @@
 
 ---
 
-## 2) 流量模型与压测方法（JMeter Test Plan）
+## 2.流量模型与压测方法
 
 [![](assets/loadtest/p02-plan-thread-group.png){ .img-90 }](assets/loadtest/p02-plan-thread-group.png)  
 [![](assets/loadtest/p02-plan-ct.png){ .img-90 }](assets/loadtest/p02-plan-ct.png)
@@ -26,7 +26,7 @@
 
 ---
 
-## 3) 结果总览（JMeter · Aggregate Report）
+## 3.结果总览
 
 [![](assets/loadtest/p03-agg-1.png){ .img-90 }](assets/loadtest/p03-agg-1.png)  
 [![](assets/loadtest/p03-agg-2.png){ .img-90 }](assets/loadtest/p03-agg-2.png)  
@@ -36,7 +36,7 @@
 
 ---
 
-## 4) 结果明细（JMeter · View Results Tree）
+## 4.结果明细
 
 [![](assets/loadtest/p04-view-results.png){ .img-90 }](assets/loadtest/p04-view-results.png)
 
@@ -44,7 +44,7 @@
 
 ---
 
-## 5) 消息侧验证（RabbitMQ）
+## 5.消息侧验证
 
 [![](assets/loadtest/p05-mq-verify-a.png){ .img-90 }](assets/loadtest/p05-mq-verify-a.png)  
 [![](assets/loadtest/p05-mq-verify-b.png){ .img-90 }](assets/loadtest/p05-mq-verify-b.png)
@@ -53,7 +53,7 @@
 
 ---
 
-## 6) 网关服务指标（SkyWalking · ruoyi-gateway）
+## 6.网关服务指标
 
 [![](assets/loadtest/p06-gateway-metrics.png){ .img-90 }](assets/loadtest/p06-gateway-metrics.png)
 
@@ -61,7 +61,7 @@
 
 ---
 
-## 7) 业务服务指标（SkyWalking · ruoyi-robot）
+## 7.业务服务指标
 
 [![](assets/loadtest/p07-robot-metrics.png){ .img-90 }](assets/loadtest/p07-robot-metrics.png)
 
@@ -69,7 +69,7 @@
 
 ---
 
-## 8) 端点负载与延迟（SkyWalking · Endpoints）
+## 8.端点负载与延迟 
 [![](assets/loadtest/p08-endpoints.png){ .img-90 }](assets/loadtest/p08-overview.png)
 [![](assets/loadtest/p08-endpoints.png){ .img-90 }](assets/loadtest/p08-endpoints.png)
 

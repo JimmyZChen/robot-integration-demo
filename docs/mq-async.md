@@ -7,7 +7,7 @@
 
 ---
 
-## 1) 队列监控 & 异步化架构
+## 1.队列监控 & 异步化架构
 
 ### 1.1 队列监控（Queue）
 
@@ -30,7 +30,7 @@
 
 ---
 
-## 2) 接入设计与关键参数
+## 2.接入设计与关键参数
 
 [![](assets/rabbitmq-params-code.png){ .img-90 }](assets/rabbitmq-params-code.png)
 [![](assets/rabbitmq-exchange.png){ .img-90 }](assets/rabbitmq-exchange.png)
@@ -42,7 +42,7 @@
 
 ---
 
-## 3) 消费与错误处理
+## 3.消费与错误处理
 
 [![](assets/rabbitmq-dlq.png){ .img-90 }](assets/rabbitmq-dlq.png)
 [![](assets/rabbitmq-consumer-config.png){ .img-90 }](assets/rabbitmq-consumer-config.png)
@@ -54,7 +54,7 @@
 
 ---
 
-## 4) 联调结果（Postman）
+## 4.联调结果（Postman）
 
 [![](assets/rabbitmq-postman-create.png){ .img-90 }](assets/rabbitmq-postman-create.png)
 [![](assets/rabbitmq-postman-status.png){ .img-90 }](assets/rabbitmq-postman-status.png)

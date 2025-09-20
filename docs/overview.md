@@ -3,17 +3,19 @@
 > 本章给出整体脉络与阅读顺序；右侧为本页小目录（TOC）。  
 > 点击下方“推荐阅读顺序”中的任一条目可跳转到对应小节。
 
-## 0.推荐阅读顺序
-1. [What / Why](#what--why-机器人管理平台--robot-management-platform) — 明确背景与目标  
-2. [单体 → 微服务](#单体--ruoyi-cloud-微服务monolith--microservices) — 迁移策略与边界  
-3. [架构总览](#架构总览architecture-overview) — 组件关系与设计权衡  
-4. [项目阶段 & 里程碑](#项目阶段--演进路线--里程碑project-phases--milestones) — 把“大目标”拆成“小节奏”  
-5. [OpenAPI 封装与稳定性](#gaussian-openapi-封装与稳定性治理openapi--stability) — 接口治理与容错  
-6. [SLO](./slo.md) — 指标达成与持续改进
+## 0. 推荐阅读顺序
+
+1. [机器人管理平台（What / Why）](#sec-what-why) —— 明确背景与目标  
+2. [从单体到微服务](#sec-mono-to-micro) —— 迁移策略与边界  
+3. [架构总览](#sec-architecture) —— 组件关系与设计权衡  
+4. [项目阶段与里程碑](#sec-phases) —— 把“大目标”拆成“小节奏”  
+5. [OpenAPI 封装与稳定性治理](#sec-openapi-stability) —— 接口治理与容错  
+6. [服务等级目标（SLO）](#sec-slo) —— 指标达成与持续改进
+
 
 ---
 
-## 1.What / Why 机器人管理平台 — Robot Management Platform
+## 1. 机器人管理平台（What / Why） {#sec-what-why}
 
 > **一句话**：统一管理机器人状态、地图/区域与临时任务，聚合多厂商 OpenAPI，向业务系统提供一致的接口与入口。  
 > **One line**: Unified platform for robot status/maps/zones/ad-hoc tasks; aggregates vendor OpenAPIs and exposes a consistent gateway to business apps.
@@ -28,11 +30,11 @@
 - **峰值与抖动**：需要限流/熔断与故障隔离，避免拖垮核心链路  
 - **多环境协作与交付**：Docker 一键交付，服务独立发布/扩缩容
 
-_演进路线见下文「架构与演进（Architecture & Evolution）」。_
+_演进路线见下文「架构与演进」。_
 
 ---
 
-## 2.单体 → RuoYi-Cloud 微服务（Monolith → Microservices）
+## 2. 从单体到微服务 {#sec-mono-to-micro}
 
 ### 背景 / 痛点
 - 单体先行快速验证；规模上涨后发布影响面大、配置分散。
@@ -59,7 +61,7 @@ _演进路线见下文「架构与演进（Architecture & Evolution）」。_
 
 ---
 
-## 3.架构总览（Architecture Overview）
+## 3. 架构总览 {#sec-architecture}
 
 > 形态：RuoYi-Cloud 微服务（Gateway + 业务服务），Nacos 做注册/配置，RabbitMQ（见异步化页）、MySQL/Redis 做数据与缓存，SkyWalking 做可观测闭环，Nginx 托静态前端。
 
@@ -75,7 +77,7 @@ _演进路线见下文「架构与演进（Architecture & Evolution）」。_
 - **可观测性**：各实例向 **SkyWalking OAP** 上报 Trace；**SkyWalking UI** 仅做查询  
 - **连线含义**：**实线 = 请求/调用**；**虚线 = 发现/配置/遥测**
 
-### 2) 可观测性拓扑（SkyWalking）
+### 2) 可观测性拓扑
 ![Observability Topology](../assets/04-observability-topology.png)
 
 **观测口径**
@@ -87,7 +89,7 @@ _演进路线见下文「架构与演进（Architecture & Evolution）」。_
 
 ---
 
-## 4.项目阶段 / 演进路线 & 里程碑（Project Phases & Milestones）
+## 4. 项目阶段与里程碑 {#sec-phases}
 
 ### 1) 项目阶段 / 演进路线
 ![Phases & Evolution](../assets/05-phases.png)
@@ -105,7 +107,7 @@ _演进路线见下文「架构与演进（Architecture & Evolution）」。_
 
 ---
 
-## 5.Gaussian OpenAPI 封装与稳定性治理（OpenAPI & Stability）
+## 5. OpenAPI 封装与稳定性治理 {#sec-openapi-stability}
 
 ### 背景 / 痛点
 - 厂商 API RT/错误不稳，调用方易被拖慢。
@@ -137,7 +139,7 @@ _演进路线见下文「架构与演进（Architecture & Evolution）」。_
 
 ---
 
-## 6.Service Level Objectives (SLO) · 服务等级目标
+## 6. 服务等级目标（SLO） {#sec-slo}
 
 > Scope 范围：Gateway（Spring Cloud Gateway）+ Robot Service。  
 > Window 统计窗口：28 天（月度）。  

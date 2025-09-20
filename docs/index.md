@@ -1,14 +1,30 @@
-# 项目概览（Executive Summary）
+---
+title: 机器人调度系统文档 · Robot Scheduling Docs
+hide:
+  - toc
+---
 
-> 统一接入多厂商 OpenAPI，前置治理（鉴权/限流）、异步化抗洪、可观测闭环与一键交付。
+# 机器人调度系统文档  
+面向多厂商机器人的统一网关，具备异步编排与可观测性。
 
-## 我们在做什么
-- 统一管理：机器人状态 / 地图分区 / 临时任务  
-- 治理前置：Gateway 鉴权/审计，限流前置  
-- 异步化：RabbitMQ（Topic→Queue→DLQ）、手动 ack、幂等  
-- 可观测：SkyWalking（拓扑、Trace、指标）  
-- 交付：Docker Compose 一键部署
+> **一句话 / One-liner**  
+> 统一接入多厂商 OpenAPI，前置治理（鉴权/审计/限流），异步抗洪峰（MQ）、可观测（Trace/指标），与一键交付（Docker Compose）。
 
+[立即上手 ⟶](overview.md){ .md-button .md-button--primary }
+[架构概览 ⟶](overview.md#sec-architecture){ .md-button }
+[Live Demo 指南 ⟶](live-demo.md){ .md-button }
+
+---
+
+## 我们解决什么问题 
+- :material-source-branch: **多厂商聚合**：异构 OpenAPI 统一入口与协议约束  
+- :material-shield-check: **前置治理**：网关鉴权、审计、限流、灰度  
+- :material-rabbit: **异步解耦**：RabbitMQ（Topic→Queue→DLQ）、手动 ack、幂等校验  
+- :material-eye: **可观测性**：SkyWalking 端到端 Trace / 指标 / 拓扑  
+- :material-rocket-launch: **一键交付**：Docker Compose 多环境参数化
+
+> 详细的 **What / Why / 演进路径** 请移步：  
+> [概览（Overview）](overview.md#sec-what-why){ .md-button }
 ---
 
 <h2>快速入口</h2>
@@ -61,6 +77,20 @@
   </a>
 
 </div>
+
+---
+
+!!! note "数据与接口说明 · Data & API Notice"
+    - 演示数据为**脱敏/模拟**，**不会触达真实设备**。  
+    - 网关支持 `X-Dry-Run: true` 安全开关；敏感 Token/地图名已做遮罩。  
+    - 仓库为**结构与实践演示**，默认不可直连生产。
+
+---
+
+### 仓库与版本
+[GitHub](https://github.com/JimmyZChen/robot-integration-demo){ target=_blank } ·
+[Gitee](https://gitee.com/Jimmy-chen-zheng/robot-interface-demo){ target=_blank }  
+**Doc version:** v0.1 · **Last updated:** {{ git.commit_date }}
 
 
 

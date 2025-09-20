@@ -7,7 +7,7 @@
 
 ---
 
-## 1) Gateway / Nacos / Sentinel
+## 1.Gateway / Nacos / Sentinel
 
 - **Nacos 启动卡在 STARTING**  
   **原因**：持久化 **MySQL 配置/版本不匹配**，未初始化 SQL。  
@@ -31,7 +31,7 @@
 
 ---
 
-## 2) 可观测性 & 基础设施（Observability & Infrastructure）
+## 2.可观测性 & 基础设施
 
 - **SkyWalking 无 Gateway 链路/日志无 `traceId`**  
   **原因**：未加载 **SCG/WebFlux 插件**；`-javaagent` 未注入；Logback 无 MDC。  
@@ -54,7 +54,7 @@
 
 ---
 
-## 3) 代码与客户端（Code & Client）
+## 3.代码与客户端
 
 - **MyBatis `Invalid bound statement`**  
   **原因**：`mapper-locations` 路径或 **namespace 与接口 FQN 不一致**；XML 未打包。  

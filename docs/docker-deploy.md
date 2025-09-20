@@ -4,7 +4,7 @@
 
 ---
 
-## 1) 容器运行态总览（Docker Dashboard）
+## 1.容器运行态总览
 
 ![Docker Dashboard](assets/docker-dashboard.png){ width="100%" }
 
@@ -14,7 +14,7 @@
 
 ---
 
-## 2) 目录结构与 Compose（关键片段）
+## 2.目录结构与 Compose
 
 ![Compose 目录与配置片段](assets/docker-compose.png){ width="100%" }
 ![Compose 目录与配置片段](assets/docker-composecode1.png){ width="100%" }

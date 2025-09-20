@@ -5,7 +5,7 @@
 
 ---
 
-## 1) 规则集中治理（Flow & Degrade Rules）
+## 1.规则集中治理
 
 
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 2) 限流触发日志（Rate limiting）
+## 2.限流: 触发日志
 
 [![](assets/sentinel-rate-limit-logs.png){ .img-90 }](assets/sentinel-rate-limit-logs.png)
 
@@ -27,7 +27,7 @@
 
 ---
 
-## 3) 限流测试结果（Rate limiting Result）
+## 3.限流: 测试结果
 
 [![](assets/sentinel-rate-limit-result.png){ .img-90 }](assets/sentinel-rate-limit-result.png)
 
@@ -36,7 +36,7 @@
 
 ---
 
-## 4) 熔断/降级触发日志（Degrade logs）
+## 4.熔断/降级: 触发日志
 
 [![](assets/sentinel-degrade-logs.png){ .img-90 }](assets/sentinel-degrade-logs.png)
 
@@ -45,30 +45,12 @@
 
 ---
 
-## 5) 熔断测试结果（Circuit breaking Result）
+## 5.熔断: 测试结果
 
 [![](assets/sentinel-degrade-result.png){ .img-90 }](assets/sentinel-degrade-result.png)
 
 - 对关键资源观察降级次数/时长、平均 RT 与成功率，确认“**不扩散、不放大**”。  
 
----
-
-## 6) 代码示例片段（Code examples）
-
-<div class="fourup">
-  <a href="../assets/sentinel-code-a.png" target="_blank" rel="noopener">
-    <img src="../assets/sentinel-code-a.png" alt="注解与资源名 @SentinelResource">
-  </a>
-  <a href="../assets/sentinel-code-b.png" target="_blank" rel="noopener">
-    <img src="../assets/sentinel-code-b.png" alt="BlockHandler（限流处理）">
-  </a>
-  <a href="../assets/sentinel-code-c.png" target="_blank" rel="noopener">
-    <img src="../assets/sentinel-code-c.png" alt="Fallback（熔断/异常兜底）">
-  </a>
-  <a href="../assets/sentinel-code-d.png" target="_blank" rel="noopener">
-    <img src="../assets/sentinel-code-d.png" alt="Gateway与Nacos Sentinel 配置">
-  </a>
-</div>
 
 - 约定：**接口对接/任务下发类**的 Fallback/BlockHandler 聚合在 **Service 层**（Controller 变薄）；  
 - 资源名统一规范（与规则一致），日志注入 `traceId`，实现 **trace ↔ log** 互查。

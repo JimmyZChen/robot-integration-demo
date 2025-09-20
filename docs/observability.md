@@ -5,7 +5,7 @@
 
 ---
 
-## 1) 端到端观测总览（Services & Endpoints）
+## 1.端到端观测总览
 [![](assets/sw-overview-services.png){ .img-90 }](assets/sw-overview-services.png)
 [![](assets/sw-overview-endpoints.png){ .img-90 }](assets/sw-overview-endpoints.png)
 
@@ -16,7 +16,7 @@
 
 ---
 
-## 2) 服务拓扑（Service Topology）
+## 2.服务拓扑
 [![](assets/sw-topology.png){ .img-90 }](assets/sw-topology.png)
 
 - 直观看到 **Gateway → 各服务 → DB/Cache/Vendor** 的调用关系；  
@@ -24,7 +24,7 @@
 
 ---
 
-## 3) 链路追踪：异步任务路径（Trace View）
+## 3.链路追踪: 异步任务路径
 [![](assets/sw-trace.png){ .img-90 }](assets/sw-trace.png)
 
 - 展示从 **入队 → 消费 → 外部 OpenAPI → 持久化** 的完整 Span；  
@@ -32,7 +32,7 @@
 
 ---
 
-## 4) 服务概览看板：关键指标（Overview Dashboard）
+## 4.服务概览看板: 关键指标
 [![](assets/sw-dashboard.png){ .img-90 }](assets/sw-dashboard.png)
 
 - 关键指标：**平均/分位延迟（p50/p95/p99）**、**QPS/错误率**、**各实例负载**；  

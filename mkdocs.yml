@@ -4,6 +4,21 @@ repo_url: https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git
 theme:
   name: material
   language: zh
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: 深色模式
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: 亮色模式
+
+
   features:
     - navigation.instant
     - navigation.sections
@@ -11,19 +26,37 @@ theme:
     - content.image.zoom 
     - content.image.lightbox
     - toc.integrate           # 进入页面后，左侧显示该页的标题小目录（TOC）替代全站导航
+    - navigation.footer
+    - navigation.top          # ↑ 回到顶部浮动按钮（建议开）
 nav:
-  - 首页: index.md
+  - 首页 Dashboard: index.md
   - 概览 Overview: overview.md 
-  - 运行效果（Live Demo）: live-demo.md 
-  - 配置中心（Nacos）: config-nacos.md 
-  - 可观测性（SkyWalking）: observability.md
-  - 稳定性（Sentinel）: stability-sentinel.md
-  - 异步化（RabbitMQ）: mq-async.md
-  - 容器化部署: docker-deploy.md
-  - 压测与证据: loadtest-jmeter.md            
-  - 问题—原因—修复: issues-rca.md
+  - 运行效果 Live Demo: live-demo.md 
+  - 配置中心 Nacos: config-nacos.md 
+  - 可观测性 SkyWalking: observability.md
+  - 稳定性 Sentinel : stability-sentinel.md
+  - 异步化 RabbitMQ : mq-async.md
+  - 容器化部署 Docker: docker-deploy.md
+  - 高并发压测 JMeter: loadtest-jmeter.md            
+  - 问题—原因—修复 Issues : issues-rca.md
 extra_css:              # ← 顶层键，放这里即可（顺序无所谓）
   - styles.css          # ← 文件在 docs/styles.css  
+
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/JimmyZChen
+      name: GitHub
+    - icon: simple/gitee
+      link: https://gitee.com/Jimmy-chen-zheng
+      name: Gitee
+    - icon: material/email
+      link: mailto:chenzheng2024xm@163.com
+      name: Email
+    - icon: material/linkedin
+      link: https://www.linkedin.com/in/jimmy-chen-74a8182b8/
+      name: LinkedIn
+
 markdown_extensions:
   - admonition
   - toc:
@@ -31,4 +64,7 @@ markdown_extensions:
       toc_depth: 1-2
   - tables
   - attr_list        # ← 新增
-  
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
