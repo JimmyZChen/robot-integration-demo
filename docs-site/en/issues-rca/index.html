@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -9,25 +9,23 @@
       
       
       
-        <link rel="prev" href="../mq-async/">
+        <link rel="prev" href="../loadtest-jmeter/">
       
       
-        <link rel="next" href="../loadtest-jmeter/">
       
-      
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>容器化部署 Docker - 机器人调度系统文档</title>
+        <title>问题—原因—修复 Issues - 机器人调度系统文档</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -46,9 +44,9 @@
       
     
     
-      <link rel="stylesheet" href="../styles.css">
+      <link rel="stylesheet" href="../../styles.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,8 +72,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#dockerized-deployment" class="md-skip">
-          跳转至
+        <a href="#issues-root-cause-fixes" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -89,8 +87,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../" title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              容器化部署 Docker
+              问题—原因—修复 Issues
             
           </span>
         </div>
@@ -150,20 +148,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="选择当前语言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh" class="md-select__link">
+            <a href="../../issues-rca/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/docker-deploy/" hreflang="en" class="md-select__link">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -184,16 +182,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -204,7 +202,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -216,7 +214,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -252,9 +250,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+    <a href="../" title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -264,7 +262,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -284,7 +282,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -435,32 +433,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    容器化部署 Docker
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../docker-deploy/" class="md-nav__link">
         
   
   
@@ -471,44 +447,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.容器运行态总览
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.目录结构与 Compose
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -539,10 +477,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../issues-rca/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    问题—原因—修复 Issues
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -553,6 +513,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-go-live-definitions-load-test-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Go-live Definitions &amp; Load-test Baseline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-gateway-nacos-sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Gateway / Nacos / Sentinel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-observability-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Observability &amp; Infrastructure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-asynchrony-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Asynchrony &amp; Idempotency
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-code-frontend-ruoyi-vue" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Code &amp; Frontend (RuoYi + Vue)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conventions-governance-unified-naming-traceability" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Conventions &amp; Governance (Unified Naming &amp; Traceability)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -573,37 +607,148 @@
 
 
 
-<h1 id="dockerized-deployment">容器化部署（Dockerized Deployment）<a class="headerlink" href="#dockerized-deployment" title="Permanent link">&para;</a></h1>
+<h1 id="issues-root-cause-fixes">Issues · Root Cause · Fixes<a class="headerlink" href="#issues-root-cause-fixes" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>目标：一键拉起/停止；统一网络与配置；本地即可复现“网关 + 业务 + 中间件”的完整运行态。</p>
+<p>Environment: RuoYi-Cloud (ruoyi-modules-robot / ruoyi-api-robot), Gateway unified entry <code>/external/gs/**</code>;<br />
+Nacos registry &amp; config, Sentinel dynamic rules, SkyWalking full-link, optional RabbitMQ async; Docker Compose one-click delivery.</p>
 </blockquote>
 <hr />
-<h2 id="1">1.容器运行态总览<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p><img alt="Docker Dashboard" src="../assets/docker-dashboard.png" width="100%" /></p>
+<h2 id="0-go-live-definitions-load-test-baseline">0. Go-live Definitions &amp; Load-test Baseline<a class="headerlink" href="#0-go-live-definitions-load-test-baseline" title="Permanent link">&para;</a></h2>
 <ul>
-<li>运行状态：CPU/内存占用、容器健康度、端口映射一目了然。  </li>
-<li>服务清单：<code>mysql</code>、<code>redis</code>、<code>nacos</code>、<code>ruoyi-gateway</code>、<code>ruoyi-system</code>、<code>ruoyi-robot</code> …  </li>
-<li>操作：支持单个/批量 Start/Stop/Restart，便于联调与演示。</li>
+<li><strong>Ambiguous definitions &amp; baseline</strong><br />
+<strong>Symptom</strong>: Different teammates use inconsistent definitions for “success/failure” and whether 429 counts, causing metric misinterpretation.<br />
+<strong>Fix</strong>: Standardize definitions &amp; baseline:  </li>
+<li><strong>Dry-Run / consumers disabled</strong> load-test baseline: 100 QPS × 3 minutes; count 200/429 as success (to validate gateway rate-limit/stability).  </li>
+<li><strong>Observed metrics</strong>: P95/P99, Throughput, Error%, queue backlog, SkyWalking Success Rate.  </li>
+<li>
+<p><strong>Sample result</strong>: 18,035 samples <strong>P95 = 6 ms</strong>, <strong>P99 ≈ 10 ms</strong>, <strong>Error = 0</strong>, Throughput ≈ <strong>100.2/s</strong> (consistent across rounds).</p>
+</li>
+<li>
+<p><strong>Rollback &amp; cold-start not quantifiable</strong><br />
+<strong>Fix</strong>: Persist to a “Change Log”:  </p>
+</li>
+<li><strong>Cold start</strong>: Docker Compose + initial SQL → <strong>≤ 12 minutes</strong> to bring up a new env;  </li>
+<li><strong>Rollback</strong>: after microservices split <strong>≤ 5 minutes</strong> (revert image/config).</li>
 </ul>
 <hr />
-<h2 id="2-compose">2.目录结构与 Compose<a class="headerlink" href="#2-compose" title="Permanent link">&para;</a></h2>
-<p><img alt="Compose 目录与配置片段" src="../assets/docker-compose.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode1.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode2.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode3.png" width="100%" /></p>
-<p><strong>目录结构（示例）</strong>
-- <code>docker-compose.micro.yml</code>：一键拉起网关/业务/中间件
-- <code>nacos_*</code>、<code>mysql_*</code>、<code>redis_data/</code>：持久化与初始化脚本
-- <code>SkyWalking/</code>：可观测性（可选）
-- <code>01-common.yaml</code>：公共环境变量（端口、数据库密码等）</p>
-<p><strong>Compose 关键点（约定统一、可复制）</strong>
-- 统一网络：<code>networks: [ruoyi-net]</code>，容器内以服务名互通
-- 健康检查：为 <code>mysql</code>、<code>nacos</code> 等增加 <code>healthcheck</code>，确保依赖顺序
-- <code>depends_on</code> + <code>condition: service_healthy</code>：先后顺序可靠
-- 映射端口：如 <code>ruoyi-gateway: 30080:8080</code>、<code>mysql: 3307:3306</code>
-- 环境变量集中：公共项放 <code>x-common-env</code>（或单独 <code>01-common.yaml</code>）</p>
+<h2 id="1-gateway-nacos-sentinel">1. Gateway / Nacos / Sentinel<a class="headerlink" href="#1-gateway-nacos-sentinel" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Nacos stuck at STARTING</strong><br />
+<strong>Cause</strong>: Persistent <strong>MySQL version/charset mismatch</strong> or init SQL not imported.<br />
+<strong>Fix</strong>: Complete <code>spring.datasource.*</code>, import official/project init scripts; align versions &amp; images (recommend <strong>2.2.x</strong>).</p>
+</li>
+<li>
+<p><strong>Gateway 404 / Swagger “Try it out” fails</strong><br />
+<strong>Cause</strong>: <code>StripPrefix/Path</code> inconsistent with downstream <strong><code>context-path</code></strong>; route not updated after prefix change.<br />
+<strong>Fix</strong>: Unify path strategy; if needed <strong>remove</strong> <code>context-path</code> or adjust Strip rules accordingly; deprecate old prefixes after gray rollout.</p>
+</li>
+<li>
+<p><strong>Rate-limit paths inconsistent, rules not matched</strong><br />
+<strong>Cause</strong>: <code>@SentinelResource</code> <strong>scattered in Controllers</strong>, inconsistent resource names.<br />
+<strong>Fix</strong>: Consolidate into <strong><code>GsOpenApiServiceImpl</code></strong>; standardize resource naming and map one-to-one with Nacos rules<br />
+  (e.g., <code>ruoyi-gateway-gw-api-defs/gw-flow/gw-degrade</code>).</p>
+</li>
+<li>
+<p><strong>Sentinel rules not applied / empty group</strong><br />
+<strong>Cause</strong>: Missing <code>sentinel-datasource-nacos</code> dependency, or <strong>DataId/Group vs JSON</strong> mismatch.<br />
+<strong>Fix</strong>: Add dependency; verify the triple <code>{AppName, DataId, Group}</code> and JSON structure; before load test raise gateway thresholds to avoid premature 429 blocking.</p>
+</li>
+<li>
+<p><strong>CORS preflight blocked</strong><br />
+<strong>Cause</strong>: <strong>OPTIONS</strong> not allowed or response headers missing.<br />
+<strong>Fix</strong>: Configure global CORS: allow required <code>Origin/Headers/Methods</code>, expose necessary headers; explicitly allow <strong>OPTIONS</strong>.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-observability-infrastructure">2. Observability &amp; Infrastructure<a class="headerlink" href="#2-observability-infrastructure" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No Gateway spans / logs missing <code>traceId</code></strong><br />
+<strong>Cause</strong>: <strong>SCG/WebFlux plugin</strong> not loaded; <code>-javaagent</code> not injected; Logback lacks MDC.<br />
+<strong>Fix</strong>:  </li>
+<li>Put <code>apm-spring-cloud-gateway-3.x-plugin</code> into <strong>plugins</strong>;  </li>
+<li>Start with <code>-javaagent:/path/to/agent/agent.jar</code>;  </li>
+<li>
+<p>Add <code>%X{traceId}</code> to Logback pattern; raise sampling rate during load tests, reduce noise in production per QPS.</p>
+</li>
+<li>
+<p><strong>Docker: MySQL port conflict / no data on first run</strong><br />
+<strong>Cause</strong>: Host occupying <code>3306</code> or init SQL not imported.<br />
+<strong>Fix</strong>: Adjust port mapping or stop host MySQL; <strong>pre-import SQL in compose</strong>; add <code>healthcheck</code> and use <code>depends_on.condition=service_healthy</code> upstream.</p>
+</li>
+<li>
+<p><strong>In-container access fails (misusing host <code>localhost</code>)</strong><br />
+<strong>Cause</strong>: Containers treat host address as local.<br />
+<strong>Fix</strong>: Container-to-container calls use <strong>serviceName:port</strong>; to access host on Win/Mac, use <code>host.docker.internal</code>.</p>
+</li>
+<li>
+<p><strong>Dependency/plugin conflicts (e.g., Reactor Netty)</strong><br />
+<strong>Cause</strong>: Spring Boot/Cloud matrix misaligned with dependencies.<br />
+<strong>Fix</strong>: Lock a version matrix; include only needed gateway/webflux/skywalking plugins and verify compatibility.</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-asynchrony-idempotency">3. Asynchrony &amp; Idempotency<a class="headerlink" href="#3-asynchrony-idempotency" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Queue keeps growing during load test / duplicate consumption</strong><br />
+<strong>Cause</strong>: Demo env <strong>consumers disabled (Dry-Run)</strong> or missing <strong>prefetch/manual ack</strong>; retries without upper bound.<br />
+<strong>Fix</strong>:  </li>
+<li>Load-test definition: with consumers off, only validate ingress &amp; observability; backlog is acceptable;  </li>
+<li>Production: enable consumers, set <code>prefetch = n</code>, <strong>manual ack</strong>, failures go to <strong>DLQ</strong>;  </li>
+<li>
+<p>For write operations add <strong>idempotency keys</strong>; timeouts/retries must <strong>not amplify failures</strong>.</p>
+</li>
+<li>
+<p><strong>RestTemplate pile-up / retries amplify issues</strong><br />
+<strong>Cause</strong>: No timeouts/connection pool; automatic retries enabled.<br />
+<strong>Fix</strong>: Set <code>connect/read</code> timeouts, pool size; disable automatic retries; enforce idempotency on critical writes.</p>
+</li>
+</ul>
+<hr />
+<h2 id="4-code-frontend-ruoyi-vue">4. Code &amp; Frontend (RuoYi + Vue)<a class="headerlink" href="#4-code-frontend-ruoyi-vue" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>MyBatis <code>Invalid bound statement</code></strong><br />
+<strong>Cause</strong>: <code>mapper-locations</code> or <strong>XML <code>namespace</code> ≠ interface FQN</strong>; XML not packaged.<br />
+<strong>Fix</strong>: Align <code>@MapperScan + namespace</code>; ensure XML are scanned and packaged.</p>
+</li>
+<li>
+<p><strong>Frontend CORS / port mismatch</strong><br />
+<strong>Cause</strong>: Proxy not updated when switching environments.<br />
+<strong>Fix</strong>: Unify proxy in <code>vue.config.js</code>; ports/targets switch with env variables.</p>
+</li>
+<li>
+<p><strong>Minor UI issues (from phase summary)</strong><br />
+<strong>Symptom</strong>: Area/map names wrap, status doesn’t auto-refresh, response structures inconsistent, etc.<br />
+<strong>Fix</strong>:  </p>
+</li>
+<li>Adjust table column width + <code>tooltip</code>;  </li>
+<li>Add “manual refresh” (add timed refresh later);  </li>
+<li><strong>Robust parsing</strong> for API responses (“string/object”) to avoid misleading task dispatch hints;  </li>
+<li>Missing <code>areaId</code> ↔ coordinates mapping → align with vendor data table, include in later milestones.</li>
+</ul>
+<hr />
+<h2 id="5-conventions-governance-unified-naming-traceability">5. Conventions &amp; Governance (Unified Naming &amp; Traceability)<a class="headerlink" href="#5-conventions-governance-unified-naming-traceability" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Inconsistent resource names / log fields → hard to troubleshoot</strong><br />
+<strong>Fix</strong>:  </li>
+<li>Standardize resource naming (aligned with Sentinel rules) and unify exception bodies;  </li>
+<li>Inject <code>traceId</code>, <code>requestId</code>, <code>taskId</code>, <code>resource</code> into logs;  </li>
+<li>Postmortem process: <strong>deliver first, evolve later</strong>; leave traces for changes &amp; rollbacks; codify “Issue → Cause → Fix” into docs.</li>
+</ul>
+<hr />
+<h3 id="appendix-reusable-checklist-pre-go-live-self-check">Appendix: Reusable Checklist (Pre-Go-Live Self-Check)<a class="headerlink" href="#appendix-reusable-checklist-pre-go-live-self-check" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <code>gateway</code> routes/prefixes consistent with downstream paths;  </li>
+<li>[ ] Nacos rules (DataId/Group) aligned with application resource names;  </li>
+<li>[ ] SkyWalking <code>-javaagent</code> injected, Gateway/WebFlux plugins in place;  </li>
+<li>[ ] Docker <code>healthcheck</code> complete; initial SQL auto-imported at first boot;  </li>
+<li>[ ] Load-test definitions when consumers are off; for production enable consumers with DLQ;  </li>
+<li>[ ] CORS, timeouts, connection pool, idempotency &amp; retry policies in place;  </li>
+<li>[ ] Logs contain trace fields; support <strong>trace ↔ log</strong> cross-checks.</li>
+</ul>
 <blockquote>
-<p>一句话：把“人要记住的”变成“配置写住的”，本机/同事/演示机都能秒起。</p>
+<p>Metrics source: phase summary &amp; demo load-test records (baseline 100 QPS, P95 ≈ 6 ms, P99 ≈ 9–10 ms, Error = 0).</p>
 </blockquote>
 
 
@@ -628,7 +773,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -637,40 +782,24 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../mq-async/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 异步化 RabbitMQ">
+          <a href="../loadtest-jmeter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 高并发压测 JMeter">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                上一页
-              </span>
-              <div class="md-ellipsis">
-                异步化 RabbitMQ
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../loadtest-jmeter/" class="md-footer__link md-footer__link--next" aria-label="下一页: 高并发压测 JMeter">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                下一页
+                Previous
               </span>
               <div class="md-ellipsis">
                 高并发压测 JMeter
               </div>
             </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
           </a>
+        
         
       </nav>
     
@@ -736,10 +865,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate", "navigation.footer", "navigation.top"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

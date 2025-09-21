@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../mq-async/">
       
-      
-        <link rel="next" href="../loadtest-jmeter/">
+        <link rel="next" href="overview/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>容器化部署 Docker - 机器人调度系统文档</title>
+        <title>Robot Scheduling Docs - 机器人调度系统文档</title>
       
     
     
@@ -74,8 +72,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#dockerized-deployment" class="md-skip">
-          跳转至
+        <a href="#robot-scheduling-docs" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -89,8 +87,8 @@
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href=".." title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./" title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              容器化部署 Docker
+              Robot Scheduling Docs
             
           </span>
         </div>
@@ -150,20 +148,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="选择当前语言">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="./" hreflang="zh" class="md-select__link">
+            <a href="/" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/docker-deploy/" hreflang="en" class="md-select__link">
+            <a href="/en/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -184,16 +182,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -204,7 +202,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -216,7 +214,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -243,6 +241,8 @@
           
             
               
+                
+              
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -252,9 +252,9 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+    <a href="./" title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -264,7 +264,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -276,160 +276,6 @@
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    首页 Dashboard
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    概览 Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../live-demo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    运行效果 Live Demo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../config-nacos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    配置中心 Nacos
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../observability/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    可观测性 SkyWalking
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../stability-sentinel/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    稳定性 Sentinel
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mq-async/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    异步化 RabbitMQ
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
     
       
       
@@ -452,7 +298,7 @@
   
   
   <span class="md-ellipsis">
-    容器化部署 Docker
+    首页 Dashboard
     
   </span>
   
@@ -465,7 +311,7 @@
   
   
   <span class="md-ellipsis">
-    容器化部署 Docker
+    首页 Dashboard
     
   </span>
   
@@ -474,7 +320,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -483,23 +329,14 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#what-problems-does-it-solve" class="md-nav__link">
     <span class="md-ellipsis">
-      1.容器运行态总览
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.目录结构与 Compose
+      What problems does it solve
     </span>
   </a>
   
@@ -520,7 +357,161 @@
   
   
     <li class="md-nav__item">
-      <a href="../loadtest-jmeter/" class="md-nav__link">
+      <a href="overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概览 Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="live-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    运行效果 Live Demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="config-nacos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置中心 Nacos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    可观测性 SkyWalking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="stability-sentinel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    稳定性 Sentinel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mq-async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    异步化 RabbitMQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docker-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    容器化部署 Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="loadtest-jmeter/" class="md-nav__link">
         
   
   
@@ -542,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../issues-rca/" class="md-nav__link">
+      <a href="issues-rca/" class="md-nav__link">
         
   
   
@@ -570,41 +561,110 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
 
 
 
-<h1 id="dockerized-deployment">容器化部署（Dockerized Deployment）<a class="headerlink" href="#dockerized-deployment" title="Permanent link">&para;</a></h1>
+
+<h1 id="robot-scheduling-docs">Robot Scheduling Docs<a class="headerlink" href="#robot-scheduling-docs" title="Permanent link">&para;</a></h1>
+<p>A unified gateway for multi-vendor robots with async orchestration and observability.</p>
 <blockquote>
-<p>目标：一键拉起/停止；统一网络与配置；本地即可复现“网关 + 业务 + 中间件”的完整运行态。</p>
+<p><strong>One-liner</strong><br />
+Unified access to multiple vendors’ OpenAPIs, front-gate governance (auth/audit/rate-limit), async flood-resilience (MQ), observability (traces/metrics), and one-click delivery (Docker Compose).</p>
 </blockquote>
+<p><a class="md-button md-button--primary" href="overview/">Get Started ⟶</a>
+<a class="md-button" href="overview/#sec-architecture">Architecture ⟶</a>
+<a class="md-button" href="live-demo/">Live Demo Guide ⟶</a></p>
 <hr />
-<h2 id="1">1.容器运行态总览<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p><img alt="Docker Dashboard" src="../assets/docker-dashboard.png" width="100%" /></p>
+<h2 id="what-problems-does-it-solve">What problems does it solve<a class="headerlink" href="#what-problems-does-it-solve" title="Permanent link">&para;</a></h2>
 <ul>
-<li>运行状态：CPU/内存占用、容器健康度、端口映射一目了然。  </li>
-<li>服务清单：<code>mysql</code>、<code>redis</code>、<code>nacos</code>、<code>ruoyi-gateway</code>、<code>ruoyi-system</code>、<code>ruoyi-robot</code> …  </li>
-<li>操作：支持单个/批量 Start/Stop/Restart，便于联调与演示。</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14c-3.36 0-4.46 1.35-4.82 2.24C9.25 16.7 10 17.76 10 19a3 3 0 0 1-3 3 3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V7.83A2.99 2.99 0 0 1 4 5a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83v5.29c.88-.65 2.16-1.12 4-1.12 2.67 0 3.56-1.34 3.85-2.23A3.01 3.01 0 0 1 14 7a3 3 0 0 1 3-3 3 3 0 0 1 3 3c0 1.34-.88 2.5-2.09 2.86C17.65 11.29 16.68 14 13 14m-6 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M7 4a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m10 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Multi-vendor aggregation</strong>: Unified entry and contract constraints for heterogeneous OpenAPIs  </li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></span> <strong>Front-gate governance</strong>: Gateway auth, audit, rate limiting, and canary/gray rollout  </li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m18.05 21-2.73-4.74c0-1.73-1.07-2.84-2.37-2.84-.9 0-1.68.5-2.08 1.24.33-.19.72-.29 1.13-.29 1.3 0 2.36 1.06 2.36 2.36 0 1.31-1.05 2.38-2.36 2.38h3.3V21H6.79c-.24 0-.49-.09-.67-.28a.95.95 0 0 1 0-1.34l.5-.5c-.34-.15-.62-.38-.9-.62-.22.5-.72.85-1.3.85a1.425 1.425 0 0 1 0-2.85l.47.08v-1.97a4.73 4.73 0 0 1 4.74-4.74h.02c2.12.01 3.77.84 3.77-.47 0-.93.2-1.3.54-1.82-.73-.34-1.56-.55-2.43-.55-.53 0-.95-.42-.95-.95 0-.43.28-.79.67-.91l-.67-.04c-.52 0-.95-.42-.95-.94 0-.53.43-.95.95-.95h.95c2.1 0 3.94 1.15 4.93 2.85l.28-.01c.71 0 1.37.23 1.91.61l.45.38c2.17 1.95 1.9 3.27 1.9 3.28 0 1.28-1.06 2.33-2.35 2.33l-.49-.05v.08c0 1.11-.48 2.1-1.23 2.8L20.24 21zm.11-13.26c-.53 0-.95.42-.95.94 0 .53.42.95.95.95.52 0 .95-.42.95-.95 0-.52-.43-.94-.95-.94"/></svg></span> <strong>Async decoupling</strong>: RabbitMQ (Topic→Queue→DLQ), manual ack, idempotency checks  </li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg></span> <strong>Observability</strong>: SkyWalking end-to-end traces / metrics / topology  </li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>One-click delivery</strong>: Docker Compose with multi-environment parameterization</li>
 </ul>
-<hr />
-<h2 id="2-compose">2.目录结构与 Compose<a class="headerlink" href="#2-compose" title="Permanent link">&para;</a></h2>
-<p><img alt="Compose 目录与配置片段" src="../assets/docker-compose.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode1.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode2.png" width="100%" />
-<img alt="Compose 目录与配置片段" src="../assets/docker-composecode3.png" width="100%" /></p>
-<p><strong>目录结构（示例）</strong>
-- <code>docker-compose.micro.yml</code>：一键拉起网关/业务/中间件
-- <code>nacos_*</code>、<code>mysql_*</code>、<code>redis_data/</code>：持久化与初始化脚本
-- <code>SkyWalking/</code>：可观测性（可选）
-- <code>01-common.yaml</code>：公共环境变量（端口、数据库密码等）</p>
-<p><strong>Compose 关键点（约定统一、可复制）</strong>
-- 统一网络：<code>networks: [ruoyi-net]</code>，容器内以服务名互通
-- 健康检查：为 <code>mysql</code>、<code>nacos</code> 等增加 <code>healthcheck</code>，确保依赖顺序
-- <code>depends_on</code> + <code>condition: service_healthy</code>：先后顺序可靠
-- 映射端口：如 <code>ruoyi-gateway: 30080:8080</code>、<code>mysql: 3307:3306</code>
-- 环境变量集中：公共项放 <code>x-common-env</code>（或单独 <code>01-common.yaml</code>）</p>
 <blockquote>
-<p>一句话：把“人要记住的”变成“配置写住的”，本机/同事/演示机都能秒起。</p>
+<p>For detailed <strong>What / Why / evolution path</strong>, see:<br />
+<a class="md-button" href="overview/#sec-what-why">Overview</a></p>
 </blockquote>
+<hr />
+<h2>Quick Links</h2>
+
+<div class="quicklinks">
+
+  <a class="ql" href="overview/">
+    <strong>Overview</strong>
+    <em>Why, architecture, evolution, and stability governance</em>
+  </a>
+
+  <a class="ql" href="live-demo/">
+    <strong>Live Demo</strong>
+    <em>Screenshots & notes (PPT pages 10–18)</em>
+  </a>
+
+  <a class="ql" href="mq-async/">
+    <strong>Async (RabbitMQ)</strong>
+    <em>Architecture, params, consumption & error handling, integration results</em>
+  </a>
+
+  <a class="ql" href="observability/">
+    <strong>Observability (SkyWalking)</strong>
+    <em>Service/endpoint overview, topology, traces, dashboards</em>
+  </a>
+
+  <a class="ql" href="stability-sentinel/">
+    <strong>Stability (Sentinel)</strong>
+    <em>Flow-control/degrade rules, trigger logs, and code snippets</em>
+  </a>
+
+  <a class="ql" href="config-nacos/">
+    <strong>Config Center (Nacos)</strong>
+    <em>Multi-env configs & rule management (centralized delivery / hot reload)</em>
+  </a>
+
+  <a class="ql" href="docker-deploy/">
+    <strong>Containerized Deploy</strong>
+    <em>Runtime overview, Compose directories & config excerpts</em>
+  </a>
+
+  <a class="ql" href="loadtest-jmeter/">
+    <strong>Load Test (JMeter)</strong>
+    <em>Plan, results, MQ-side verification & service metrics</em>
+  </a>
+
+  <a class="ql" href="issues-rca/">
+    <strong>Issues · RCA</strong>
+    <em>Gateway/Nacos/Sentinel, observability, and code-side common issues</em>
+  </a>
+
+</div>
+
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Data &amp; API Notice</p>
+<ul>
+<li>Demo data are <strong>sanitized/mocked</strong> and <strong>won’t hit real devices</strong>.  </li>
+<li>Gateway supports <code>X-Dry-Run: true</code> safety switch; sensitive tokens / map names are masked.  </li>
+<li>The repo is for <strong>structure &amp; practice demonstration</strong> and is not wired to production by default.</li>
+</ul>
+</div>
+<hr />
+<h3 id="repos-version">Repos &amp; Version<a class="headerlink" href="#repos-version" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/JimmyZChen/robot-integration-demo" target="_blank">GitHub</a> ·
+<a href="https://gitee.com/Jimmy-chen-zheng/robot-interface-demo" target="_blank">Gitee</a><br />
+<strong>Doc version:</strong> v0.1 · <strong>Last updated:</strong> 2025/09/20</p>
+<hr />
+<h3 id="author">Author<a class="headerlink" href="#author" title="Permanent link">&para;</a></h3>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 19.2c-2.5 0-4.71-1.28-6-3.2.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.23 7.23 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Jimmy Chen (Chen Zheng)</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6c.58 0 1.05.2 1.42.59.38.41.58.86.58 1.41v11c0 .55-.2 1-.58 1.41-.37.39-.84.59-1.42.59H4c-.58 0-1.05-.2-1.42-.59C2.2 20 2 19.55 2 19V8c0-.55.2-1 .58-1.41C2.95 6.2 3.42 6 4 6h4V4c0-.58.2-1.05.58-1.42C8.95 2.2 9.42 2 10 2h4c.58 0 1.05.2 1.42.58.38.37.58.84.58 1.42v2zM4 8v11h16V8zm10-2V4h-4v2z"/></svg></span> Java Backend Engineer<br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.5A2.5 2.5 0 0 1 9.5 9 2.5 2.5 0 0 1 12 6.5 2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7"/></svg></span> Shenzhen, China </p>
+</li>
+</ul>
+</div>
 
 
 
@@ -612,8 +672,13 @@
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -628,7 +693,7 @@
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -637,33 +702,19 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
-          
-          <a href="../mq-async/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 异步化 RabbitMQ">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                上一页
-              </span>
-              <div class="md-ellipsis">
-                异步化 RabbitMQ
-              </div>
-            </div>
-          </a>
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
         
           
-          <a href="../loadtest-jmeter/" class="md-footer__link md-footer__link--next" aria-label="下一页: 高并发压测 JMeter">
+          <a href="overview/" class="md-footer__link md-footer__link--next" aria-label="Next: 概览 Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                下一页
+                Next
               </span>
               <div class="md-ellipsis">
-                高并发压测 JMeter
+                概览 Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -736,7 +787,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.sections", "content.code.copy", "content.image.zoom", "content.image.lightbox", "toc.integrate", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
