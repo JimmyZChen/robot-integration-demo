@@ -28,17 +28,46 @@ theme:
     - toc.integrate           # 进入页面后，左侧显示该页的标题小目录（TOC）替代全站导航
     - navigation.footer
     - navigation.top          # ↑ 回到顶部浮动按钮（建议开）
+
+
 nav:
   - 首页 Dashboard: index.md
-  - 概览 Overview: overview.md 
-  - 运行效果 Live Demo: live-demo.md 
-  - 配置中心 Nacos: config-nacos.md 
+  - 概览 Overview: overview.md
+  - 运行效果 Live Demo: live-demo.md
+  - 配置中心 Nacos: config-nacos.md
   - 可观测性 SkyWalking: observability.md
-  - 稳定性 Sentinel : stability-sentinel.md
-  - 异步化 RabbitMQ : mq-async.md
+  - 稳定性 Sentinel: stability-sentinel.md
+  - 异步化 RabbitMQ: mq-async.md
   - 容器化部署 Docker: docker-deploy.md
-  - 高并发压测 JMeter: loadtest-jmeter.md            
-  - 问题—原因—修复 Issues : issues-rca.md
+  - 高并发压测 JMeter: loadtest-jmeter.md
+  - 问题—原因—修复 Issues: issues-rca.md
+
+plugins:
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: zh
+          name: 中文
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+      nav_translations:
+        en:
+          "首页 Dashboard": "Home · Dashboard"
+          "概览 Overview": "Overview"
+          "运行效果 Live Demo": "Live Demo"
+          "配置中心 Nacos": "Config Center · Nacos"
+          "可观测性 SkyWalking": "Observability · SkyWalking"
+          "稳定性 Sentinel": "Stability · Sentinel"
+          "异步化 RabbitMQ": "Async · RabbitMQ"
+          "容器化部署 Docker": "Containerized Deploy · Docker"
+          "高并发压测 JMeter": "Load Test · JMeter"
+          "问题—原因—修复 Issues": "Issues · RCA"
+
+
+
 extra_css:              # ← 顶层键，放这里即可（顺序无所谓）
   - styles.css          # ← 文件在 docs/styles.css  
 
@@ -63,8 +92,10 @@ markdown_extensions:
       permalink: true
       toc_depth: 1-2
   - tables
-  - attr_list        # ← 新增
+  - attr_list
   - md_in_html
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+
