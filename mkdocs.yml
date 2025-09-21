@@ -65,7 +65,10 @@ plugins:
           "容器化部署 Docker": "Containerized Deploy · Docker"
           "高并发压测 JMeter": "Load Test · JMeter"
           "问题—原因—修复 Issues": "Issues · RCA"
-
+  - search:
+      lang:
+        - zh
+        - en  
 
 
 extra_css:              # ← 顶层键，放这里即可（顺序无所谓）
