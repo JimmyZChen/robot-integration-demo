@@ -155,7 +155,8 @@
 
 **阅读路线**：`/gsrobot` → `ruoyi-api` → `ruoyi-gateway` → Sentinel 规则
 
-## 🏗️ 架构设计（运行时视图）
+## 🏗️ 架构设计
+### 运行时架构总览
 <div align="left">
   <img src="./assets/architecture.png" width="960" loading="lazy" alt="Robot Management Platform Architecture"/>
 </div>
@@ -171,6 +172,16 @@
 - **SkyWalking**：服务上报 Trace 到 OAP，UI 查询展示  
 - **Gaussian OpenAPI**：外部厂商接口（HTTPS）
 
+### 消息队列细化（RabbitMQ）
+<p align="left">
+  <img src="./assets/rabbitmq-arch.png"
+       alt="异步化架构：RabbitMQ（机器人任务调度）"
+       width="960" loading="lazy">
+</p>
+
+> 说明：该图细化了网关→生产者→Exchange/Queue→重试/回流→DLX/DLQ→消费者 的异步链路，
+> 对应实现要点包含：发布确认、手动 ack、幂等（Redis SETNX）、分级重试（q.1m / q.5m / q.30m）、
+> 以及 Nacos 下发的 MQ 参数与网关 429 阈值（Queue 深度守卫）。
 
 
 ## 🗃️ 目录结构（示例）
@@ -430,7 +441,8 @@ For safety & compliance, we emphasize **service decomposition, gateway & service
 
 ---
 
-## 🏗️ Architecture (Runtime View)
+## 🏗️ Architecture
+### Runtime Architecture Overview
 <div align="left">
   <img src="./assets/architecture.png" width="960" loading="lazy" alt="Robot Management Platform Architecture"/>
 </div>
@@ -445,6 +457,19 @@ For safety & compliance, we emphasize **service decomposition, gateway & service
 - **Nacos**: service discovery + config; **MySQL/Redis**: config/cache  
 - **SkyWalking**: services report traces to OAP; UI for exploration  
 - **Gaussian OpenAPI**: external vendor API (HTTPS)
+
+### MQ Detail (RabbitMQ)
+
+<p align="left">
+  <img src="./assets/rabbitmq-arch.png"
+       alt="Async Architecture: RabbitMQ (Robot Task Dispatch)"
+       width="960" loading="lazy">
+</p>
+
+> This diagram expands the async path from Gateway/Producer to Exchange/Queue,
+> retry/reflow, DLX/DLQ, and Consumer, highlighting publisher confirms, manual ack,
+> idempotency (Redis SETNX), staged retries (q.1m/q.5m/q.30m), and Nacos-driven MQ
+> parameters plus Gateway 429 guard (queue-depth thresholds).
 
 ---
 ## 📂 Project Layout (sample)
