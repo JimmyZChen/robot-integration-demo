@@ -1,4 +1,4 @@
-# Containerized Deployment (Dockerized Deployment)
+# Containerized Deployment (Docker)
 
 > **Goal:** one-click up/down; unified network & configs; reproduce a full “Gateway + Services + Middleware” runtime locally.
 

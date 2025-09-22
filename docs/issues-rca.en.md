@@ -1,4 +1,4 @@
-# Issues · Root Cause · Fixes
+# Issues·Root Cause·Fixes
 
 > Environment: RuoYi-Cloud (ruoyi-modules-robot / ruoyi-api-robot), Gateway unified entry `/external/gs/**`;  
 > Nacos registry & config, Sentinel dynamic rules, SkyWalking full-link, optional RabbitMQ async; Docker Compose one-click delivery.

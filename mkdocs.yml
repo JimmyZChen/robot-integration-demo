@@ -31,16 +31,16 @@ theme:
 
 
 nav:
-  - 首页 Dashboard: index.md
-  - 概览 Overview: overview.md
-  - 运行效果 Live Demo: live-demo.md
-  - 配置中心 Nacos: config-nacos.md
-  - 可观测性 SkyWalking: observability.md
-  - 稳定性 Sentinel: stability-sentinel.md
-  - 异步化 RabbitMQ: mq-async.md
-  - 容器化部署 Docker: docker-deploy.md
-  - 高并发压测 JMeter: loadtest-jmeter.md
-  - 问题—原因—修复 Issues: issues-rca.md
+  - index.md
+  - overview.md
+  - live-demo.md
+  - config-nacos.md
+  - observability.md
+  - stability-sentinel.md
+  - mq-async.md
+  - docker-deploy.md
+  - loadtest-jmeter.md
+  - issues-rca.md
 
 plugins:
   - i18n:
@@ -53,18 +53,7 @@ plugins:
         - locale: en
           name: English
           build: true
-      nav_translations:
-        en:
-          "首页 Dashboard": "Home · Dashboard"
-          "概览 Overview": "Overview"
-          "运行效果 Live Demo": "Live Demo"
-          "配置中心 Nacos": "Config Center · Nacos"
-          "可观测性 SkyWalking": "Observability · SkyWalking"
-          "稳定性 Sentinel": "Stability · Sentinel"
-          "异步化 RabbitMQ": "Async · RabbitMQ"
-          "容器化部署 Docker": "Containerized Deploy · Docker"
-          "高并发压测 JMeter": "Load Test · JMeter"
-          "问题—原因—修复 Issues": "Issues · RCA"
+      
   - search:
       lang:
         - zh

@@ -1,4 +1,4 @@
-# 异步化（RabbitMQ）
+# 异步化 RabbitMQ
 
 > 目标：通过消息化解耦请求与执行，**异步下发任务**；  
 > - 客户端下发 → 网关 → Producer 落库与投递（publisher confirm）→ 立即返回 **202** 与任务查询地址；  

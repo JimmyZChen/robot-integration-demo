@@ -1,5 +1,5 @@
 ---
-title: 机器人调度系统文档 · Robot Scheduling Docs
+title: 首页 Dashboard
 hide:
   - toc
 ---

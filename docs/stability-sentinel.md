@@ -1,4 +1,4 @@
-# 稳定性（Sentinel）
+# 稳定性 Sentinel
 
 > 目标：**限流（Flow limiting）**、**熔断/降级（Circuit breaking/Degrade）**；  
 > 策略集中托管，经由 Nacos 下发；读接口短 TTL 缓存，写接口快速失败（429/503），避免级联。

@@ -1,4 +1,4 @@
-# 配置中心（Nacos Configuration Center）
+# 配置中心 Nacos
 
 > 统一注册/配置；多环境分组；敏感参数集中管理（热更新）
 

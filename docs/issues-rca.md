@@ -1,4 +1,4 @@
-# 问题—原因—修复（Issues · Root Cause · Fixes）
+# 问题—原因—修复 Issues 
 
 > 环境说明：RuoYi-Cloud（ruoyi-modules-robot / ruoyi-api-robot），Gateway 统一入口 `/external/gs/**`；  
 > Nacos 注册与配置，Sentinel 动态规则，SkyWalking 全链路，可选 RabbitMQ 异步；Docker Compose 一键交付。

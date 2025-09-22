@@ -1,5 +1,5 @@
 ---
-title: Robot Scheduling Docs
+title: Dashboard
 hide:
   - toc
 ---

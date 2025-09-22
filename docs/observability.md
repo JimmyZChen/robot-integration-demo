@@ -1,4 +1,4 @@
-# 可观测性（SkyWalking）
+# 可观测性 SkyWalking
 
 > 目标：端到端 tracing；Gateway→下游可串；`traceId` 注入日志，实现 **trace ↔ log** 互查。  
 > 仪表：Service / Endpoint 指标（QPS、Latency、Error）、拓扑、Trace 详情、Dashboard。
