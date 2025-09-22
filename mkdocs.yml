@@ -73,7 +73,8 @@ plugins:
 
 extra_css:              # ← 顶层键，放这里即可（顺序无所谓）
   - styles.css          # ← 文件在 docs/styles.css  
-
+extra_javascript:
+  - move-palette.js
 extra:
   social:
     - icon: material/github

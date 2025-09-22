@@ -55,7 +55,7 @@
 /* —— Sidebar 目录（左侧）字号与样式 —— */
 .md-sidebar--primary .md-nav__title,
 .md-sidebar--primary .md-nav__link {
-  font-size: 0.73rem;        /* 比默认略大；想再大就改 1.02rem/1.06rem */
+  font-size: 0.6rem;        /* 比默认略大；想再大就改 1.02rem/1.06rem */
   line-height: 1.35;
 }
 
@@ -131,4 +131,109 @@
 .md-sidebar--primary .md-sidebar__scrollwrap {
   mask-image: linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
 }
+
+
+/* —— 顶栏 i18n：显示“🌐 简体 / English”，图标更贴近文字（合并精简版） —— */
+
+/* 1) 隐藏默认 svg 图标（多版本兼容） */
+.md-header__button[for^="__i18n"] svg,
+.md-header__button[data-md-toggle="i18n"] svg,
+.md-header__button[aria-label*="language" i] svg,
+.md-header__button[aria-label*="语言"] svg,
+.md-header__button[title*="language" i] svg,
+.md-header__button[title*="语言"] svg {
+  display: none !important;
+}
+
+/* 2) 用 inline-flex 排版，gap 控制“图标-文字”距离（更贴近） */
+.md-header__button[for^="__i18n"],
+.md-header__button[data-md-toggle="i18n"],
+.md-header__button[aria-label*="language" i],
+.md-header__button[aria-label*="语言"],
+.md-header__button[title*="language" i],
+.md-header__button[title*="语言"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .08rem;              /* ← 贴近 */
+  padding: 0 .2rem;
+  color: currentColor;      /* 继承顶栏前景色，避免看不见 */
+}
+
+/* 3) 地球图标（0.75rem） */
+.md-header__button[for^="__i18n"]::before,
+.md-header__button[data-md-toggle="i18n"]::before,
+.md-header__button[aria-label*="language" i]::before,
+.md-header__button[aria-label*="语言"]::before,
+.md-header__button[title*="language" i]::before,
+.md-header__button[title*="语言"]::before {
+  content: "🌐";
+  font-size: 0.75rem;       /* 图标大小 */
+  line-height: 1;
+  margin: 0;                /* 与 gap 配合，不再额外留白 */
+  transform: translateY(1px);
+}
+
+/* 4) 文字（0.7rem），只保留两种语言 */
+.md-header__button[for^="__i18n"]::after,
+.md-header__button[data-md-toggle="i18n"]::after,
+.md-header__button[aria-label*="language" i]::after,
+.md-header__button[aria-label*="语言"]::after,
+.md-header__button[title*="language" i]::after,
+.md-header__button[title*="语言"]::after {
+  content: "中文 | English";
+  font-size: 0.7rem;        /* 字体大小 */
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .1px;
+}
+
+/* 5) 窄屏仅保留图标（可按需删掉） */
+@media (max-width: 700px) {
+  .md-header__button[for^="__i18n"]::after,
+  .md-header__button[data-md-toggle="i18n"]::after,
+  .md-header__button[aria-label*="language" i]::after,
+  .md-header__button[aria-label*="语言"]::after,
+  .md-header__button[title*="language" i]::after,
+  .md-header__button[title*="语言"]::after {
+    content: "";
+  }
+}
+/* —— 顶栏右侧：移动后的月亮按钮微调 —— */
+.js-moved-palette{
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;                /* 图标-按钮内图标的默认间距 */
+  padding:.28rem .55rem;     /* 可点区域更大 */
+  margin:0 .3rem 0 .35rem;   /* 和 Gitee 保持 8px+ 的距离 */
+  border-radius:999px;       /* 胶囊 */
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  line-height:1;
+}
+
+/* 亮色主题下的边框/底色稍弱一点 */
+:root:not([data-md-color-scheme="slate"]) .js-moved-palette{
+  border-color: rgba(0,0,0,.08);
+  background: rgba(0,0,0,.04);
+}
+
+/* 统一图标尺寸 */
+.js-moved-palette svg{ width:0.95rem; height:0.95rem; }
+
+/* 悬停/聚焦反馈 */
+.js-moved-palette:hover{
+  filter: brightness(1.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,.10);
+}
+.js-moved-palette:focus-visible{
+  outline:2px solid var(--md-primary-fg-color);
+  outline-offset:2px;
+  box-shadow:none;
+}
+
+/* 窄屏瘦身：减小左右内边距，避免拥挤 */
+@media (max-width: 900px){
+  .js-moved-palette{ padding:.24rem .44rem; margin-right:.4rem; }
+}
+
 
