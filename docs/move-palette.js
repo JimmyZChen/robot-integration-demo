@@ -33,3 +33,11 @@
     document.addEventListener('DOMContentLoaded', movePalette);
   }
 })();
+// --- i18n 顶栏站名兜底修正 ---
+document.addEventListener('DOMContentLoaded', () => {
+  const isEN = document.documentElement.lang?.toLowerCase().startsWith('en')
+            || location.pathname.startsWith('/en/');
+  const title = document.querySelector('.md-header__title');   // 顶栏左侧站名
+  if (title) title.textContent = isEN ? 'Robot Scheduling Docs' : '机器人调度系统文档';
+});
+

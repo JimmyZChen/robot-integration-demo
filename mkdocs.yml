@@ -45,19 +45,19 @@ nav:
 plugins:
   - i18n:
       docs_structure: suffix
+      reconfigure_material: true
       languages:
         - locale: zh
           name: 中文
           default: true
           build: true
+          site_name: 机器人调度系统文档
         - locale: en
           name: English
           build: true
-      
+          site_name: Robot Scheduling Docs
   - search:
-      lang:
-        - zh
-        - en  
+      lang: [zh, en]
 
 
 extra_css:              # ← 顶层键，放这里即可（顺序无所谓）

@@ -38,7 +38,7 @@ hide:
 
   <a class="ql" href="live-demo/">
     <strong>运行效果 Live Demo</strong>
-    <em>PPT 10–18 页截图与备注</em>
+    <em>7张网站运行效果图片和4张现场联调图片与备注</em>
   </a>
 
   <a class="ql" href="mq-async/">

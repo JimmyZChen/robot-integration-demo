@@ -374,7 +374,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sec-mono-to-micro" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       2. 从单体到微服务
     </span>
@@ -570,7 +570,7 @@
   
   
   <span class="md-ellipsis">
-    高并发压测 JMeter
+    压测 JMeter
     
   </span>
   
@@ -651,35 +651,72 @@
 <li><strong>多环境协作与交付</strong>：Docker 一键交付，服务独立发布/扩缩容</li>
 </ul>
 <hr />
-<h2 id="sec-mono-to-micro">2. 从单体到微服务<a class="headerlink" href="#sec-mono-to-micro" title="Permanent link">&para;</a></h2>
-<h3 id="_1">背景 / 痛点<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>单体先行快速验证；规模上涨后发布影响面大、配置分散。</li>
-</ul>
-<h3 id="_2">目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<ul>
-<li>平滑迁移，前端基本无感，<strong>分钟级回滚</strong>。</li>
-</ul>
-<h3 id="_3">关键设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Gateway 路由：<code>/external/gs/**</code>  </li>
-<li>Nacos：注册/配置（多环境）  </li>
-<li>Docker Compose：<strong>一键多容器</strong>交付</li>
-</ul>
-<h3 id="_4">难点与取舍<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<ul>
-<li>DTO <strong>抽到</strong> <code>ruoyi-api-robot</code>  </li>
-<li>Controller <strong>变薄</strong> → 逻辑<strong>下沉</strong>到 <code>GsOpenApiServiceImpl</code></li>
-</ul>
-<p><strong>指标与结果</strong></p>
-<ul>
-<li><strong>冷启动</strong>：一键 Compose（含首启 SQL）→ <strong>新环境就绪 ≤ 12 分钟</strong>  </li>
-<li><strong>回滚</strong>：微服务化后可 <strong>分钟级回滚（≤ 5 分钟）</strong>  </li>
-<li><strong>p95</strong>（压测基线 100 QPS，Dry-Run）：<strong>6 ms</strong>（P99 ≈ 9–10 ms，Error=0）</li>
-<li><strong>单体 → 微服务</strong>：发布窗口 ↓，<strong>回滚 ≤ 5 分钟</strong>  </li>
-<li><strong>一键交付</strong>：Docker Compose + 数据卷 + 首启 SQL，<strong>新环境就绪 ≤ 12 分钟</strong></li>
-</ul>
-<h3 id="_5">复盘<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h2 id="2">2. 从单体到微服务<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_1">概要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>背景 / 痛点</strong></td>
+<td>单体先行快速验证；规模上涨后<strong>发布影响面大、配置分散</strong>。</td>
+</tr>
+<tr>
+<td><strong>目标</strong></td>
+<td><strong>平滑迁移</strong>、前端基本无感；<strong>分钟级回滚</strong>。</td>
+</tr>
+<tr>
+<td><strong>关键设计</strong></td>
+<td><strong>Gateway</strong>：<code>/external/gs/**</code>；<strong>Nacos</strong>：注册/配置（多环境）；<strong>Docker Compose</strong>：<strong>一键多容器</strong>交付。</td>
+</tr>
+<tr>
+<td><strong>难点与取舍</strong></td>
+<td>DTO <strong>抽到</strong> <code>ruoyi-api-robot</code>；Controller <strong>变薄</strong> → 逻辑<strong>下沉</strong>到 <code>GsOpenApiServiceImpl</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">指标 &amp; 结果<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">目标 / 基线</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>冷启动就绪</strong></td>
+<td style="text-align: right;">≤ <strong>12 分钟</strong></td>
+<td>Compose（含首启 SQL）新环境落地</td>
+</tr>
+<tr>
+<td><strong>回滚时长</strong></td>
+<td style="text-align: right;">≤ <strong>5 分钟</strong></td>
+<td>微服务化后支持分钟级回滚</td>
+</tr>
+<tr>
+<td><strong>p95 延迟</strong></td>
+<td style="text-align: right;"><strong>≈ 6 ms</strong></td>
+<td>基线压测 100 QPS（Dry-Run），P99 ≈ 9–10 ms，Error=0</td>
+</tr>
+<tr>
+<td><strong>发布窗口</strong></td>
+<td style="text-align: right;">明显缩短</td>
+<td>单体 → 微服务后影响面收敛</td>
+</tr>
+<tr>
+<td><strong>一键交付</strong></td>
+<td style="text-align: right;">Compose + 数据卷 + 首启 SQL</td>
+<td>新环境就绪 ≤ 12 分钟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">复盘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>先交付后演进</strong>；统一 <strong>资源名 / 规则 / 异常体 / 日志字段</strong>。</li>
 </ul>
@@ -698,7 +735,7 @@
 - <strong>外部</strong>：<code>Gaussian OpenAPI</code> 通过 HTTPS 调用<br />
 - <strong>可观测性</strong>：各实例向 <strong>SkyWalking OAP</strong> 上报 Trace；<strong>SkyWalking UI</strong> 仅做查询<br />
 - <strong>连线含义</strong>：<strong>实线 = 请求/调用</strong>；<strong>虚线 = 发现/配置/遥测</strong></p>
-<h3 id="2">2) 可观测性拓扑<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h3 id="2_1">2) 可观测性拓扑<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
 <p><img alt="Observability Topology" src="../assets/04-observability-topology.png" /></p>
 <p><strong>观测口径</strong>
 - <strong>实线</strong>：真实调用链（Gateway → Services → DB/Cache/Vendor）<br />
@@ -712,7 +749,7 @@
 <blockquote>
 <p>参考路径：单体 MVP → Docker “clone→run” → 微服务试点（Gateway + Nacos） → 观测/治理（SkyWalking + Sentinel）。</p>
 </blockquote>
-<h3 id="2_1">2) 里程碑 &amp; 可量化产出（示例）<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<h3 id="2_2">2) 里程碑 &amp; 可量化产出（示例）<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -751,34 +788,76 @@
 </table>
 <hr />
 <h2 id="sec-openapi-stability">5. OpenAPI 封装与稳定性治理<a class="headerlink" href="#sec-openapi-stability" title="Permanent link">&para;</a></h2>
-<h3 id="_6">背景 / 痛点<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<ul>
-<li>厂商 API RT/错误不稳，调用方易被拖慢。</li>
-</ul>
-<h3 id="_7">目标<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<ul>
-<li>监权/重试/幂等/Trace 统一；<strong>双层保护</strong>（网关 + 方法级）；读多写少的读路径支持<strong>缓存兜底</strong>。</li>
-</ul>
-<h3 id="_8">关键设计<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>GsOpenApiServiceImpl</code> + <code>@SentinelResource</code>（资源名与 Nacos 规则一致）  </li>
-<li>Nacos <strong>下发</strong> <code>Flow/Degrade</code> 规则  </li>
-<li><code>RestTemplate</code>：<strong>超时/连接池</strong>设置，<strong>禁用自动重试</strong></li>
-</ul>
-<h3 id="_9">难点与取舍<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>网关 vs 应用谁先挡</strong>：压测时放宽网关阈值，观察熔断位置（优先限流）。</li>
-</ul>
-<h3 id="_10">指标与结果（示例）<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<ul>
-<li>突发下 <strong>429 快速失败</strong>；<strong>p95</strong> 〈数值〉 ms；读接口<strong>降级</strong>返回最近数据。</li>
-</ul>
-<h3 id="_11">复盘<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<h3 id="_4">概要<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>背景 / 痛点</strong></td>
+<td>厂商 API <strong>RT/错误不稳</strong>，调用方容易被拖慢。</td>
+</tr>
+<tr>
+<td><strong>目标</strong></td>
+<td>监权/重试/幂等/Trace <strong>统一</strong>；<strong>双层保护</strong>（网关 + 方法级）；读多写少路径支持<strong>缓存兜底</strong>。</td>
+</tr>
+<tr>
+<td><strong>关键设计</strong></td>
+<td><code>GsOpenApiServiceImpl</code> + <code>@SentinelResource</code>（资源名与 Nacos 规则一致）；Nacos <strong>下发</strong> <code>Flow/Degrade</code> 规则；<br> <code>RestTemplate</code>：<strong>超时/连接池</strong>设置，<strong>禁用自动重试</strong>。</td>
+</tr>
+<tr>
+<td><strong>难点与取舍</strong></td>
+<td><strong>网关 vs 应用谁先挡</strong>：压测放宽网关阈值观察熔断位置 —— <strong>优先限流</strong>，必要时再降级/熔断。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">指标与结果（示例）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">目标 / 基线</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>突发处理</strong></td>
+<td style="text-align: right;"><strong>429 快速失败</strong></td>
+<td>网关/Sentinel 命中限流立即返回，保护下游。</td>
+</tr>
+<tr>
+<td><strong>p95 延迟</strong></td>
+<td style="text-align: right;">〈数值〉ms</td>
+<td>压测结果填入；读多写少链路优先命中缓存。</td>
+</tr>
+<tr>
+<td><strong>降级策略</strong></td>
+<td style="text-align: right;">返回最近数据</td>
+<td>读接口<strong>降级</strong>返回最近缓存/快照（可配 TTL）。</td>
+</tr>
+<tr>
+<td><strong>保护层级</strong></td>
+<td style="text-align: right;">网关优先</td>
+<td>网关限流优先于应用层熔断；方法级 <code>@SentinelResource</code> 兜底。</td>
+</tr>
+<tr>
+<td><strong>重试与超时</strong></td>
+<td style="text-align: right;">禁用自动重试</td>
+<td><code>RestTemplate</code> 设置连接/读取超时与连接池，避免级联阻塞。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">复盘<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>限流优先于熔断</strong>；统一<strong>异常体/日志字段</strong>便于排障。</li>
 </ul>
 <hr />
-<h3 id="_12">相关链接<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h3 id="_7">相关链接<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <ul>
 <li>运行效果（Live Demo）: <a href="../live-demo.md">live-demo</a>  </li>
 <li>可观测性（SkyWalking）: <a href="../observability.md">observability</a>  </li>

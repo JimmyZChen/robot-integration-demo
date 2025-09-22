@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-# Robot Scheduling Docs  
+# Dashboard
 A unified gateway for multi-vendor robots with async orchestration and observability.
 
 > **One-liner**  

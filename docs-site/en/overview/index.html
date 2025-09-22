@@ -20,7 +20,7 @@
     
     
       
-        <title>概览 Overview - 机器人调度系统文档</title>
+        <title>Overview - Robot Scheduling Docs</title>
       
     
     
@@ -90,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../" title="机器人调度系统文档" class="md-header__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+    <a href="../" title="Robot Scheduling Docs" class="md-header__button md-logo" aria-label="Robot Scheduling Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,13 +104,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            机器人调度系统文档
+            Robot Scheduling Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概览 Overview
+              Overview
             
           </span>
         </div>
@@ -254,13 +254,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../" title="机器人调度系统文档" class="md-nav__button md-logo" aria-label="机器人调度系统文档" data-md-component="logo">
+    <a href="../" title="Robot Scheduling Docs" class="md-nav__button md-logo" aria-label="Robot Scheduling Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    机器人调度系统文档
+    Robot Scheduling Docs
   </label>
   
     <div class="md-nav__source">
@@ -289,7 +289,7 @@
   
   
   <span class="md-ellipsis">
-    首页 Dashboard
+    Dashboard
     
   </span>
   
@@ -320,7 +320,7 @@
   
   
   <span class="md-ellipsis">
-    概览 Overview
+    Overview
     
   </span>
   
@@ -333,7 +333,7 @@
   
   
   <span class="md-ellipsis">
-    概览 Overview
+    Overview
     
   </span>
   
@@ -409,15 +409,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#sec-slo" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. SLO (Service Level Objectives)
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -438,7 +429,7 @@
   
   
   <span class="md-ellipsis">
-    运行效果 Live Demo
+    Live Demo
     
   </span>
   
@@ -460,7 +451,7 @@
   
   
   <span class="md-ellipsis">
-    配置中心 Nacos
+    Configuration Center (Nacos)
     
   </span>
   
@@ -482,7 +473,7 @@
   
   
   <span class="md-ellipsis">
-    可观测性 SkyWalking
+    Observability (SkyWalking)
     
   </span>
   
@@ -504,7 +495,7 @@
   
   
   <span class="md-ellipsis">
-    稳定性 Sentinel
+    Stability (Sentinel)
     
   </span>
   
@@ -526,7 +517,7 @@
   
   
   <span class="md-ellipsis">
-    异步化 RabbitMQ
+    Async (RabbitMQ)
     
   </span>
   
@@ -548,7 +539,7 @@
   
   
   <span class="md-ellipsis">
-    容器化部署 Docker
+    Containerized Deployment (Docker)
     
   </span>
   
@@ -570,7 +561,7 @@
   
   
   <span class="md-ellipsis">
-    高并发压测 JMeter
+    Load Test (JMeter)
     
   </span>
   
@@ -592,7 +583,7 @@
   
   
   <span class="md-ellipsis">
-    问题—原因—修复 Issues
+    Issues·Root Cause·Fixes
     
   </span>
   
@@ -644,16 +635,74 @@ Use the mini-TOC on the right; click any item in “Recommended Reading Order”
 - <strong>Delivery</strong>: one-click multi-env delivery with Docker Compose.</p>
 <hr />
 <h2 id="sec-mono-to-micro">2. From Monolith to Microservices<a class="headerlink" href="#sec-mono-to-micro" title="Permanent link">&para;</a></h2>
-<p><strong>Migration Rationale</strong><br />
-- Clear module boundaries (gateway / auth / robot-adapter / business).<br />
-- Independent scaling for traffic hotspots (gateway / robot-adapter).<br />
-- Observability at service granularity for faster RCA.</p>
-<p><strong>Strategy</strong><br />
-- Keep contracts stable; split services along domain boundaries.<br />
-- Side-by-side verification; gray rollout; quick rollback path.</p>
-<p><strong>Key Takeaways</strong><br />
-- Start with the <strong>gateway + adapter</strong> as the first split.<br />
-- Make observability &amp; rate-limiting <strong>first-class</strong> from day one.</p>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Key points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Background / Pain</strong></td>
+<td>Monolith validated quickly; as scale grew, releases had a wide blast radius and configs became scattered.</td>
+</tr>
+<tr>
+<td><strong>Goal</strong></td>
+<td>Smooth migration with near-zero UX impact; <strong>minute-level rollback</strong>.</td>
+</tr>
+<tr>
+<td><strong>Key Design</strong></td>
+<td><strong>Gateway</strong>: <code>/external/gs/**</code>; <strong>Nacos</strong>: registry/config (multi-env); <strong>Docker Compose</strong>: <strong>one-click multi-container</strong> delivery.</td>
+</tr>
+<tr>
+<td><strong>Trade-offs</strong></td>
+<td>DTOs extracted to <code>ruoyi-api-robot</code>; controllers <strong>slimmed</strong>; logic pushed down to <code>GsOpenApiServiceImpl</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="metrics-results">Metrics &amp; Results<a class="headerlink" href="#metrics-results" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Target / Baseline</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cold start → ready</strong></td>
+<td style="text-align: right;">≤ <strong>12 min</strong></td>
+<td>Compose (incl. first-run SQL) to bring up a fresh environment.</td>
+</tr>
+<tr>
+<td><strong>Rollback time</strong></td>
+<td style="text-align: right;">≤ <strong>5 min</strong></td>
+<td>Minute-level rollback after the split.</td>
+</tr>
+<tr>
+<td><strong>p95 latency</strong></td>
+<td style="text-align: right;"><strong>≈ 6 ms</strong></td>
+<td>Baseline 100 QPS (Dry-Run); P99 ≈ 9–10 ms; Error=0.</td>
+</tr>
+<tr>
+<td><strong>Release window</strong></td>
+<td style="text-align: right;">Shorter</td>
+<td>Impact scope shrinks after splitting services.</td>
+</tr>
+<tr>
+<td><strong>One-click delivery</strong></td>
+<td style="text-align: right;">Compose + volumes + first-run SQL</td>
+<td>Fresh env ready ≤ 12 min.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retro">Retro<a class="headerlink" href="#retro" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ship first, evolve later; unify <strong>resource names / rules / error body / log fields</strong>.</li>
+</ul>
 <hr />
 <h2 id="sec-architecture">3. Architecture Overview<a class="headerlink" href="#sec-architecture" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -677,33 +726,164 @@ Use the mini-TOC on the right; click any item in “Recommended Reading Order”
 </ul>
 <hr />
 <h2 id="sec-openapi-stability">5. OpenAPI Wrapping &amp; Stability Governance<a class="headerlink" href="#sec-openapi-stability" title="Permanent link">&para;</a></h2>
-<p><strong>Goals</strong>
-- Unify vendor OpenAPIs; normalize auth/signature; consistent error model.<br />
-- Shield upstream from vendor quirks with adapters and fallback policies.</p>
-<p><strong>Design</strong>
-- Adapter layer for request/response mapping; consistent <code>code/message</code>.<br />
-- Retry/backoff where safe; <strong>rate-limit first</strong>, circuit-break later; idempotency for commands.<br />
-- Degrade reads to last good data when vendor services flap.</p>
-<p><strong>Observability</strong>
-- Inject <code>traceId</code> end-to-end; correlate APM/Logs/Metrics.<br />
-- Dashboards for success rate, latency (p95/p99), 429 ratio, DLQ burn-down.</p>
-<hr />
-<h2 id="sec-slo">6. SLO (Service Level Objectives)<a class="headerlink" href="#sec-slo" title="Permanent link">&para;</a></h2>
-<p><strong>Scope</strong>: Gateway + Robot Service; <strong>Window</strong>: 28 days (monthly).<br />
-<strong>Success</strong>: HTTP non-5xx <strong>and</strong> business <code>code==0</code>; <strong>policy 429 (rate-limit)</strong> not counted as failure (tracked separately for capacity tuning).<br />
-<strong>Latency</strong>: measured from <strong>Gateway ingress → response out</strong>; track p95/p99 by API groups.</p>
-<p><strong>Review</strong>
-- Use 429 ratio + DLQ trends + retry outcomes to tune thresholds and capacities.<br />
-- Postmortems for breaches; feed learnings into rate-limit and retry policies.</p>
-<hr />
-<h3 id="links">Links<a class="headerlink" href="#links" title="Permanent link">&para;</a></h3>
+<h3 id="summary_1">Summary<a class="headerlink" href="#summary_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Key points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Background / Pain</strong></td>
+<td>Vendor APIs have unstable RT/errors; upstream callers easily get dragged down.</td>
+</tr>
+<tr>
+<td><strong>Goals</strong></td>
+<td>Unify auth/retry/idempotency/trace; <strong>two-layer protection</strong> (Gateway + method level); read-mostly paths support <strong>cached fallback</strong>.</td>
+</tr>
+<tr>
+<td><strong>Design</strong></td>
+<td><code>GsOpenApiServiceImpl</code> + <code>@SentinelResource</code> (resource names aligned with Nacos rules); Nacos-pushed <code>Flow/Degrade</code> rules; <br> <code>RestTemplate</code>: <strong>timeouts/connection pool</strong> tuned, <strong>auto-retry disabled</strong>.</td>
+</tr>
+<tr>
+<td><strong>Trade-offs</strong></td>
+<td><strong>Gateway vs. App who blocks first</strong>: relax Gateway limits in tests to observe breakpoints — <strong>prefer rate-limit first</strong>, then degrade/circuit-break as needed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="metrics-results-examples">Metrics &amp; Results (examples)<a class="headerlink" href="#metrics-results-examples" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">Target / Baseline</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Burst handling</strong></td>
+<td style="text-align: right;"><strong>429 fast-fail</strong></td>
+<td>Gateway/Sentinel returns immediately to protect downstream.</td>
+</tr>
+<tr>
+<td><strong>p95 latency</strong></td>
+<td style="text-align: right;">‹value› ms</td>
+<td>Fill with your test result; read-heavy paths should hit cache first.</td>
+</tr>
+<tr>
+<td><strong>Degrade policy</strong></td>
+<td style="text-align: right;">Last good data</td>
+<td>Read endpoints return cached/snapshotted data (TTL-controlled).</td>
+</tr>
+<tr>
+<td><strong>Protection layers</strong></td>
+<td style="text-align: right;">Gateway first</td>
+<td>Gateway rate-limit before app-level circuit-break; <code>@SentinelResource</code> as method-level safety net.</td>
+</tr>
+<tr>
+<td><strong>Retry/Timeout</strong></td>
+<td style="text-align: right;">Auto-retry disabled</td>
+<td><code>RestTemplate</code> connection/read timeouts and pooling to avoid cascades.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retro_1">Retro<a class="headerlink" href="#retro_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Live Demo: <a href="../live-demo/">live-demo.md</a>  </li>
-<li>Observability (SkyWalking): <a href="../observability/">observability.md</a>  </li>
-<li>Stability (Sentinel): <a href="../stability-sentinel/">stability-sentinel.md</a>  </li>
-<li>Async (RabbitMQ): <a href="../mq-async/">mq-async.md</a>  </li>
-<li>Load Test (JMeter): <a href="../loadtest-jmeter/">loadtest-jmeter.md</a></li>
+<li><strong>Rate-limit before circuit-break</strong>; unify <strong>error body/log fields</strong> for faster diagnosis.</li>
 </ul>
+<hr />
+<h1 id="service-level-objectives-slo">Service Level Objectives (SLO)<a class="headerlink" href="#service-level-objectives-slo" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Scope: Spring Cloud Gateway + Robot Service.<br />
+Window: 28 days (monthly).<br />
+Success definition: Count as success when the HTTP status is not 5xx and the business <code>code==0</code>; <strong>intentional 429 (rate limiting) is not counted as a failure</strong> and is tracked separately for capacity and threshold tuning.<br />
+Latency: by default, measure the duration from <strong>Gateway ingress → response sent</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="slo-english">📈 SLO (English)<a class="headerlink" href="#slo-english" title="Permanent link">&para;</a></h2>
+<h3 id="1-slo-table">1) SLO Table<a class="headerlink" href="#1-slo-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Journey / API</th>
+<th>SLI</th>
+<th>Target</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status query <code>GET /external/gs/status/**</code></td>
+<td>Success ≥ 99.9%</td>
+<td>Monthly</td>
+<td>Gateway rate-limit first; single-instance stable QPS × 0.7 headroom</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 300ms (P99 &lt; 800ms)</td>
+<td>Monthly</td>
+<td>Client typically retries with backoff 1–2 times</td>
+</tr>
+<tr>
+<td>Map list <code>GET /maps/list/**</code></td>
+<td>Success ≥ 99.9%</td>
+<td>Monthly</td>
+<td>Read-heavy; cache/replica</td>
+</tr>
+<tr>
+<td></td>
+<td>P95 &lt; 400ms</td>
+<td>Monthly</td>
+<td>API baseline</td>
+</tr>
+<tr>
+<td>Task dispatch (async acceptance) <code>POST /external/gs/task/**</code></td>
+<td>Acceptance success ≥ 99.5%</td>
+<td>Monthly (~3.6h budget)</td>
+<td>Count success only if <strong>persisted + enqueued</strong>; idempotency key <code>taskId</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Acceptance P95 &lt; 1s</td>
+<td>Monthly</td>
+<td>Synchronous “accepted” only; <strong>execution ACK not in this SLO</strong></td>
+</tr>
+<tr>
+<td>WebSocket updates</td>
+<td>Reconnect 99% &lt; 3s</td>
+<td>Monthly</td>
+<td>Auto-reconnect; <code>stale</code> triggers alert</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-sli-definitions">2) SLI Definitions<a class="headerlink" href="#2-sli-definitions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Success rate</strong> = (requests − HTTP 5xx − business failures) ÷ requests; business failure per unified <code>code</code>.  </li>
+<li><strong>Latency</strong>: P50/P95/P99 from <strong>gateway ingress to response</strong>; add service spans if needed.  </li>
+<li><strong>Async acceptance</strong>: HTTP 202/200 <strong>and</strong> persisted+enqueued = success (requires app metric).  </li>
+<li><strong>WebSocket recovery</strong>: disconnect to “receiving again” (heartbeat/subscription ack).</li>
+</ul>
+<h3 id="3-protection-thresholds-aligned-with-sentinel">3) Protection thresholds (aligned with Sentinel)<a class="headerlink" href="#3-protection-thresholds-aligned-with-sentinel" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Slow-call threshold</strong> <code>τ = min(1000ms, 1.2 × current baseline P95)</code>  </li>
+<li><strong>Window</strong> 10s; <strong>minimum samples</strong> ≥ 20; <strong>slow-call ratio</strong> ≥ 50% → open circuit  </li>
+<li><strong>Open</strong> 30s; <strong>Half-open probes</strong> 5–10  </li>
+<li><strong>Ingress rate-limit</strong> on <code>/external/gs/**</code> at Gateway (returns 429)</li>
+</ul>
+<h3 id="4-alerting-actions">4) Alerting &amp; Actions<a class="headerlink" href="#4-alerting-actions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Error budget</strong>: 99.9% target ⇒ 0.1% monthly  </li>
+<li><strong>Burn rate alerts</strong> (either condition): 1h &gt; 10% budget ⇒ P1 (auto degrade/limit); 6h &gt; 20% ⇒ P1 escalate (rollback / remove unhealthy instance)  </li>
+<li><strong>Release guard</strong>: within 15min after release, if P95/P99 worsens and error &gt; threshold ⇒ pause/rollback  </li>
+<li><strong>Traffic control</strong>: ramp Gateway quotas 5%→30%→50%→100%; if worse, staged circuit with stable fallback</li>
+</ul>
+<h3 id="5-observability-sources">5) Observability &amp; Sources<a class="headerlink" href="#5-observability-sources" title="Permanent link">&para;</a></h3>
+<p>SkyWalking traces/metrics; structured logs with <code>traceId</code> + 429/503/timeout fields; Nacos groups for rules with gray &amp; rollback.</p>
+<h3 id="6-exceptions">6) Exceptions<a class="headerlink" href="#6-exceptions" title="Permanent link">&para;</a></h3>
+<p>Execution SLA of long-running async tasks is <strong>out of scope</strong> here; external-network incidents are labeled for review, not forcibly excluded.</p>
 
 
 
@@ -739,7 +919,7 @@ Use the mini-TOC on the right; click any item in “Recommended Reading Order”
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: 首页 Dashboard">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dashboard">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -749,20 +929,20 @@ Use the mini-TOC on the right; click any item in “Recommended Reading Order”
                 Previous
               </span>
               <div class="md-ellipsis">
-                首页 Dashboard
+                Dashboard
               </div>
             </div>
           </a>
         
         
           
-          <a href="../live-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: 运行效果 Live Demo">
+          <a href="../live-demo/" class="md-footer__link md-footer__link--next" aria-label="Next: Live Demo">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                运行效果 Live Demo
+                Live Demo
               </div>
             </div>
             <div class="md-footer__button md-icon">
