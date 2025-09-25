@@ -1,6 +1,7 @@
 site_dir: docs-site
 site_name: 机器人调度系统文档 
 repo_url: https://gitee.com/Jimmy-chen-zheng/robot-interface-demo.git
+copyright: '© 2025 陈峥 Jimmy Chen · <a href="/legal/license/">MIT License</a>'
 theme:
   name: material
   language: zh
