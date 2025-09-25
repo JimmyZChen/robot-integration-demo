@@ -1,0 +1,347 @@
+/* src/assets/styles/home-index.scss
+ * 仅首页使用：所有样式挂在 .home 下，不污染全局
+ * Vue2 穿透 ElementUI 内部类使用 ::v-deep（可用 >>> 或 /deep/ 代替）
+*/
+
+.home {
+  /* ========= 局部设计变量 ========= */
+  --home-radius: 12px;
+  --home-card-br: #e8ebf0;
+  --home-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  --home-shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.10);
+  --home-primary: #2e77ff;
+  --home-text: #1f2937;
+  --home-muted: #6b7280;
+  --home-gap-xs: 8px;
+  --home-gap-sm: 12px;
+  --home-gap-md: 20px;
+  --home-gap-lg: 24px;
+  --home-gap-xl: 32px;
+
+  color: var(--home-text);
+  padding: var(--home-gap-lg);
+
+  /* ========= 顶部信息条 ========= */
+  .home-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--home-gap-md);
+    padding: 14px 18px;
+    border-radius: var(--home-radius);
+    background: rgba(34, 197, 94, .06);
+    border: 1px solid var(--home-card-br);
+    margin-bottom: var(--home-gap-lg);
+
+    .home-hero__title { font-size: 16px; font-weight: 600; line-height: 1.6; }
+    .home-hero__desc  { margin-top: 4px; font-size: 13px; color: var(--home-muted); }
+    .home-hero__actions { display: flex; gap: var(--home-gap-sm); }
+
+    &::v-deep .el-button        { border-radius: 10px; height: 36px; }
+    &::v-deep .el-button--plain { border-color: var(--home-card-br); }
+  }
+
+  /* ========= 通用卡片风格（首页内） ========= */
+  &::v-deep .el-card {
+    border-radius: var(--home-radius);
+    border: 1px solid var(--home-card-br);
+    box-shadow: var(--home-shadow);
+    transition: box-shadow .16s ease, transform .16s ease, border-color .16s ease;
+    background: #fff;
+  }
+  &::v-deep .el-card:hover {
+    box-shadow: var(--home-shadow-hover);
+    transform: translateY(-2px);
+  }
+  &::v-deep .el-card__header {
+    padding: 14px 16px;
+    font-weight: 600;
+    color: var(--home-text);
+    border-bottom: 1px solid var(--home-card-br);
+  }
+  &::v-deep .el-card__body { padding: 16px; color: var(--home-text); }
+
+  /* ========= 区块间距 & 栅格 ========= */
+  .section { margin-top: var(--home-gap-lg); }
+  .grid-3  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--home-gap-lg); }
+  .grid-4  { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--home-gap-lg); }
+
+  /* ========= 快速入口：1 主 + 3 次 ========= */
+  .home-quick {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--home-gap-lg);
+
+    .quick-item {
+      display: flex; align-items: center; gap: var(--home-gap-sm);
+      padding: 18px; min-height: 112px;
+      border: 1px solid var(--home-card-br);
+      border-radius: var(--home-radius);
+      background: #fff;
+      box-shadow: var(--home-shadow);
+      transition: box-shadow .16s ease, transform .16s ease, background .16s ease;
+
+      &:hover { box-shadow: var(--home-shadow-hover); transform: translateY(-2px); }
+
+      &--primary {
+        background: var(--home-primary);
+        color: #fff; border-color: transparent;
+        .quick-title { color: #fff; }
+        .quick-desc  { color: rgba(255,255,255,.9); }
+      }
+
+      .quick-icon  { font-size: 22px; line-height: 1; }
+      .quick-title { font-size: 16px; font-weight: 600; color: var(--home-text); }
+      .quick-desc  { font-size: 12px; color: var(--home-muted); }
+    }
+  }
+
+  /* ========= 能力卡片（小块） ========= */
+  .feature {
+    border: 1px solid var(--home-card-br);
+    border-radius: var(--home-radius);
+    padding: 14px 16px;
+    transition: border-color .16s ease, box-shadow .16s ease;
+    background: #fff;
+
+    &:hover { border-color: #67c23a; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+    .feature-title { font-weight: 600; }
+    .feature-desc  { color: #606266; font-size: 13px; margin-top: 4px; line-height: 1.6; }
+  }
+
+  /* ========= 可观测性 KPI ========= */
+  .home-kpis {
+    display: flex; gap: var(--home-gap-lg); margin-top: var(--home-gap-sm);
+
+    .kpi {
+      display: flex; align-items: baseline; gap: 8px;
+      .kpi-num   { font-size: 20px; font-weight: 700; color: var(--home-text); }
+      .kpi-label { font-size: 12px; color: var(--home-muted); }
+      &.ok   .kpi-num { color: #16a34a; }
+      &.warn .kpi-num { color: #f59e0b; }
+      &.bad  .kpi-num { color: #ef4444; }
+    }
+  }
+
+  /* ========= 已接入厂商：徽章墙 ========= */
+  .vendor-wall {
+    display: grid; gap: var(--home-gap-sm);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+
+    .vendor {
+      position: relative;
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 12px; background: #fff;
+      border: 1px solid var(--home-card-br);
+      border-radius: 10px;
+      transition: box-shadow .16s ease, transform .16s ease;
+
+      &:hover { box-shadow: var(--home-shadow); transform: translateY(-1px); }
+
+      .logo { width: 18px; height: 18px; object-fit: contain; filter: grayscale(.2); }
+      .name { font-size: 13px; color: var(--home-text); }
+
+      &::after {
+        content: ""; position: absolute; top: 8px; right: 8px;
+        width: 6px; height: 6px; border-radius: 50%;
+        background: #22c55e;        /* 已接入=绿 */
+      }
+      &.is-planned::after { background: #cbd5e1; } /* 规划=灰 */
+    }
+  }
+
+  /* ========= 技术栈 Tag 墙 ========= */
+  .tech-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+
+    &::v-deep .el-tag {
+      border-radius: 10px;
+      padding: 0 10px;
+      height: 26px; line-height: 24px;
+      font-size: 12px;
+    }
+  }
+
+  /* ========= 系统信息微调（可选） ========= */
+  .sysinfo {
+    &::v-deep .el-descriptions__title { font-weight: 600; }
+    &::v-deep .el-descriptions__label { color: var(--home-muted); }
+  }
+
+  /* ========= 响应式 ========= */
+  @media (max-width: 1280px) {
+    .vendor-wall { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  }
+  @media (max-width: 1024px) {
+    .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-4, .home-quick { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .vendor-wall { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 768px) {
+    .grid-3, .grid-4, .home-quick { grid-template-columns: 1fr; }
+    .vendor-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .home-hero { flex-direction: column; align-items: flex-start; }
+  }
+}
+/* 1) 顶部信息条更“主角” */
+.home .home-hero {
+  margin-bottom: 32px;
+}
+.home .home-hero .home-hero__title { font-size: 18px; }
+
+/* 2) 快捷入口主卡更清晰 */
+.home .home-quick .quick-item { cursor: pointer; min-height: 120px; }
+.home .home-quick .quick-item--primary {
+  background: linear-gradient(135deg, #2e77ff 0%, #275fe0 100%);
+}
+.home .home-quick .quick-item--primary .quick-desc { color: rgba(255,255,255,.92); }
+.home .home-quick .quick-icon { opacity: 1; }
+
+/* 3) 入口文本与内边距统一 */
+.home .home-quick .quick-item {
+  padding: 18px 20px;
+}
+.home .quick-title { margin-bottom: 2px; line-height: 1.2; }
+
+/* 4) 核心能力卡片稳定高度 */
+.home .feature {
+  min-height: 116px;
+}
+.home .feature-title { margin-bottom: 4px; }
+
+/* 5) 右侧卡片阴影略轻一点（优先级：主列 > 侧栏） */
+@media (min-width: 1025px) {
+  .home .el-col-8 ::v-deep .el-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  }
+}
+
+/* 6) 技术栈 Tag 更紧凑（且只显示一行时好看） */
+.home .tech-tags { gap: 6px; }
+
+/* 7) 响应式：三列->两列->一列 */
+@media (max-width: 1200px) {
+  .home .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 768px) {
+  .home .grid-3 { grid-template-columns: 1fr; }
+  .home .home-quick { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 520px) {
+  .home .home-quick { grid-template-columns: 1fr; }
+}
+
+/* 8) 一致的分割线、圆角 */
+/* 侧栏厂商徽章：列宽自适应 + 最小宽度，避免文字溢出 */
+.home .vendor-wall--sidebar {
+  /* 两列，但每列最少 140px，不够就自动只排一列 */
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  column-gap: 12px;
+  row-gap: 10px;
+}
+
+/* 徽章卡尺寸与布局 */
+.home .vendor-wall--sidebar .vendor {
+  display: inline-flex;
+  align-items: center;
+  min-width: 140px;        /* 关键：保证不小于 140px */
+  height: 40px;            /* 稍高一点更稳 */
+  padding: 6px 10px;
+  border-width: 2px;
+  border-color: #cfd6e4;
+  border-radius: 12px;
+  gap: 10px;
+  overflow: hidden;        /* 防止极端溢出 */
+}
+
+/* 图标尺寸 */
+.home .vendor-wall--sidebar .vendor .logo {
+  width: 22px; height: 22px;   /* PNG 也清晰 */
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* 文案不换行并在极端情况下用省略号 */
+.home .vendor-wall--sidebar .vendor .name {
+  white-space: nowrap;         /* 不换行 */
+  overflow: hidden;
+  text-overflow: ellipsis;     /* 太长就 ... */
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 100%;
+}
+
+/* 窄屏时自动变单列，防止再被挤 */
+@media (max-width: 1280px) {
+  .home .vendor-wall--sidebar {
+    grid-template-columns: minmax(160px, 1fr);  /* 一列，最少 160px 更稳 */
+  }
+}
+/* 区块主标题（技术栈、系统信息…）更醒目 */
+.home .section-title {
+  font-size: 16px;            /* 14 -> 16 */
+  font-weight: 700;           /* 加粗 */
+  display: inline-flex; align-items: center; gap: 10px;
+  position: relative; padding-left: 12px;
+}
+.home .section-title::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 4px; height: 16px; border-radius: 3px; background: #2e77ff; /* 主色条 */
+}
+
+/* 技术栈小分组标题（后端 / 平台、前端 / 工具） */
+.home .stack-title {
+  font-size: 14px; font-weight: 700; color: #111827; /* 更黑一点 */
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.home .stack-title::after {
+  content: "·"; color: #9ca3af; font-weight: 400;  /* 视觉间隔，小点 */
+  margin-left: 2px;
+}
+.home .feature { min-height: 120px; padding: 14px 16px; }
+.home .feature-title { font-weight: 700; margin-bottom: 6px; }
+.home .feature-desc  { line-height: 1.6; }
+.home .home-quick .quick-title { font-size: 15px; line-height: 20px; margin-bottom: 2px; }
+.home .home-quick .quick-desc  { font-size: 12px; line-height: 16px; opacity: .85; }
+.home .home-quick .quick-item  { align-items: center; }
+.home .home-quick .quick-icon  { font-size: 22px; margin-top: 2px; } /* 与标题基线齐 */
+/* 图标圆角与背景统一 */
+.home .vendor-wall--sidebar .vendor .logo {
+  border-radius: 6px; background: #fff;
+}
+
+/* 已接入 = 浅绿边；规划 = 默认灰边（不改 hover） */
+.home .vendor-wall--sidebar .vendor:not(.is-planned) {
+  border-color: #6ee7b7;
+}
+.home .vendor-wall--sidebar .vendor:not(.is-planned)::after {
+  background:#22c55e; /* 右上角状态点更显眼 */
+}
+.home .stack-list { line-height: 26px; }
+.home .tech-tags   { gap: 6px; }
+.home .home-hero { margin-bottom: 32px; }
+.home .home-hero .home-hero__title { font-size: 18px; font-weight: 700; }
+/* 让“技术栈”主标题与两列子标题的间距统一 */
+.home .section-title { margin-bottom: 10px; }         /* 固定主标题的底部间距 */
+.home .section .el-row { margin-top: 0; }             /* 列容器不要再叠加额外顶部间距 */
+
+/* 两列子标题（后端/平台、前端/工具）基线对齐、间距一致 */
+.home .stack-col { padding-top: 2px; }                /* 轻微上提，贴近主标题 */
+.home .stack-title {
+  margin: 0 0 8px;                                    /* 上=0，下=8，统一 */
+  line-height: 20px;
+  font-weight: 700;
+  display: inline-flex; align-items: center; gap: 8px;/* 基线对齐更稳 */
+}
+
+/* 列表的顶部间距统一（避免与子标题距离忽大忽小） */
+.home .stack-list {
+  margin: 0;                                          /* 去掉默认 margin */
+  padding-left: 18px;
+  line-height: 26px;
+}
+
+/* 可选：把子标题后的“·”稍微弱化，避免产生‘错位’的错觉 */
+.home .stack-title::after { content: "·"; color: #9ca3af; font-weight: 400; }
+
+
+
