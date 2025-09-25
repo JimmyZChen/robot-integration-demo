@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/Vue-2.x-4fc08d">
   <img src="https://img.shields.io/badge/SpringCloud-Alibaba-blueviolet">
   <img src="https://img.shields.io/badge/Status-Read--only-lightgrey">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-informational"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" /></a>
 </p>
 
 > **What**：多厂商机器人接入、编排与调度的平台**代码结构与设计示例**。  
@@ -302,7 +302,8 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
   **A：** 以展示为主，暂不接受功能型 PR；欢迎文档/安全修订。
 
 ### 📄 License & 免责声明
-- 若未特别声明，示例代码建议采用 **Apache-2.0 / MIT**；请在仓库根目录提供匹配的 `LICENSE`。
+- 本项目代码按 **MIT License** 开源，详见仓库根目录的 [LICENSE](./LICENSE)。
+- 组合版权：Portions © 2020 **若依** (MIT). Modifications © 2025 **陈峥 Jimmy Chen** (MIT)。
 - 本仓库不对接真实设备；使用者需自行确保合规与安全。
 
 ---
@@ -331,7 +332,7 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
   <img src="https://img.shields.io/badge/Vue-2.x-4fc08d">
   <img src="https://img.shields.io/badge/SpringCloud-Alibaba-blueviolet">
   <img src="https://img.shields.io/badge/Status-Read--only-lightgrey">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-informational"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" /></a>
 </p>
 
 > **What**: a **code structure & design showcase** for a multi‑vendor robot management platform.  
@@ -585,7 +586,8 @@ Abnormal cases can be inspected in the DLQ to locate failed messages.
 - **Do you accept PRs?** Showcase‑first; no feature PRs for now. Docs/security fixes are welcome.
 
 ### 📄 License & Disclaimer
-- Unless otherwise stated, code can be under **Apache‑2.0 / MIT**. Provide a matching `LICENSE` at repo root.  
+- This project is released under the **MIT License** — see [LICENSE](./LICENSE).
+- Combined copyright: Portions © 2020 **RuoYi** (MIT). Modifications © 2025 **Jimmy Chen** (MIT). 
 - This repo does not control real devices. Use it legally and safely in your environment.
 
 ---
