@@ -44,7 +44,14 @@
 ## 🧾 项目简介
 本项目基于 **RuoYi-Cloud v3.6.6** 二次开发，目标是打造一个**多厂商机器人集成调度系统**：统一接入不同厂商 OpenAPI（以**高仙（Gaussian Robotics）**为例），提供任务编排、地图/分区管理、状态监控与可观测性。  
 为确保安全与合规，当前仓库以**示例代码结构**为主，聚焦工程拆分、网关与业务层设计、限流/降级与可观测性接入方式。
-[![园区机器人调度系统 · 首页总览](docs/assets/live/p10-dashboard.png)](https://robot-interface-demo-docs.pages.dev/)
+<p align="center">
+  <a href="https://robot-interface-demo-docs.pages.dev/">
+    <img src="docs/assets/live/p10-dashboard.png"
+         alt="园区机器人调度系统 · 首页总览（核心能力 / 技术栈 / 快捷入口）"
+         style="max-width:100%; border-radius:12px;">
+  </a>
+</p>
+
 ---
 
 ## 主要能力（示例代码侧重）
@@ -356,7 +363,14 @@ GET /external/gs/async/tasks/{taskId} → PENDING → DONE/FAILED
 ## 🧾 Overview (with Tech Stack)
 Built on **RuoYi‑Cloud v3.6.6**, this sample illustrates a **multi‑vendor robot orchestration platform**: unified OpenAPI integration (e.g., **Gaussian Robotics**), task orchestration, maps/partitions, status monitoring, and observability.  
 For safety & compliance, we emphasize **service decomposition, gateway & service layering, rate‑limit/circuit ideas, and observability touchpoints**.
-[![园区机器人调度系统 · 首页总览](docs/assets/live/p10-dashboard.png)](https://robot-interface-demo-docs.pages.dev/)
+<p align="center">
+  <a href="https://robot-interface-demo-docs.pages.dev/">
+    <img src="docs/assets/live/p10-dashboard.png"
+         alt="园区机器人调度系统 · 首页总览（核心能力 / 技术栈 / 快捷入口）"
+         style="max-width:100%; border-radius:12px;">
+  </a>
+</p>
+
 ---
 
 ## Key Capabilities (code-side focus)
